@@ -4,14 +4,16 @@ $(document).ready(function() {
            height: '+=370px'
        });
 	   jQuery('.button', this).fadeIn('slow');
-   });
-   $('.div1').mouseleave(function() {
+	   jQuery('.buttonText', this).delay(200).fadeIn('fast');
+	   $('#left-wing').css('transform', 'rotate(5deg)').css('-ms-transform', 'rotate(5deg)').css('-webkit-transform', 'rotate(5deg)');
+	   $('#right-wing').css('transform', 'rotate(-5deg)').css('-ms-transform', 'rotate(-5deg)').css('-webkit-transform', 'rotate(-5deg)');
+   }).mouseleave(function() {
        $(this).animate({
            height: '-=370px'
        }); 
 	   jQuery('.button', this).hide();
+	   jQuery('.buttonText', this).hide();
+	   $('#left-wing').css('transform', 'rotate(-5deg)').css('-ms-transform', 'rotate(-5deg)').css('-webkit-transform', 'rotate(-5deg)');
+	   $('#right-wing').css('transform', 'rotate(5deg)').css('-ms-transform', 'rotate(5deg)').css('-webkit-transform', 'rotate(5deg)');
    });
-   $('.div1').click(function() {
-       $(this).toggle(1000);
-   }); 
 });

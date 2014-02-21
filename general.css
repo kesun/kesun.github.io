@@ -67,6 +67,7 @@ a:visited{
 }
 
 .div1{
+	margin-top:5px;
 	vertical-align:top;
 	display: inline-block;
 	vertical-align:central;
@@ -84,14 +85,10 @@ a:visited{
 	text-align:center;
 }
 
-.div1 span.text{
-	visibility: hidden;
-	vertical-align:top;
+.buttonText{
+	display:none;
+	vertical-align:text-top;
 	text-align:left;
-	opacity:0;
 }
 
-.div1:hover span.text{
-	visibility: visible;
-	opacity: 100;
-}
+#left-wing #right-wing{}
