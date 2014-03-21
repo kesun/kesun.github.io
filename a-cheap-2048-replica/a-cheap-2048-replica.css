@@ -5,13 +5,14 @@
 body {
 	background-color: #333;
 	font-family: Verdana, Geneva, sans-serif;
-	font-size: 10px;
-	color: #333;
+	font-size: 12px;
+	color: #FFF;
 }
 
 .block {
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 24px;
+	font-weight: bold;
 	color: #333;
 	vertical-align: middle;
 	text-align: center;
@@ -30,7 +31,7 @@ body {
 	text-align: center;
 	padding-top: 25px;
 	width: 470px;
-	height: 600px;
+	height: 630px;
 	border-radius: 15px;
 	background-color: #F33;
 }
@@ -38,4 +39,7 @@ body {
 .caption1{
 	color: #FFF;
 	font-size: 40px;
+}
+
+.gameButton{
 }
