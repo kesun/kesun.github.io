@@ -1,20 +1,58 @@
 var x;
 var y;
-var ID;
-var tempID;
+
+var tempID = 0;
 var change = 0;
 var numRow = 4;
 var numCol = 4;
-var emptySpace = 0;
+var alive = 0;
+var winner = 0;
+var loser = 0;
 
-function checkWinner(){
+/*
+function testSpawn(){
+	$("#12").append("<p>2</p>");
+	$("#21").append("<p>2</p>");
+	$("#22").append("<p>2</p>");
+	$("#24").append("<p>2</p>");
+	$("#33").append("<p>2</p>");
+	$("#42").append("<p>2</p>");
+	$("#43").append("<p>2</p>");
+}
+
+function test(){
+	$("body").append("<p>Alive: "+alive+"; Winner: "+winner+"; Loser: "+loser+"</p>");
+}
+*/
+
+function checkWinner(){	// returns 1 if there's winner, 0 if not (doesn't mean losing)
+	var temp;
 	for(var i = 1; i <= numRow; i++){
 		for(var j = 1; j <= numCol; j++){
-			tempID = "#" + i + j;
-			if($(tempID).is(":empty")){
-				emptySpace = 1;
-			}else if($(tempID).text() == "2048"){
+			temp = "#" + i + j;
+
+			if($(temp).is(":empty")){	// if block is empty
+
+				alive = 1;	// game is alive
+
+			}else if($(temp).text() == "2048"){	// if there is 2048
+				winner = 1;	// there is a winner
 				return 1;
+			}else{	// if block is filled with non-2048 (implicitly less than 2048)
+				if(i < numRow && j < numCol){	// check for neighbouring pairs
+					var rowNei = "#"+i+(j+1);
+					var colNei = "#"+(i+1)+j;
+					var cur = $(temp).text();
+					
+					rowNei = $(rowNei).text();
+					colNei = $(colNei).text();
+					
+					if(cur == rowNei || cur == colNei){	// if a pair exists
+
+						alive = 1;	// game is alive
+
+					}
+				}
 			}
 		}
 	}
@@ -46,16 +84,6 @@ function spawn(){
 	}
 	
 	$(tempID).append("<p>2</p>");
-}
-
-function testSpawn(){
-	$("#12").append("<p>2</p>");
-	$("#21").append("<p>2</p>");
-	$("#22").append("<p>2</p>");
-	$("#24").append("<p>2</p>");
-	$("#33").append("<p>2</p>");
-	$("#42").append("<p>2</p>");
-	$("#43").append("<p>2</p>");
 }
 
 function moveValueTo(origID, newID, value){
@@ -229,10 +257,11 @@ function init(){
 	}
 	
 	// reset global
-	change = 0;
 	numRow = 4;
 	numCol = 4;
-	emptySpace = 0;
+	winner = 0;
+	loser = 0;
+	alive = 0;
 	
 	spawn();
 	spawn();
@@ -244,38 +273,41 @@ $(document).ready(function(){
 	spawn();
 	
 	//testSpawn();
-	
-	$(document).keydown(function(key) {
-        switch(parseInt(key.which,10)) {
-			// Left arrow key pressed
-			case 37:
-				moveLeft();
-				break;
-			// Up Arrow Pressed
-			case 38:
-		        moveUp();
-				break;
-			// Right Arrow Pressed
-			case 39:
-				moveRight();
-				break;
-			// Down Array Pressed
-			case 40:
-				moveDown();
-				break;
-		}
-		
-		if(checkWinner() == 1){
-			declareWinner();
-		}
-		
-		if(change == 1){
-			spawn();
-		}else if(emptySpace == 0){
-			declareLoser();
-		}
-		change = 0;
-	});
+	if(winner == 0 && loser == 0){
+		$(document).keydown(function(key) {
+	        switch(parseInt(key.which,10)) {
+				// Left arrow key pressed
+				case 37:
+					moveLeft();
+					break;
+				// Up Arrow Pressed
+				case 38:
+			        moveUp();
+					break;
+				// Right Arrow Pressed
+				case 39:
+					moveRight();
+					break;
+				// Down Array Pressed
+				case 40:
+					moveDown();
+					break;
+			}
+			
+			checkWinner();
+
+			if(winner == 1){	// if there's a winner
+				declareWinner();
+			}else if(change == 1){	// if a valid change of position occured
+				spawn();
+			}else if(alive == 0){	// if game died
+				loser = 1;
+				declareLoser();
+			}
+			alive = 0
+			change = 0;
+		});
+	}
 	
 	$("#restart").click(function(){
 		init();
