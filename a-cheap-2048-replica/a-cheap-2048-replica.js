@@ -220,6 +220,24 @@ function moveRight(){
 	}
 }
 
+function init(){
+	// whipe the blocks
+	for(var i = 1; i <= numRow; i++){
+		for(var j = 1; j <= numCol; j++){
+			$("#"+i+j).empty();
+		}
+	}
+	
+	// reset global
+	change = 0;
+	numRow = 4;
+	numCol = 4;
+	emptySpace = 0;
+	
+	spawn();
+	spawn();
+}
+
 $(document).ready(function(){
 	//init
 	spawn();
@@ -257,5 +275,9 @@ $(document).ready(function(){
 			declareLoser();
 		}
 		change = 0;
+	});
+	
+	$("#restart").click(function(){
+		init();
 	});
 });
