@@ -22,7 +22,7 @@ body {
 	padding-top: 12px;
 	margin-bottom: 4px;
 	border-radius: 10px;
-	background-color: #FCC;
+	background-color: #B0E6FF;
 }
 
 .blockWrapper {
@@ -33,13 +33,26 @@ body {
 	width: 470px;
 	height: 630px;
 	border-radius: 15px;
-	background-color: #F33;
+	background-color: #165776;
 }
 
 .caption1{
+	margin: 15px;
 	color: #FFF;
 	font-size: 40px;
+	text-shadow: 2px 2px #333333;
 }
 
 .gameButton{
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 1px 1px #333;
+	padding-top: 10px;
+	vertical-align: central;
+	text-align: center;
+	background-color: #9C6CFF;
+	border-radius: 10px;
+	width: 150px;
+	height: 30px;
+	margin: auto;
 }
