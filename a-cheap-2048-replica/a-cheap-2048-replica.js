@@ -314,10 +314,10 @@ function init(){
 
 $(document).ready(function(){
 	//init
-	//spawn();
-	//spawn();
+	spawn();
+	spawn();
 	
-	testSpawn();
+	//testSpawn();
 	/*
 	checkWinner();
 
