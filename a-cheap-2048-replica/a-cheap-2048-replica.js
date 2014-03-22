@@ -9,21 +9,46 @@ var alive = 0;
 var winner = 0;
 var loser = 0;
 
-/*
 function testSpawn(){
-	$("#12").append("<p>2</p>");
-	$("#21").append("<p>2</p>");
-	$("#22").append("<p>2</p>");
-	$("#24").append("<p>2</p>");
-	$("#33").append("<p>2</p>");
-	$("#42").append("<p>2</p>");
-	$("#43").append("<p>2</p>");
+	$("#12").append("<p>2048</p>");
+	$("#21").append("<p>4</p>");
+	$("#22").append("<p>8</p>");
+	$("#24").append("<p>16</p>");
+	$("#33").append("<p>32</p>");
+	$("#42").append("<p>64</p>");
+	$("#43").append("<p>128</p>");
 }
+
 
 function test(){
 	$("body").append("<p>Alive: "+alive+"; Winner: "+winner+"; Loser: "+loser+"</p>");
 }
-*/
+
+function freezeGame(){
+	$(".block").each(function(){
+		$(this).removeAttr("id");
+	});
+}
+
+function unFreezeGame(){
+	var r = 1;
+	var c = 1;
+	var newID;
+
+	$(".block").each(function(){
+		newID = String(r) + String(c);
+		$(this).attr("id", newID);
+
+		if(r <= 4){
+			if(c < 4){
+				c++;
+			}else{
+				r++;
+				c = 1;
+			}
+		}
+	})
+}
 
 function checkWinner(){	// returns 1 if there's winner, 0 if not (doesn't mean losing)
 	var temp;
@@ -38,19 +63,25 @@ function checkWinner(){	// returns 1 if there's winner, 0 if not (doesn't mean l
 			}else if($(temp).text() == "2048"){	// if there is 2048
 				winner = 1;	// there is a winner
 				return 1;
+
 			}else{	// if block is filled with non-2048 (implicitly less than 2048)
-				if(i < numRow && j < numCol){	// check for neighbouring pairs
-					var rowNei = "#"+i+(j+1);
+				var cur = $(temp).text();
+
+				if(i < numRow){
 					var colNei = "#"+(i+1)+j;
-					var cur = $(temp).text();
-					
-					rowNei = $(rowNei).text();
 					colNei = $(colNei).text();
 					
-					if(cur == rowNei || cur == colNei){	// if a pair exists
+					if(cur == colNei){
+						alive = 1;
+					}
+				}
 
-						alive = 1;	// game is alive
-
+				if(j < numCol){
+					var rowNei = "#"+i+(j+1);
+					rowNei = $(rowNei).text();
+					
+					if(cur == rowNei){
+						alive = 1;
 					}
 				}
 			}
@@ -59,12 +90,22 @@ function checkWinner(){	// returns 1 if there's winner, 0 if not (doesn't mean l
 	return 0;
 }
 
+function showResultBox(){
+	$(".resultBox").fadeIn("fast");
+}
+
 function declareWinner(){
-	$("body").append("<p>We have a winner!</p>");
+	$(".resultBox").empty();
+	$(".resultBox").append("<p>Congratulations, you win!</p>");
+	showResultBox();
+	// $("body").append("<p>We have a winner!</p>");
 }
 
 function declareLoser(){
-	$("body").append("<p>You are out of moves!</p>");
+	$(".resultBox").empty();
+	$(".resultBox").append("<p>You lost...</p>");
+	showResultBox();
+	// $("body").append("<p>You are out of moves!</p>");
 }
 
 function getRandomInt(min, max) {
@@ -249,6 +290,8 @@ function moveRight(){
 }
 
 function init(){
+	unFreezeGame();
+
 	// whipe the blocks
 	for(var i = 1; i <= numRow; i++){
 		for(var j = 1; j <= numCol; j++){
@@ -267,14 +310,33 @@ function init(){
 	spawn();
 }
 
+
+
 $(document).ready(function(){
 	//init
-	spawn();
-	spawn();
+	//spawn();
+	//spawn();
 	
-	//testSpawn();
+	testSpawn();
+	/*
+	checkWinner();
+
+	if(winner == 1){	// if there's a winner
+		declareWinner();
+	}else if(alive == 0){	// if game died
+		loser = 1;
+		declareLoser();
+	}
+	*/
+
 	if(winner == 0 && loser == 0){
 		$(document).keydown(function(key) {
+
+			// test();
+
+			alive = 0
+			change = 0;
+
 	        switch(parseInt(key.which,10)) {
 				// Left arrow key pressed
 				case 37:
@@ -293,23 +355,26 @@ $(document).ready(function(){
 					moveDown();
 					break;
 			}
-			
+
+			if(change == 1){	// if a valid change of position occured
+				spawn();
+			}
+
 			checkWinner();
 
-			if(winner == 1){	// if there's a winner
+			if(winner == 1){
+				freezeGame();
 				declareWinner();
-			}else if(change == 1){	// if a valid change of position occured
-				spawn();
-			}else if(alive == 0){	// if game died
+			}else if(alive == 0){
+				freezeGame();
 				loser = 1;
 				declareLoser();
 			}
-			alive = 0
-			change = 0;
 		});
 	}
 	
 	$("#restart").click(function(){
+		$(".resultBox").fadeOut("fast");
 		init();
 	});
 });

@@ -2,6 +2,7 @@
 /* CSS Document */
 
 #11 #12 #13 #14 #21 #22 #23 #24 #31 #32 #33 #34 #41 #42 #43 #44 #restart{}
+
 body {
 	background-color: #333;
 	font-family: Verdana, Geneva, sans-serif;
@@ -61,4 +62,22 @@ body {
 
 .gameButton:hover{
 	background-color: #B12166;
+}
+
+.resultBox{
+	display: none;
+	position: absolute;
+	z-index: 5;
+	margin-left: 10px;
+	width: 450px;
+	height: 100px;
+	border-radius: 10px;
+	text-align: center;
+	vertical-align: central;
+	font-size: 14;
+	background-image: url(resultboxbackground.png);
+}
+
+.resultText{
+	
 }
