@@ -46,13 +46,19 @@ body {
 .gameButton{
 	font-size: 16px;
 	font-weight: bold;
+	color: #FFF;
+	border: none;
+	outline: none;
 	text-shadow: 1px 1px #333;
-	padding-top: 10px;
 	vertical-align: central;
 	text-align: center;
 	background-color: #9C6CFF;
 	border-radius: 10px;
 	width: 150px;
-	height: 30px;
+	height: 40px;
 	margin: auto;
+}
+
+.gameButton:hover{
+	background-color: #B12166;
 }
