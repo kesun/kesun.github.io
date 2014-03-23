@@ -69,17 +69,17 @@ function applyColour(id, colour){
 
 function determineColour(id, num){
     switch(num){
-        case 2: applyColour(id, "#b0e6ff"); break;
-        case 4: applyColour(id, "#8adaff"); break;
-        case 8: applyColour(id, "#56caff"); break;
-        case 16: applyColour(id, "#d7b0ff"); break;
-        case 32: applyColour(id, "#d78aff"); break;
-        case 64: applyColour(id, "#bd56ff"); break;
-        case 128: applyColour(id, "#ffb0d7"); break;
-        case 256: applyColour(id, "#ff8ac4"); break;
-        case 512: applyColour(id, "#ff56a2"); break;
-        case 1024: applyColour(id, "#ffb243"); break;
-        case 2048: applyColour(id, "#ff9600"); break;
+        case 2: applyColour(id, "#b0e6ff"); $(id).css("color", "#333"); break;
+        case 4: applyColour(id, "#75d4ff"); $(id).css("color", "#333"); break;
+        case 8: applyColour(id, "#31beff"); $(id).css("color", "#ffffff"); break;
+        case 16: applyColour(id, "#d7b0ff"); $(id).css("color", "#333"); break;
+        case 32: applyColour(id, "#bf74ff"); $(id).css("color", "#333"); break;
+        case 64: applyColour(id, "#a337ff"); $(id).css("color", "#ffffff"); break;
+        case 128: applyColour(id, "#ffb0d7"); $(id).css("color", "#333"); break;
+        case 256: applyColour(id, "#ff77ba"); $(id).css("color", "#333"); break;
+        case 512: applyColour(id, "#ff399b"); $(id).css("color", "#ffffff"); break;
+        case 1024: applyColour(id, "#ffb243"); $(id).css("color", "#333"); break;
+        case 2048: applyColour(id, "#ff9600"); $(id).css("color", "#333"); break;
     }
 }
 
@@ -93,8 +93,11 @@ function checkWinner(){ // returns 1 if there's winner, 0 if not (doesn't mean l
 
                 alive = 1;  // game is alive
 
-            }else if($(temp).text() == "2048"){ // if there is 2048
+            }else if($(temp).text() == 2048){ // if there is 2048
                 winner = 1; // there is a winner
+                $(temp)
+                    .css("background-image", "url(redstar.png)")
+                    .css("color", "#ffffff");
                 return 1;
 
             }else{  // if block is filled with non-2048 (implicitly less than 2048)
@@ -164,15 +167,18 @@ function spawn(){
 
 function moveValueTo(origID, newID, value){
     var origColour = $(origID).css("background-color");
+    var origTextColour = $(origID).css("color");
     $(newID)
         .css("background-color", "")
-        .css("background-color", origColour);
+        .css("background-color", origColour)
+        .css("color", origTextColour);
     $("p", newID).remove("p");
     $(newID).append("<p>" + value + "</p>");
     $("p", origID).remove("p");
     $(origID)
         .css("background-color", "")
-        .css("background-color", "#558ba5");
+        .css("background-color", "#558ba5")
+        .css("color", "#333");
 }
 
 function moveUp(){
@@ -364,7 +370,9 @@ function init(){
     // whipe the blocks
     for(var i = 1; i <= numRow; i++){
         for(var j = 1; j <= numCol; j++){
-            $("#"+i+j).css("background-color", "#558ba5");
+            $("#"+i+j)
+                .css("background-color", "#558ba5")
+                .css("color", "#333");
             $("#"+i+j).empty();
         }
     }
@@ -377,7 +385,10 @@ function init(){
 $(document).ready(function(){
     //init
     init();
-
+    /*
+    $("#11").append("<p>2048</p>");
+    applyColour("#11", "#ff9600");
+    */
     /*
     checkWinner();
 
