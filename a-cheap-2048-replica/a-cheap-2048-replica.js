@@ -9,6 +9,55 @@ var alive = 0;
 var winner = 0;
 var loser = 0;
 
+//Numbers achieved
+var seenValues = [2];
+/*
+function testDisplayArray(){
+	$("body").append(seenValues.length);
+}
+*/
+function achievementMsg(msg){
+	$(".achievementBox").text(msg);
+	$(".achievementBox").css({ opacity: 1 });
+	$(".achievementBox").fadeTo("slow", 0);
+}
+
+function achievement(num){
+	switch(seenValues.length) {
+		// Left arrow key pressed
+		case 2:
+			achievementMsg("First blood!");
+			break;
+		case 3:
+			achievementMsg("Double kill!");
+			break;
+		case 4:
+			achievementMsg("Triple kill!");
+			break;
+		case 5:
+			achievementMsg("Ultra kill!");
+			break;
+		case 6:
+			achievementMsg("Rampage!");
+			break;
+		case 7:
+			achievementMsg("Killing spree!");
+			break;
+		case 8:
+			achievementMsg("Dominating!");
+			break;
+		case 9:
+			achievementMsg("Mega kill!");
+			break;
+		case 10:
+			achievementMsg("Unstoppable!");
+			break;
+		case 11:
+			achievementMsg("Wicked sick!");
+			break;
+	}
+}
+/*
 function testSpawn(){
 	$("#12").append("<p>2048</p>");
 	$("#21").append("<p>4</p>");
@@ -23,7 +72,7 @@ function testSpawn(){
 function test(){
 	$("body").append("<p>Alive: "+alive+"; Winner: "+winner+"; Loser: "+loser+"</p>");
 }
-
+*/
 function freezeGame(){
 	$(".block").each(function(){
 		$(this).removeAttr("id");
@@ -96,14 +145,14 @@ function showResultBox(){
 
 function declareWinner(){
 	$(".resultBox").empty();
-	$(".resultBox").append("<p>Congratulations, you win!</p>");
+	$(".resultBox").append('<p class="resultText">Congratulations, you win!</p>');
 	showResultBox();
 	// $("body").append("<p>We have a winner!</p>");
 }
 
 function declareLoser(){
 	$(".resultBox").empty();
-	$(".resultBox").append("<p>You lost...</p>");
+	$(".resultBox").append('<p class="resultText">You lost...</p>');
 	showResultBox();
 	// $("body").append("<p>You are out of moves!</p>");
 }
@@ -157,6 +206,12 @@ function moveUp(){
 				}else{	// If there is unused previous value
 					if(prevValue == $(curID).text()){	// If prev value == cur value
 						var sum = Number(prevValue) + Number($(curID).text());
+						
+						if(seenValues.lastIndexOf(sum) == -1){
+							seenValues.push(sum);
+							achievement(sum);
+						}
+
 						moveValueTo(curID, "#" + prevRow + col, sum);
 						prevValue = 0;
 						prevRow = 0;
@@ -196,6 +251,12 @@ function moveDown(){
 				}else{	// If there is unused previous value
 					if(prevValue == $(curID).text()){	// If prev value == cur value
 						var sum = Number(prevValue) + Number($(curID).text());
+
+						if(seenValues.lastIndexOf(sum) == -1){
+							seenValues.push(sum);
+							achievement(sum);
+						}
+
 						moveValueTo(curID, "#" + prevRow + col, sum);
 						prevValue = 0;
 						prevRow = 0;
@@ -235,6 +296,12 @@ function moveLeft(){
 				}else{	// If there is unused previous value
 					if(prevValue == $(curID).text()){	// If prev value == cur value
 						var sum = Number(prevValue) + Number($(curID).text());
+						
+						if(seenValues.lastIndexOf(sum) == -1){
+							seenValues.push(sum);
+							achievement(sum);
+						}
+
 						moveValueTo(curID, "#" + row + prevCol, sum);
 						prevValue = 0;
 						prevCol = 0;
@@ -274,6 +341,12 @@ function moveRight(){
 				}else{	// If there is unused previous value
 					if(prevValue == $(curID).text()){	// If prev value == cur value
 						var sum = Number(prevValue) + Number($(curID).text());
+						
+						if(seenValues.lastIndexOf(sum) == -1){
+							seenValues.push(sum);
+							achievement(sum);
+						}
+
 						moveValueTo(curID, "#" + row + prevCol, sum);
 						prevValue = 0;
 						prevCol = 0;
@@ -305,6 +378,7 @@ function init(){
 	winner = 0;
 	loser = 0;
 	alive = 0;
+	seenValues = [2];
 	
 	spawn();
 	spawn();
@@ -317,7 +391,6 @@ $(document).ready(function(){
 	spawn();
 	spawn();
 	
-	//testSpawn();
 	/*
 	checkWinner();
 
