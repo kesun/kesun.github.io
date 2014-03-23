@@ -384,8 +384,6 @@ function init(){
 	spawn();
 }
 
-
-
 $(document).ready(function(){
 	//init
 	spawn();
