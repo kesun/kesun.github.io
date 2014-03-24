@@ -91,7 +91,7 @@ a:visited{
 	height: 100px;
 	border-radius: 5px;
 	text-align: center;
-	background-image: url(resultboxbackground.png);
+	background-image: url(../2048-my-version/resultboxbackground.png);
 }
 
 .resultText{
@@ -103,7 +103,7 @@ a:visited{
 }
 
 .achievementBox{
-	background-image: url(resultboxbackground.png);
+	background-image: url(../2048-my-version/resultboxbackground.png);
 	position: absolute;
 	margin-left: -200px;
 	margin-top: 100px;
