@@ -96,7 +96,7 @@ function checkWinner(){ // returns 1 if there's winner, 0 if not (doesn't mean l
             }else if($(temp).text() == 2048){ // if there is 2048
                 winner = 1; // there is a winner
                 $(temp)
-                    .css("background-image", "url(redstar.png)")
+                    .css("background-image", "url(../2048-my-version/redstar.png)")
                     .css("color", "#ffffff");
                 return 1;
 
