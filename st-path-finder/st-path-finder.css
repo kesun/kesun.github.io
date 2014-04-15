@@ -10,7 +10,7 @@ body{
 
 .mainFrame{
 	position:absolute;
-	border-radius:20px;
+	border-radius:30px;
 	width:800px;
 	height:600px;
 	top:50%;
@@ -48,7 +48,7 @@ body{
     z-index:1;
 	position:absolute;
 	width:8px;
-	background-color:#333;
+	background-color:#666;
 	transform-origin:left top;
 	-webkit-transform-origin: left top;
 	-moz-transform-origin: left top;
