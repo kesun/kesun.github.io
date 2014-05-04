@@ -5,6 +5,24 @@ body{
 	text-align: left;
 }
 
+a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+a:visited{
+	color: #FFFFFF;
+}
+
+a:active{
+	color: #FFFFFF;
+}
+
 .outerFrame{
 	position: relative;
 	width: 820px;
@@ -18,7 +36,7 @@ body{
 }
 
 .mainFrame{
-	position: relative;
+	position: absolute;
 	width: 600px;
 	height: 600px;
 	margin-left: 200px;
@@ -60,4 +78,60 @@ body{
 
 #reset{
 	top: 50px;
+}
+
+#blockSet{
+	top: 90px;
+	width: 100px;
+	left: -355px;
+}
+
+.counterInput{
+	position: absolute;
+	top: 150px;
+	margin-left: 50%;
+	left: -355px;
+	width: 100px;
+	border: none;
+	background-color: #893C5D;
+	color: #FFFFFF;
+}
+
+.label{
+	position: absolute;
+	display: inline-block;
+	color: #FFFFFF;
+	margin-left: 50%;
+	left: -400px;
+	width: 120px;
+	height: 30px;
+	border: none;
+	background-color: transparent;
+	vertical-align: center;
+	text-align: left;
+	line-height: 30px;
+}
+
+#generationCounter{
+	top: 120px;
+}
+
+#initialBlocks{
+	top: 180px;
+	width: 180px;
+}
+
+.initialInput{
+	position: absolute;
+	top: 210px;
+	margin-left: 50%;
+	left: -355px;
+	width: 100px;
+	border: none;
+	background-color: #893C5D;
+	color: #FFFFFF;
+}
+
+#note{
+	top: 560px;
 }
