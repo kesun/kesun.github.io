@@ -40,7 +40,6 @@ $(document).ready(function(){
 	var startNode = makeNode(0, origin.x, origin.y);
 	closedSet.push(startNode);
 	findNeighbours(closedSet[closedSet.length - 1]);
-	$('body').append("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
 	start(startNode);
 });
 
@@ -76,14 +75,20 @@ function generateInit(){
 			}else if(wallNumber - i == 0){
 				origin.x = wX;
 				origin.y = wY;
-				$(makeID(node)).css("background-color", pathColour)
+				$('body').append("starting node @ " + wX + ", " + wY + "<br>");
+				$(makeID(node)).css("background-color", "#FF0055")
 					.text("");
-			}else{
+			}else if(start.x != wX || start.y != wY){
 				dest.x = wX;
 				dest.y = wY;
+				$('body').append("ending node @ " + wX + ", " + wY + "<br>");
 				$(makeID(node)).css("background-color", "#EE8B00")
 					.text("");
+			}else{
+				i--;
 			}
+		}else{
+			i--;
 		}
 	}
 }
@@ -104,18 +109,46 @@ function reset(){
 	walls = [];
 }
 
+// Construct the final path
+function getPath(finalNode){
+	var pathNodes = [];
+	var node = finalNode;
+	while(node.x != origin.x && node.y != origin.y){
+		var parent = {
+			x : node.parentX,
+			y : node.parentY
+		}
+		var parentIndex = isInSet(closedSet, parent);
+		if(parentIndex >= 0){
+			pathNodes.push(closedSet[parentIndex]);
+			node = closedSet[parentIndex];
+		}else{
+			alert("Somethin went wrong while constructing the final path.");
+			return 0;
+		}
+	}
+	pathNodes.push()
+	displayPath(pathNodes); // just use pop, it will be from origin to destination
+	return 1;
+}
+
+function displayPath(pathNodes){
+	var path = pathNodes;
+	if(path.length == 0){
+		return 0;
+	}
+	var node = path.pop();
+	animateNode(node, 3);
+	setTimeout(function(){displayPath(path)}, 500);
+}
+
 // NOTE: avoiding using loops to enable delay/animations when required
 // ====== Iterators =======
 function start(curNode){
-	/*
-	if(counter == 5){
-		return true;
-	}
-	counter++;
-	*/
 	if(areNodesEqual(curNode, dest)){
+		$(makeID(curNode)).css("background-color", "#EE8B00")
+		getPath(closedSet[closedSet.length - 1]);
 		return true;	// Path found
-		// DO SOMETHING
 	}
 	if(openSet.length == 0){
 		return false;	// Path not found
@@ -123,16 +156,12 @@ function start(curNode){
 	openIterator(0, 0);
 	closedSet.push(openSet[helperNum]);
 	openSet.splice(helperNum, 1);
-	printSet(openSet, 1);
-	printSet(closedSet, 1);
 	setTimeout(function(){
 		var len = closedSet.length;
 		len--;
 		animateNode(closedSet[len], 2);
 		setTimeout(function(){
 			findNeighbours(closedSet[closedSet.length - 1]);
-			printSet(openSet, 1);
-			printSet(closedSet, 1);
 			start(closedSet[closedSet.length - 1]);
 		}, 500);
 	}, 500);
