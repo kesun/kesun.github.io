@@ -65,7 +65,7 @@ $(document).ready(function(){
 	$(".initialInput").focusout(function(){
 		var tempVal = Number($(".initialInput").val());
 		if(tempVal < 0 || tempVal > 3598 || tempVal == ""){
-			alert("Please enter a number between 0 ~ 398 only.");
+			alert("Please enter a number between 0 ~ 3598 only.");
 			$(".initialInput").val(500);
 		}
 	});
