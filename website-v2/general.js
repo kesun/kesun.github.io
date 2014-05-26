@@ -41,23 +41,27 @@ $(document).ready(function(){
 				"margin-top": 0 + "px",
 				"margin-left": -200 + "px",
 				"border-radius": 0 + "px",
-				"background-color": "rgba(225, 225, 225, 1)"
+				"background-color": "rgba(105, 64, 78, 1)"
+			}, function(){
+				$('.contentWrapper').fadeIn();
 			});
 		}
 	});
 	$('body').click(function(){
 		if(mouseIn == 0 && expanded == 1){
-			$('#orb-back').animate({
-				width: 50 + "px",
-				height: 50 + "px",
-				"background-color": "rgba(225, 225, 225, 0.3)",
-				"top": 50 + "%",
-				"margin-top": -32 + "px",
-				"margin-left": -25 + "px",
-				"border-radius": 25 + "px",
-			}, 500, "easeInOutCubic", function(){
-				expanded = 0;
-				$('#heart-big').toggle();
+			$('.contentWrapper').fadeOut(function(){
+				$('#orb-back').animate({
+					width: 50 + "px",
+					height: 50 + "px",
+					"background-color": "rgba(225, 225, 225, 0.3)",
+					"top": 50 + "%",
+					"margin-top": -32 + "px",
+					"margin-left": -25 + "px",
+					"border-radius": 25 + "px",
+				}, 500, "easeInOutCubic", function(){
+					expanded = 0;
+					$('#heart-big').toggle();
+				});
 			});
 		}
 	});
