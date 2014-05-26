@@ -1,9 +1,10 @@
 $(document).ready(function(){
-	animate($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#510022");
-	animate($('#circle-inner'), 1000, 1000, 100, 120, "#510022", "#510022");
+	animateCircle($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#510022");
+	animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#510022", "#510022");
+	animateHeart($('#heart-big'));
 });
 
-function animate(id, speed, del, initDia, finalDia, initColor, finalColor){
+function animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor){
 	id.delay(del).animate({
 		width: finalDia + "px",
 		height: finalDia + "px",
@@ -18,6 +19,18 @@ function animate(id, speed, del, initDia, finalDia, initColor, finalColor){
 			.css('border-radius', initDia / 2 + "px")
 			.css('margin-top', -1 * initDia / 2 + "px")
 			.css('margin-left', -1 * initDia / 2 + "px");
-		animate(id, speed, del, initDia, finalDia, initColor, finalColor);
+		animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor);
+	});
+}
+
+function animateHeart(heart){
+	heart.animate({
+		opacity: 0.2
+	}, 800, "easeInOutCubic", function(){
+		heart.animate({
+			opacity: 0.5
+		}, 1500, "easeInOutCubic", function(){
+			animateHeart(heart);
+		})
 	});
 }

@@ -92,3 +92,15 @@ a:visited{
 	background-color: #FFFFFF;
 	opacity: 0.3;
 }
+
+#heart-big{
+	font-size: 36px;
+	z-index: 80;
+	width: 36px;
+	height: 36px;
+	margin-top: -30px;
+	margin-left: -18px;
+	border-radius: 25px;
+	background-color: transparent;
+	opacity: 0.5;
+}
