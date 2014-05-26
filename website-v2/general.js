@@ -65,6 +65,42 @@ $(document).ready(function(){
 			});
 		}
 	});
+	$('.long-button').mouseover(function(){
+		var id = $(this).attr("id");
+		if(id == "github"){
+			$(this).animate({
+				"background-color": "#A461AB"
+			}, "fast");
+		}else if(id == "gallery"){
+			$(this).animate({
+				"background-color": "#6192AB"
+			}, "fast");
+		}else if(id == "blog"){
+			$(this).animate({
+				"background-color": "#7CAB61"
+			}, "fast");
+		}else if(id == "about"){
+			$(this).animate({
+				"background-color": "#AB8561"
+			}, "fast");
+		}
+	});
+	$('.long-button').click(function(){
+		var id = $(this).attr("id");
+		if(id == "github"){
+			window.open("https://github.com/kesun", '_blank');
+		}else if(id == "gallery"){
+			window.open("http://snow365.me", '_blank');
+		}else if(id == "blog"){
+			window.open("http://kesun.ca/blog", '_blank');
+		}else if(id == "about"){
+		}
+	});
+	$('.long-button').mouseout(function(){
+		$(this).animate({
+			"background-color": "#AB617B"
+		}, "fast");
+	});
 });
 
 function animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor){
