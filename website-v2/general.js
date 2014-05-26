@@ -1,7 +1,25 @@
 $(document).ready(function(){
-	animateCircle($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#510022");
-	animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#510022", "#510022");
+	animateCircle($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#2E111D");
+	animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#2E111D", "#2E111D");
 	animateHeart($('#heart-big'));
+	$('#heart-big').mouseover(function(){
+		$('#orb-back').animate({
+			width: 60 + "px",
+			height: 60 + "px",
+			"margin-top": -37 + "px",
+			"margin-left": -30 + "px",
+			"border-radius": 30 + "px",
+		}, 500, "easeInOutCubic");
+	});
+	$('#heart-big').mouseout(function(){
+		$('#orb-back').animate({
+			width: 50 + "px",
+			height: 50 + "px",
+			"margin-top": -32 + "px",
+			"margin-left": -25 + "px",
+			"border-radius": 25 + "px",
+		}, 500, "easeInOutCubic");
+	});
 });
 
 function animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor){
