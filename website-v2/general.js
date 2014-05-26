@@ -38,6 +38,7 @@ $(document).ready(function(){
 		if(expanded == 0){
 			expanded = 1;
 			$('#heart-big').toggle();
+			$('#text-small').toggle();
 			$('#orb-back').animate({
 				width: 400 + "px",
 				height: 100 + "%",
@@ -82,6 +83,7 @@ $(document).ready(function(){
 				}, 500, "easeInOutCubic", function(){
 					expanded = 0;
 					$('#heart-big').toggle();
+					$('#text-small').toggle();
 				});
 			});
 		}
