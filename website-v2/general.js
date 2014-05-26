@@ -1,7 +1,15 @@
 $(document).ready(function(){
+	var expanded = 0;
+	var mouseIn = 0;
 	animateCircle($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#2E111D");
 	animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#2E111D", "#2E111D");
 	animateHeart($('#heart-big'));
+	$('#orb-back').mouseover(function(){
+		mouseIn = 1;
+	});
+	$('#orb-back').mouseout(function(){
+		mouseIn = 0;
+	});
 	$('#heart-big').mouseover(function(){
 		$('#orb-back').animate({
 			width: 60 + "px",
@@ -12,13 +20,46 @@ $(document).ready(function(){
 		}, 500, "easeInOutCubic");
 	});
 	$('#heart-big').mouseout(function(){
-		$('#orb-back').animate({
-			width: 50 + "px",
-			height: 50 + "px",
-			"margin-top": -32 + "px",
-			"margin-left": -25 + "px",
-			"border-radius": 25 + "px",
-		}, 500, "easeInOutCubic");
+		if(expanded == 0){
+			$('#orb-back').animate({
+				width: 50 + "px",
+				height: 50 + "px",
+				"margin-top": -32 + "px",
+				"margin-left": -25 + "px",
+				"border-radius": 25 + "px",
+			}, 500, "easeInOutCubic");
+		}
+	});
+	$('#orb-back').click(function(){
+		if(expanded == 0){
+			expanded = 1;
+			$('#heart-big').toggle();
+			$('#orb-back').animate({
+				width: 400 + "px",
+				height: 100 + "%",
+				"top": 0,
+				"margin-top": 0 + "px",
+				"margin-left": -200 + "px",
+				"border-radius": 0 + "px",
+				"background-color": "rgba(225, 225, 225, 1)"
+			});
+		}
+	});
+	$('body').click(function(){
+		if(mouseIn == 0 && expanded == 1){
+			$('#orb-back').animate({
+				width: 50 + "px",
+				height: 50 + "px",
+				"background-color": "rgba(225, 225, 225, 0.3)",
+				"top": 50 + "%",
+				"margin-top": -32 + "px",
+				"margin-left": -25 + "px",
+				"border-radius": 25 + "px",
+			}, 500, "easeInOutCubic", function(){
+				expanded = 0;
+				$('#heart-big').toggle();
+			});
+		}
 	});
 });
 
