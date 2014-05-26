@@ -148,6 +148,87 @@ a:visited{
 	cursor: pointer;
 }
 
+.semi-circle-big{
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -70px;
+	height: 70px;
+	width: 140px;
+	border-radius: 140px 140px 0 0;
+	background-color: #CAA27D;
+}
+
+.med-circle{
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	margin-bottom: 25px;
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	background-color: #CAA27D;
+}
+
+#circle-med-left{
+	margin-left: -80px;
+}
+
+#circle-med-right{
+	margin-left: 30px;
+}
+
+.semi-circle-tiny{
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -80px;
+	margin-bottom: 36px;
+	height: 28px;
+	width: 28px;
+	border-radius: 14px;
+	background-color: #694E35;
+}
+
+#semi-tiny-left{
+	margin-left: -70px;
+}
+
+#semi-tiny-right{
+	margin-left: 42px;
+}
+
+.circle-small{
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	margin-bottom: 23px;
+	height: 14px;
+	width: 14px;
+	border-radius: 7px;
+	background-color: #000000;
+}
+
+#left-eye{
+	margin-left: -40px;
+}
+
+#right-eye{
+	margin-left: 26px;
+}
+
+.semi-mouth{
+	position: fixed;
+	bottom: 18px;
+	left: 50%;
+	margin-left: -8px;
+	height: 10px;
+	width: 16px;
+	border-radius: 0 0 16px 16px;
+	background-color: #FF4687;
+}
+
+
 h1{
   font-weight: normal;
   font-size: 20px;
