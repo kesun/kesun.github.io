@@ -51,9 +51,19 @@ $(document).ready(function(){
 	$('body').click(function(){
 		var id;
 		if(mouseIn == 0 && expanded == 1){
+			if($('#orb-back').is(':animated')){
+				$('#orb-back').finish();
+				$('#content-about').hide();
+				$('#content-menu').hide();
+			}
+			if($('#content-menu').is(':animated')){
+				$('#content-menu').finish();
+			}
+			if($('#content-about').is(':animated')){
+				$('#content-about').finish();
+			}
 			if(about == 1){
 				id = $('#content-about');
-				about = 0;
 			}else{
 				id = $('#content-menu');
 			}
@@ -114,8 +124,8 @@ $(document).ready(function(){
 		}, "fast");
 	});
 	$('#about-close').click(function(){
+		about = 0;
 		$('#content-about').fadeOut(function(){
-			about = 0;
 			$('#content-menu').fadeIn();
 		});
 	});
