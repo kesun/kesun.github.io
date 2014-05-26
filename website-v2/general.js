@@ -12,6 +12,9 @@ $(document).ready(function(){
 		mouseIn = 0;
 	});
 	$('#heart-big').mouseover(function(){
+		if($('#orb-back').is(':animated')){
+			$('#orb-back').finish();
+		}
 		$('#orb-back').animate({
 			width: 60 + "px",
 			height: 60 + "px",
@@ -84,6 +87,9 @@ $(document).ready(function(){
 		}
 	});
 	$('.long-button').mouseover(function(){
+		if($(this).is(':animated')){
+			$(this).finish();
+		}
 		var id = $(this).attr("id");
 		if(id == "github"){
 			$(this).animate({
