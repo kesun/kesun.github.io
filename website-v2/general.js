@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	animate($('#circle-outer'), 2000, 0, 84, 120, "#FFFFFF", "#510022");
-	animate($('#circle-inner'), 1000, 1000, 100, 125, "#510022", "#510022");
+	animate($('#circle-outer'), 2000, 0, 84, 130, "#FFFFFF", "#510022");
+	animate($('#circle-inner'), 1000, 1000, 100, 130, "#510022", "#510022");
 });
 
 function animate(id, speed, del, initDia, finalDia, initColor, finalColor){
