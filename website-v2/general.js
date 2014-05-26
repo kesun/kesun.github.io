@@ -55,6 +55,9 @@ $(document).ready(function(){
 	$('body').click(function(){
 		var id;
 		if(mouseIn == 0 && expanded == 1){
+			if($('.long-button').is(':animated')){
+				$('.long-button').finish();
+			}
 			if($('#orb-back').is(':animated')){
 				$('#orb-back').finish();
 				$('#content-about').hide();
