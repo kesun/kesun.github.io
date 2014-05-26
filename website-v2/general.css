@@ -52,11 +52,11 @@ a:visited{
 }
 
 #circle-outter{
-	width: 80px;
-	height: 80px;
-	margin-top: -42px;
-	margin-left: -42px;
-	border-radius: 40px;
+	width: 74px;
+	height: 74px;
+	margin-top: -37px;
+	margin-left: -37px;
+	border-radius: 37px;
 	background-color: #FFFFFF;
 	opacity: 0.3;
 }
@@ -124,7 +124,22 @@ a:visited{
 	cursor: pointer;
 }
 
+#content-about{
+	display: none;
+}
+
+#about-close{
+	width: 370px;
+	text-align: right;
+	cursor: pointer;
+}
+
 h1{
   font-weight: normal;
   font-size: 20px;
+}
+
+h2{
+  font-weight: normal;
+  font-size: 16px;
 }

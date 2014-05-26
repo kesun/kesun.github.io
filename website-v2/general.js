@@ -1,8 +1,9 @@
 $(document).ready(function(){
 	var expanded = 0;
+	var about = 0;
 	var mouseIn = 0;
-	animateCircle($('#circle-outer'), 2000, 0, 80, 130, "#FFFFFF", "#2E111D");
-	animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#2E111D", "#2E111D");
+	animateCircle($('#circle-outer'), 2000, 500, 74, 120, "#FFFFFF", "#2E111D");
+	//animateCircle($('#circle-inner'), 1000, 1000, 100, 120, "#2E111D", "#2E111D");
 	animateHeart($('#heart-big'));
 	$('#orb-back').mouseover(function(){
 		mouseIn = 1;
@@ -43,13 +44,20 @@ $(document).ready(function(){
 				"border-radius": 0 + "px",
 				"background-color": "rgba(105, 64, 78, 1)"
 			}, function(){
-				$('.contentWrapper').fadeIn();
+				$('#content-menu').fadeIn();
 			});
 		}
 	});
 	$('body').click(function(){
+		var id;
 		if(mouseIn == 0 && expanded == 1){
-			$('.contentWrapper').fadeOut(function(){
+			if(about == 1){
+				id = $('#content-about');
+				about = 0;
+			}else{
+				id = $('#content-menu');
+			}
+			id.fadeOut(function(){
 				$('#orb-back').animate({
 					width: 50 + "px",
 					height: 50 + "px",
@@ -94,12 +102,22 @@ $(document).ready(function(){
 		}else if(id == "blog"){
 			window.open("http://kesun.ca/blog", '_blank');
 		}else if(id == "about"){
+			about = 1;
+			$('#content-menu').fadeOut(function(){
+				$('#content-about').fadeIn();
+			});
 		}
 	});
 	$('.long-button').mouseout(function(){
 		$(this).animate({
 			"background-color": "#AB617B"
 		}, "fast");
+	});
+	$('#about-close').click(function(){
+		$('#content-about').fadeOut(function(){
+			about = 0;
+			$('#content-menu').fadeIn();
+		});
 	});
 });
 
