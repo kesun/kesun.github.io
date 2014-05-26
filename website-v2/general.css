@@ -130,6 +130,8 @@ a:visited{
 }
 
 .long-button{
+	font-size: 14px;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
 	width: 100%;
 	height: 70px;
 	line-height: 70px;
@@ -228,6 +230,33 @@ a:visited{
 	background-color: #FF4687;
 }
 
+.bubble-main{
+	position: fixed;
+	bottom: 100px;
+	left: 50%;
+	margin-left: -10px;
+	height: 100px;
+	width: 190px;
+	border-radius: 95px / 50px;
+	background-color: #B89BA5;
+	color: #76515E;
+	font-size: 16px;
+	line-height: 35px;
+	vertical-align: center;
+}
+
+.bubble-triangle{
+	width:0;
+	height:0;
+	position: fixed;
+	bottom: 100px;
+	left: 50%;
+	margin-left: 0px;
+	border-bottom: 40px solid #B89BA5;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	-webkit-transform:rotate(-18deg);
+}
 
 h1{
   font-weight: normal;
