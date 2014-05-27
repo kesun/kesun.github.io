@@ -12,40 +12,55 @@ $(document).ready(function(){
 		mouseIn = 0;
 	});
 	$('#heart-big').mouseover(function(){
+		var rad = 30 + "px";
 		if($('#orb-back').is(':animated')){
 			$('#orb-back').finish();
 		}
 		$('#orb-back').animate({
 			width: 60 + "px",
 			height: 60 + "px",
-			"margin-top": -37 + "px",
-			"margin-left": -30 + "px",
-			"border-radius": 30 + "px",
+			"margin-top": -38 + "px",
+			"margin-left": "-" + rad,
+			"border-radius": rad,
+			"border-top-left-radius": rad,
+			"border-top-right-radius": rad,
+			"border-bottom-right-radius": rad,
+			"border-bottom-left-radius": rad
 		}, 500, "easeInOutCubic");
 	});
 	$('#heart-big').mouseout(function(){
 		if(expanded == 0){
+			var rad = 25 + "px";
 			$('#orb-back').animate({
 				width: 50 + "px",
 				height: 50 + "px",
-				"margin-top": -32 + "px",
-				"margin-left": -25 + "px",
-				"border-radius": 25 + "px",
+				"margin-top": -33 + "px",
+				"margin-left": "-" + rad,
+				"border-radius": rad,
+				"border-top-left-radius": rad,
+				"border-top-right-radius": rad,
+				"border-bottom-right-radius": rad,
+				"border-bottom-left-radius": rad
 			}, 500, "easeInOutCubic");
 		}
 	});
 	$('#orb-back').click(function(){
 		if(expanded == 0){
 			expanded = 1;
+			var rad = 0 + "px";
 			$('#heart-big').toggle();
 			$('#text-small').toggle();
 			$('#orb-back').animate({
 				width: 400 + "px",
 				height: 100 + "%",
 				"top": 0,
-				"margin-top": 0 + "px",
+				"margin-top": rad,
 				"margin-left": -200 + "px",
-				"border-radius": 0 + "px",
+				"border-radius": rad,
+				"border-top-left-radius": rad,
+				"border-top-right-radius": rad,
+				"border-bottom-right-radius": rad,
+				"border-bottom-left-radius": rad,
 				"background-color": "rgba(105, 64, 78, 1)"
 			}, function(){
 				$('#content-menu').fadeIn();
@@ -75,14 +90,19 @@ $(document).ready(function(){
 				id = $('#content-menu');
 			}
 			id.fadeOut(function(){
+				var rad = 25 + "px";
 				$('#orb-back').animate({
 					width: 50 + "px",
 					height: 50 + "px",
 					"background-color": "rgba(225, 225, 225, 0.3)",
 					"top": 50 + "%",
-					"margin-top": -32 + "px",
-					"margin-left": -25 + "px",
-					"border-radius": 25 + "px",
+					"margin-top": -33 + "px",
+					"margin-left": "-" + rad,
+					"border-radius": rad,
+					"border-top-left-radius": rad,
+					"border-top-right-radius": rad,
+					"border-bottom-right-radius": rad,
+					"border-bottom-left-radius": rad
 				}, 500, "easeInOutCubic", function(){
 					expanded = 0;
 					$('#heart-big').toggle();
@@ -143,20 +163,30 @@ $(document).ready(function(){
 });
 
 function animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor){
+	var finalRad = finalDia / 2 + "px";
+	var initRad = initDia / 2 + "px";
 	id.delay(del).animate({
 		width: finalDia + "px",
 		height: finalDia + "px",
-		"margin-top": -1 * finalDia / 2 + "px",
-		"margin-left": -1 * finalDia / 2 + "px",
-		"border-radius": finalDia / 2 + "px",
+		"margin-top": "-" + finalRad,
+		"margin-left": "-" + finalRad,
+		"border-radius": finalRad,
+		"border-top-left-radius": finalRad,
+		"border-top-right-radius": finalRad,
+		"border-bottom-right-radius": finalRad,
+		"border-bottom-left-radius": finalRad,
 		"background-color": finalColor
 	}, speed, "easeInOutCubic", function(){
 		id.css('background-color', initColor)
 			.css('width', initDia + "px")
 			.css('height', initDia + "px")
-			.css('border-radius', initDia / 2 + "px")
-			.css('margin-top', -1 * initDia / 2 + "px")
-			.css('margin-left', -1 * initDia / 2 + "px");
+			.css('border-radius', initRad)
+			.css('border-top-left-radius', initRad)
+			.css('border-top-right-radius', initRad)
+			.css('border-bottom-right-radius', initRad)
+			.css('border-bottom-left-radius', initRad)
+			.css('margin-top', "-" + initRad)
+			.css('margin-left', "-" + initRad);
 		animateCircle(id, speed, del, initDia, finalDia, initColor, finalColor);
 	});
 }

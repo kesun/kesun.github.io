@@ -48,6 +48,11 @@ a:visited{
 	margin-top: -50px;
 	margin-left: -50px;
 	border-radius: 50px;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	-webkit-border-radius: 50px;
 	background-color: #2E111D;
 }
 
@@ -57,6 +62,11 @@ a:visited{
 	margin-top: -37px;
 	margin-left: -37px;
 	border-radius: 37px;
+	border-top-left-radius: 37px;
+	border-top-right-radius: 37px;
+	border-bottom-right-radius: 37px;
+	border-bottom-left-radius: 37px;
+	-webkit-border-radius: 37px;
 	background-color: #FFFFFF;
 	opacity: 0.3;
 }
@@ -68,6 +78,11 @@ a:visited{
 	margin-top: -43px;
 	margin-left: -43px;
 	border-radius: 45px;
+	border-top-left-radius: 45px;
+	border-top-right-radius: 45px;
+	border-bottom-right-radius: 45px;
+	border-bottom-left-radius: 45px;
+	-webkit-border-radius: 45px;
 	background-color: #FFFFFF;
 	opacity: 0.1;
 }
@@ -79,6 +94,11 @@ a:visited{
 	margin-top: -44px;
 	margin-left: -36px;
 	border-radius: 38px;
+	border-top-left-radius: 38px;
+	border-top-right-radius: 38px;
+	border-bottom-right-radius: 38px;
+	border-bottom-left-radius: 38px;
+	-webkit-border-radius: 38px;
 	background-color: #2E111D;
 }
 
@@ -86,9 +106,14 @@ a:visited{
 	z-index: 80;
 	width: 50px;
 	height: 50px;
-	margin-top: -32px;
+	margin-top: -33px;
 	margin-left: -25px;
 	border-radius: 25px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	-webkit-border-radius: 25px;
 	background-color: rgba(225, 225, 225, 0.3);
 }
 
@@ -101,6 +126,11 @@ a:visited{
 	margin-top: -30px;
 	margin-left: -25px;
 	border-radius: 25px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	-webkit-border-radius: 25px;
 	background-color: transparent;
 	opacity: 0.5;
 	cursor: pointer;
@@ -114,6 +144,11 @@ a:visited{
 	margin-top: -10px;
 	margin-left: -25px;
 	border-radius: 25px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	-webkit-border-radius: 25px;
 	background-color: transparent;
 	opacity: 0.4;
 	line-height: 50px;
@@ -158,6 +193,11 @@ a:visited{
 	height: 70px;
 	width: 140px;
 	border-radius: 140px 140px 0 0;
+	border-top-left-radius: 140px;
+	border-top-right-radius: 140px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	-webkit-border-radius:  140px 140px 0 0;
 	background-color: #CAA27D;
 }
 
@@ -169,6 +209,11 @@ a:visited{
 	height: 50px;
 	width: 50px;
 	border-radius: 25px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	-webkit-border-radius: 25px;
 	background-color: #CAA27D;
 }
 
@@ -189,6 +234,11 @@ a:visited{
 	height: 28px;
 	width: 28px;
 	border-radius: 14px;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+	border-bottom-right-radius: 14px;
+	border-bottom-left-radius: 14px;
+	-webkit-border-radius: 14px;
 	background-color: #694E35;
 }
 
@@ -208,6 +258,11 @@ a:visited{
 	height: 14px;
 	width: 14px;
 	border-radius: 7px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	-webkit-border-radius: 7px;
 	background-color: #000000;
 }
 
@@ -227,6 +282,11 @@ a:visited{
 	height: 10px;
 	width: 16px;
 	border-radius: 0 0 16px 16px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 16px;
+	border-bottom-left-radius: 16px;
+	-webkit-border-radius: 0 0 16px 16px;
 	background-color: #FF4687;
 }
 
@@ -238,6 +298,11 @@ a:visited{
 	height: 100px;
 	width: 190px;
 	border-radius: 95px / 50px;
+	border-top-left-radius: 95px / 50px;
+	border-top-right-radius: 95px / 50px;
+	border-bottom-right-radius: 95px / 50px;
+	border-bottom-left-radius: 95px / 50px;
+	-webkit-border-radius: 95px / 50px;
 	background-color: #B89BA5;
 	color: #76515E;
 	font-size: 16px;
@@ -255,6 +320,10 @@ a:visited{
 	border-bottom: 40px solid #B89BA5;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
+	transform:rotate(-18deg);
+	-o-transform:rotate(-18deg);
+	-ms-transform:rotate(-18deg);
+	-moz-transform:rotate(-18deg);
 	-webkit-transform:rotate(-18deg);
 }
 
