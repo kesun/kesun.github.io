@@ -105,6 +105,9 @@ $(document).ready(function(){
 					"border-bottom-left-radius": rad
 				}, 500, "easeInOutCubic", function(){
 					expanded = 0;
+					if(about == 1){
+						about = 0;
+					}
 					$('#heart-big').toggle();
 					$('#text-small').toggle();
 				});
