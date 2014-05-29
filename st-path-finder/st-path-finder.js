@@ -1,4 +1,3 @@
-@@ -1,4 +1,4 @@
   var SorT = 0;
   
   $(document).ready(function () {
