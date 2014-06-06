@@ -1,4 +1,9 @@
 $(document).ready(function() {
+	$("html").niceScroll({
+		cursorwidth: "5px",
+		cursorborder: "0px",
+		cursorcolor: "#2E2E2E"
+	});
 	$('section[data-type="background"]').each(function(){
 		var $bgobj = $(this);
 		$(window).scroll(function(){
@@ -19,15 +24,14 @@ $(document).ready(function() {
 			}
 			$arti.css("opacity", opac);
 			$bgobj.css({ backgroundPosition: coords});
+			/*
+			$bgobj.animate({
+				backgroundPosition: coords
+			});
+			$arti.animate({
+				opacity: opac
+			});
+			*/
 		});
 	});
-});
-
-$(function() {
-  var eTop = $('element').offset().top; //get the offset top of the element
-  console.log(eTop - $(window).scrollTop()); //position of the ele w.r.t window
-
-  $(window).scroll(function() { //when window is scrolled
-     console.log(eTop  - $(window).scrollTop());
-  });
 });
