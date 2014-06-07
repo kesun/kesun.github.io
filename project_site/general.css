@@ -70,8 +70,32 @@ p{
     width: 100%;
     height: 1000px;
     position: absolute;
-    background-position: bottom;
     background: url(img/back-grass-2.png) 50% 500px repeat-x fixed;
+}
+
+#sun{
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    position: fixed;
+    top: 100px;
+    left: 150px;
+    background-color: #ffc9c9;
+}
+
+.clouds{
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    background-position: top;
+}
+
+#cloud1{
+    background: url(img/cloud-1.png) 250px 120px no-repeat fixed;
+}
+
+#cloud2{
+    background: url(img/cloud-2.png) 600px 150px no-repeat fixed;
 }
 
 #s2{

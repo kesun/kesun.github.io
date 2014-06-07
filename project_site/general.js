@@ -45,6 +45,8 @@ $(document).ready(function() {
 			//$arti.css({ "opacity": opac });
 			$bgobj.css({ backgroundPosition: coords });
 			$('#grass2').css({ backgroundPosition: coords2 });
+			$('#cloud1').css({ backgroundPosition: (250 + (windowOff / 3)) + 'px 120px'});
+			$('#cloud2').css({ backgroundPosition: (600 + (windowOff / 5)) + 'px 150px'});
 			/*
 			$bgobj.animate({
 				backgroundPosition: coords
