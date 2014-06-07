@@ -1,21 +1,20 @@
 @charset "utf-8";
-/* CSS Document */
+@font-face { font-family: Quarca; src: url(font/QuarcaNormRegular.otf); }
+@font-face { font-family: Cream; src: url(font/creampuf.otf); }
 
 html{
 }
 
 body{
     margin: 0;
-    background-color: #2E111D;
-    background-position:center;
-    background-repeat:no-repeat;
-    font-family: Verdana, Geneva, sans-serif;
+    background-color: #90c8d6;;
+    background-position: bottom;
+    background-repeat: repeat-x;
+    font-family: Quarca, Verdana, Geneva, sans-serif;
     font-size: 30px;
     color: #FFF;
     text-align: center;
-    height: 98%;
-    text-shadow: 2px 2px #454545;
-
+    height: 100%;
 }
 
 a{
@@ -40,6 +39,12 @@ p{
     margin: 0;
 }
 
+.h1{
+    font-family: Cream, Verdana, Geneva, sans-serif;
+    font-size: 68px;
+    text-shadow: 2px 2px #454545;
+}
+
 .prlxFrame{
     width: 100%;
     height: 100%;
@@ -56,16 +61,22 @@ p{
 }
 
 #s1{
-    background-color: #A26C6C;
-    background: url(img/bkgd1.jpg) 50% 0 repeat fixed; min-height: 1000px;
+    background-color: #90c8d6;
+    background: url(img/back-grass-1.png) 50% 400px repeat-x fixed; min-height: 1000px;
 
 }
 
+#grass2{
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    background-position: bottom;
+    background: url(img/back-grass-2.png) 50% 500px repeat-x fixed;
+}
+
 #s2{
-    background-color: #6C77A2;
-    background: url(img/bkgd2.jpg) 50% 0 repeat fixed; min-height: 1000px;
-    -webkit-box-shadow: 0px 0px 80px #000000;
-    box-shadow: 0px 0px 80px #000000;
+    margin-top: -450px;
+    background: url(img/back-grass-2.png) 60% 500px repeat-x fixed; min-height: 1000px;
 }
 
 .sectionElement{
@@ -76,9 +87,11 @@ p{
 #se1Left{
     top: -200px;
     left: -250px;
+    width: 450px;
 }
 
 #se1Right{
     top: -480px;
     left: 280px;
+    width: 450px;
 }

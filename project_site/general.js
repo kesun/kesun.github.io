@@ -9,7 +9,9 @@ $(document).ready(function() {
 		$(window).scroll(function(){
 			var windowOff = $(window).scrollTop();
 			var yPos = -(windowOff / $bgobj.data('speed'));
-			var coords = '50% ' + yPos + 'px';
+			var yPos2 = -(windowOff / 5);
+			var coords = '50% ' + (400+yPos) + 'px';
+			var coords2 = '50% ' + (500+yPos2) + 'px';
 			var $arti = $bgobj.children("article");
 			var offTop = $bgobj.offset().top - windowOff;
 			var opac;
@@ -40,8 +42,9 @@ $(document).ready(function() {
 					opac = 1;
 				}
 			}
-			$arti.css({ "opacity": opac });
+			//$arti.css({ "opacity": opac });
 			$bgobj.css({ backgroundPosition: coords });
+			$('#grass2').css({ backgroundPosition: coords2 });
 			/*
 			$bgobj.animate({
 				backgroundPosition: coords
