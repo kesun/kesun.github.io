@@ -1,5 +1,6 @@
 var grass1H;
 var grass2H;
+var colorChangeTrig1 = 0;
 $(document).ready(function() {
 	$("html").niceScroll({
 		cursorwidth: "5px",
@@ -50,6 +51,30 @@ function updateGrass($obj){
 				$('.clouds').css({ "opacity": opac });
 				$('#cloud1').css({ backgroundPosition: (250 + windowOff / 3) + 'px 120px'});
 				$('#cloud2').css({ backgroundPosition: (600 + windowOff / 5) + 'px 150px'});
+			}else if($obj.attr('id') == "s2"){
+				if(windowOff >= 800){
+					if(colorChangeTrig1 == 0){
+						$('#sect2grad').animate({
+							opacity: 1
+						});
+						$obj.animate({
+							'background-color': '#337138'
+						});
+						colorChangeTrig1 = 1;
+					}
+
+				}else{
+					if(colorChangeTrig1 == 1){
+						$('#sect2grad').animate({
+							opacity: 0
+						});
+						$obj.animate({
+							'background-color': '#5da462'
+						});
+						colorChangeTrig1 = 0;
+					}
+
+				}
 			}
 			//$arti.css({ "opacity": opac });
 			//$obj.css({ backgroundPosition: '50% ' + (400 - windowOff / speed) + 'px' });

@@ -113,19 +113,19 @@ p{
     background-color: #5da462;
 }
 
-.sectionElement{
-    position: relative;
-    margin: 0 auto;
+#sect2grad{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    height: 200px;
+    background: url(img/page2-grad.png) 0px 0px repeat-x;
 }
 
-#se1Left{
-    top: -200px;
-    left: -250px;
-    width: 450px;
-}
-
-#se1Right{
-    top: -480px;
-    left: 280px;
-    width: 450px;
+.textBoxLeft{
+    width: 600px;
+    height: 100%;
+    left: 50%;
+    margin-left: -300px;
+    text-align: left;
 }
