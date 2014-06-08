@@ -1,52 +1,57 @@
+var grass1H;
+var grass2H;
 $(document).ready(function() {
 	$("html").niceScroll({
 		cursorwidth: "5px",
 		cursorborder: "0px",
 		cursorcolor: "#2E2E2E"
 	});
+	//updateGrass();
 	$('section[data-type="background"]').each(function(){
 		var $bgobj = $(this);
 		$(window).scroll(function(){
 			var windowOff = $(window).scrollTop();
-			var yPos = -(windowOff / $bgobj.data('speed'));
-			var yPos2 = -(windowOff / 5);
-			var coords = '50% ' + (400+yPos) + 'px';
-			var coords2 = '50% ' + (500+yPos2) + 'px';
+			var speed = $bgobj.data('speed');
+			var grass2speed = 5;
+			if($bgobj.attr('id') == "s1" && windowOff > 300){
+				speed = 1;
+				grass2speed = 0.9;
+			}
 			var $arti = $bgobj.children("article");
 			var offTop = $bgobj.offset().top - windowOff;
 			var opac;
 			if($bgobj.attr('id') == "s1"){
-				if(offTop < -150 || offTop > 600){
-					opac = 0;
-				}else if(offTop < 0){
-					opac = 1 - (-offTop) / 150;
-					var leftTotal = 30;
-					var rightTotal =  50;
-					var leftH = opac * 30 - 250;
-					var rightH = 280 - opac * 50;
-					$('#se1Left').css({ left: leftH + "px" });
-					$('#se1Right').css({ left: rightH + "px" });
-				}
-				else if(offTop > 400){opac = 1 - (offTop -400) / 200;
-				}else{
-					opac = 1;
-				}
-			}else{
-				if(offTop < 0 || offTop > 700){
-					opac = 0;
-				}else if(offTop < 150){
-					opac = offTop / 150;
-				}else if(offTop > 500){
-					opac = 1 - (offTop - 500) / 200;
+				if(offTop < -300){
+					opac = 1 + (offTop + 300) / 150;
 				}else{
 					opac = 1;
 				}
 			}
+			if(opac < 0){
+				opac = 0;
+			}else if(opac > 1){
+				opac = 1;
+			}
+			console.log(windowOff);
+			if($bgobj.attr('id') == "s1"){
+				if(windowOff > 300){
+					$bgobj.css({ backgroundPosition: '50% ' + (grass1H - (windowOff - 300) / speed) + 'px' });
+					$('#grass2').css({ backgroundPosition: '50% ' + (grass2H - (windowOff - 300) / grass2speed) + 'px'});
+				}else{
+					grass1H = 400 - windowOff / speed;
+					grass2H = 500 - windowOff / grass2speed;
+					$bgobj.css({ backgroundPosition: '50% ' + grass1H + 'px' });
+					$('#grass2').css({ backgroundPosition: '50% ' + grass2H + 'px'});
+				}
+				$('#sun').css({ "opacity": opac });
+				$('.clouds').css({ "opacity": opac });
+				$('#cloud1').css({ backgroundPosition: (250 + windowOff / 3) + 'px 120px'});
+				$('#cloud2').css({ backgroundPosition: (600 + windowOff / 5) + 'px 150px'});
+			}
 			//$arti.css({ "opacity": opac });
-			$bgobj.css({ backgroundPosition: coords });
-			$('#grass2').css({ backgroundPosition: coords2 });
-			$('#cloud1').css({ backgroundPosition: (250 + (windowOff / 3)) + 'px 120px'});
-			$('#cloud2').css({ backgroundPosition: (600 + (windowOff / 5)) + 'px 150px'});
+			//$bgobj.css({ backgroundPosition: '50% ' + (400 - windowOff / speed) + 'px' });
+			//$('#grass2').css({ backgroundPosition: '50% ' + (500 - windowOff / grass2speed) + 'px'});
+			//console.log(opac);
 			/*
 			$bgobj.animate({
 				backgroundPosition: coords
@@ -58,3 +63,47 @@ $(document).ready(function() {
 		});
 	});
 });
+/*
+function updateGrass(){
+	$('section[data-type="background"]').each(function(){
+		var $bgobj = $(this);
+			var windowOff = $(window).scrollTop();
+			var speed = $bgobj.data('speed');
+			var grass2speed = 5;
+			if($bgobj.attr('id') == "s1" && windowOff > 300){
+				speed = 1;
+				grass2speed = 0.9;
+			}
+			var $arti = $bgobj.children("article");
+			var offTop = $bgobj.offset().top - windowOff;
+			var opac;
+			if($bgobj.attr('id') == "s1"){
+				if(offTop < -300){
+					opac = 1 + (offTop + 300) / 150;
+				}else{
+					opac = 1;
+				}
+			}
+			if(opac < 0){
+				opac = 0;
+			}else if(opac > 1){
+				opac = 1;
+			}
+			if($bgobj.attr('id') == "s1"){
+				if(windowOff > 300){
+					$bgobj.css({ backgroundPosition: '50% ' + (grass1H - (windowOff - 300) / speed) + 'px' });
+					$('#grass2').css({ backgroundPosition: '50% ' + (grass2H - (windowOff - 300) / grass2speed) + 'px'});
+				}else{
+					grass1H = 400 - windowOff / speed;
+					grass2H = 500 - windowOff / grass2speed;
+					$bgobj.css({ backgroundPosition: '50% ' + grass1H + 'px' });
+					$('#grass2').css({ backgroundPosition: '50% ' + grass2H + 'px'});
+				}
+				$('#sun').css({ "opacity": opac });
+				$('.clouds').css({ "opacity": opac });
+				$('#cloud1').css({ backgroundPosition: (250 + windowOff / 3) + 'px 120px'});
+				$('#cloud2').css({ backgroundPosition: (600 + windowOff / 5) + 'px 150px'});
+			}
+	}
+}
+*/

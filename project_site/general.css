@@ -110,8 +110,7 @@ p{
 }
 
 #s2{
-    margin-top: -450px;
-    background: url(img/back-grass-2.png) 60% 500px repeat-x fixed; min-height: 1000px;
+    background-color: #5da462;
 }
 
 .sectionElement{
