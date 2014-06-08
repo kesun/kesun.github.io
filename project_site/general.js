@@ -52,7 +52,7 @@ function updateGrass($obj){
 				$('#cloud1').css({ backgroundPosition: (250 + windowOff / 3) + 'px 120px'});
 				$('#cloud2').css({ backgroundPosition: (600 + windowOff / 5) + 'px 150px'});
 			}else if($obj.attr('id') == "s2"){
-				if(windowOff >= 800){
+				if(windowOff >= 700){
 					if(colorChangeTrig1 == 0){
 						$('#sect2grad').animate({
 							opacity: 1
