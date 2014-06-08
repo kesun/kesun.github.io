@@ -43,8 +43,8 @@ function updateGrass($obj){
 					$obj.css({ backgroundPosition: '50% ' + ((400 - windowOff / 10) - (windowOff - 300) / speed) + 'px' });
 					$('#grass2').css({ backgroundPosition: '50% ' + ((500 - windowOff / 5) - (windowOff - 300) / grass2speed) + 'px'});
 				}else{
-					$obj.css({ backgroundPosition: '50% ' + grass1H + 'px' });
-					$('#grass2').css({ backgroundPosition: '50% ' + grass2H + 'px'});
+					$obj.css({ backgroundPosition: '50% ' + (400 - windowOff / speed) + 'px' });
+					$('#grass2').css({ backgroundPosition: '50% ' + (500 - windowOff / grass2speed) + 'px'});
 				}
 				$('#sun').css({ "opacity": opac });
 				$('.clouds').css({ "opacity": opac });
