@@ -1,18 +1,30 @@
 @charset "utf-8";
 
-/* IE */
-@font-face { font-family: Quarca; src: url(font/quarcanormregular.eot); }
-@font-face { font-family: Cream; src: url(font/creampuf.eot); }
-
-@font-face { font-family: Quarca; src: url(font/quarcanormregular.otf); }
-@font-face { font-family: Cream; src: url(font/creampuf.otf); }
+@font-face {
+    font-family: 'Quarca';
+    src: url('font/quarcanormregular.eot?#iefix') format('embedded-opentype'),
+         url(http://:/) format("No-IE-404"),
+         url('font/quarcanormregular.otf') format("opentype");
+}
+@font-face {
+    font-family: 'Cream';
+    src: url('font/creampuf.eot?#iefix') format('embedded-opentype'),
+         url(http://:/) format("No-IE-404"),
+         url('font/creampuf.otf') format("opentype");
+}
+@font-face {
+    font-family: 'Snippet';
+    src: url('font/snippet.eot?#iefix') format('embedded-opentype'),
+         url(http://:/) format("No-IE-404"),
+         url('font/snippet.ttf') format("truetype");
+}
 
 body{
     margin: 0;
     background-color: #90c8d6;;
     background-position: bottom;
     background-repeat: repeat-x;
-    font-family: Quarca, Verdana, Geneva, sans-serif;
+    font-family: 'Snippet', Verdana, Geneva, sans-serif;
     font-size: 26px;
     color: #FFF;
     text-align: center;
@@ -58,7 +70,7 @@ p{
 }
 
 .h1{
-    font-family: Cream, Verdana, Geneva, sans-serif;
+    font-family: 'Cream', Verdana, Geneva, sans-serif;
     font-size: 68px;
     text-shadow: 2px 2px #454545;
 }
