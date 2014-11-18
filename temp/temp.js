@@ -8,8 +8,10 @@ $(document).ready(function(){
     if (event.keyCode == 32) {
       console.log("AYAYAYAA");
       space = true;
-      $("#obj").animate({ top: 100 }, 400, "easeOutSine")
-        .animate({ top: 200 }, 400, "easeInSine");
+      if (!$("#obj").is(':animated')) {
+          $("#obj").animate({ top: 100 }, 400, "easeOutSine")
+            .animate({ top: 200 }, 400, "easeInSine");
+      }
     }
   });
 });
