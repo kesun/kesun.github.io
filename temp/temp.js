@@ -49,9 +49,9 @@ $(document).ready(function(){
     
     if (event.keyCode == 68) {
       curLeft = $("#obj").css("left");
+      console.log(curLeft);
       curLeftLen = curLeft.length;
       curLeft = curLeft.substring(0, curLeftLen-2);
-      console.log(curLeft);
       if(curLeft < 500){
         //if(movingLeft == 1)
         console.log("moving to the right");
