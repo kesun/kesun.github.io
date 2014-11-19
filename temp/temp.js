@@ -51,7 +51,7 @@ function ballJump(){
     }else if(double == 1){
       var animateTime = (400 - curTop + 200) / 200 * 400;
       if(animateTime > 400){
-        animateTime = 400 + Math.sqrt(animateTime - 400);
+        animateTime = 400 + Math.pow((animateTime - 400), 0.8);
       }
       $("#obj").animate({ top: 400 }, animateTime, "easeInQuad", function(){
         double = 0;
