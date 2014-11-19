@@ -58,7 +58,8 @@ function ballJump(){
 
 function setbullet(height){
   if(height <= 500){
-    var res = $("<div class='bullet' style='top: " + (height + 25 - 4) + "px; left: 60px;'></div>").appendTo($('body'));
+    console.log("input height: " + height);
+    var res = $("<div class='bullet' style='top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
     console.log(res.css("top"));
   }
   //console.log(res);
