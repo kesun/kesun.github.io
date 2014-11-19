@@ -40,16 +40,16 @@ $(document).ready(function(){
     }
     
     if (event.keyCode == 65) {
-      curLeft = $("#obj").css("top");
-      curLeftLen = curTop.length;
+      curLeft = $("#obj").css("left");
+      curLeftLen = curLeft.length;
       curLeft = curLeft.substring(0, curLeftLen-2);
       
       //if(curLeft > 0)
     }
     
     if (event.keyCode == 68) {
-      curLeft = $("#obj").css("top");
-      curLeftLen = curTop.length;
+      curLeft = $("#obj").css("left");
+      curLeftLen = curLeft.length;
       curLeft = curLeft.substring(0, curLeftLen-2);
       
       if(curLeft < 500){
