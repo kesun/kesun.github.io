@@ -95,7 +95,7 @@ function setbullet(height){
       bulletColour = "#F7819F";
     }else if(colourCode == 2){
       bulletColour = "#F5DA81";
-    }else if(colourcode == 3){
+    }else if(colourCode == 3){
       bulletColour = "#81DAF5";
     }
     var res = $("<div class='bullet' style='background-color:" + bulletColour + "; top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
