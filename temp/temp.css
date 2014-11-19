@@ -6,6 +6,29 @@
   top: 400px;
 }
 
+#spriteFrame{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: transparent;
+  border-width: 1px;
+  top: 400px;
+}
+
+.spriteBodyColour{
+  background-color: #F5A9E1;
+  position: absolute;
+}
+
+#spriteMaine{
+  background-color: #D7F0FF;
+  position: absolute;
+}
+
+.spriteTailPiece{
+  position: absolute;
+}
+
 .bullet{
   width: 12px;
   height: 8px;
