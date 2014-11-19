@@ -45,6 +45,14 @@ $(document).ready(function(){
 });
 
 function ballJump(){
+  $("#spriteRearLeg").css("top", "32px")
+          .css("left", "-4px")
+          .css("width", "20px")
+          .css("height", "6px");
+        $("#spriteFrontLeg").css("top", "32px")
+          .css("left", "34px")
+          .css("width", "20px")
+          .css("height", "6px");
   $("#obj").animate({ top: "-=200px" }, 400, "easeOutQuad", function(){
     if(double == 0){
       $("#obj").animate({ top: 400 }, 400, "easeInQuad");
@@ -55,6 +63,14 @@ function ballJump(){
       }
       $("#obj").animate({ top: 400 }, animateTime, "easeInQuad", function(){
         double = 0;
+        $("#spriteRearLeg").css("top", "30px")
+          .css("left", "10px")
+          .css("width", "6px")
+          .css("height", "20px");
+        $("#spriteFrontLeg").css("top", "30px")
+          .css("left", "34px")
+          .css("width", "6px")
+          .css("height", "20px");
       });
     }
   });
