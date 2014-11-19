@@ -55,7 +55,16 @@ function ballJump(){
           .css("height", "6px");
   $("#obj").animate({ top: "-=200px" }, 400, "easeOutQuad", function(){
     if(double == 0){
-      $("#obj").animate({ top: 400 }, 400, "easeInQuad");
+      $("#obj").animate({ top: 400 }, 400, "easeInQuad", function(){
+        $("#spriteRearLeg").css("top", "30px")
+          .css("left", "10px")
+          .css("width", "6px")
+          .css("height", "20px");
+        $("#spriteFrontLeg").css("top", "30px")
+          .css("left", "34px")
+          .css("width", "6px")
+          .css("height", "20px");
+      });
     }else if(double == 1){
       var animateTime = (400 - curTop + 200) / 200 * 400;
       if(animateTime > 400){
