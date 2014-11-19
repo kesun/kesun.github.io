@@ -54,6 +54,7 @@ $(document).ready(function(){
       
       if(curLeft < 500){
         //if(movingLeft == 1)
+        console.log("moving to the right");
         $("#obj").animate({ Left: 500 }, (500 - curLeft) * 2, "Linear");
       }
     }
