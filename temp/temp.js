@@ -1,7 +1,11 @@
 var double = 0;
 var curTop;
 var curTopLen;
+var curLeft;
+var curLeftLen;
 var maxLeft = 600;
+var movingLeft = 0;
+var movingRight = 0;
 
 var colourCode;
 
@@ -32,6 +36,25 @@ $(document).ready(function(){
         double = 1;
         $("#obj").stop();
         ballJump();
+      }
+    }
+    
+    if (event.keyCode == 65) {
+      curLeft = $("#obj").css("top");
+      curLeftLen = curTop.length;
+      curLeft = curLeft.substring(0, curLeftLen-2);
+      
+      //if(curLeft > 0)
+    }
+    
+    if (event.keyCode == 68) {
+      curLeft = $("#obj").css("top");
+      curLeftLen = curTop.length;
+      curLeft = curLeft.substring(0, curLeftLen-2);
+      
+      if(curLeft < 500){
+        //if(movingLeft == 1)
+        $("#obj").animate({ Left: 500 }, (500 - curLeft) * 2, "Linear");
       }
     }
   });
