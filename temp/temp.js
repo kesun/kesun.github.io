@@ -49,6 +49,7 @@ $(document).ready(function(){
     
     if (event.keyCode == 68) {
       curLeft = $("#obj").css("left");
+      if(curLeft == "auto") curLeft = "0px";
       console.log(curLeft);
       curLeftLen = curLeft.length;
       curLeft = curLeft.substring(0, curLeftLen-2);
