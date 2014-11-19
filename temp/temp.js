@@ -1,6 +1,7 @@
 var double = 0;
 var curTop;
 var curTopLen;
+var maxLeft = 600;
 
 $(document).ready(function(){
   setbullet(400);
@@ -58,9 +59,19 @@ function ballJump(){
 
 function setbullet(height){
   if(height <= 500){
-    console.log("input height: " + height);
     var res = $("<div class='bullet' style='top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
-    console.log(res.css("top"));
+    animateBullet(res, 60);
   }
   //console.log(res);
+}
+
+function animateBullet(obj, curLeft){
+  if(curLeft < maxLeft){
+    obj.css("left", curLeft);
+    setTimeout(function(){
+      animateBullet(obj, curLeft + 15);
+    }, 50);
+  }else{
+    obj.remove();
+  }
 }
