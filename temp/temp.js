@@ -3,6 +3,7 @@ var curTop;
 var curTopLen;
 
 $(document).ready(function(){
+  setbullet(400);
   var maxTop = 100;
   var space = false;
   var jumpNum = 0;
@@ -32,6 +33,15 @@ $(document).ready(function(){
       }
     }
   });
+
+  $(document).click(function(event) {
+    if(event.which == 1){
+      curTop = $("#obj").css("top");
+      curTopLen = curTop.length;
+      curTop = curTop.substring(0, curTopLen-2);
+      setbullet(curTop);
+    }
+  });
 });
 
 function ballJump(){
@@ -44,4 +54,12 @@ function ballJump(){
       });
     }
   });
+}
+
+function setbullet(height){
+  if(height <= 500){
+    var res = $("<div class='bullet' style='top: " + (height + 25 - 4) + "px; left: 60px;'></div>").appendTo($('body'));
+    console.log(res.css("top"));
+  }
+  //console.log(res);
 }
