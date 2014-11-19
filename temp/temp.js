@@ -75,6 +75,37 @@ function animateBullet(obj, curLeft){
       animateBullet(obj, curLeft + 15);
     }, 50);
   }else{
-    obj.remove();
+    bulletExplode(obj, curLeft);
   }
+}
+
+function bulletExplode(bullet, curLeft){
+  var spark1;
+  var spark2;
+  var spark3;
+  var spark4;
+
+  setTimeout(function(){
+    var origTop = bullet.css("top");
+    origTop = parseInt(origTop.substring(0, origTop.length - 2));
+    setTimeout(function(){
+      bullet.remove();
+      spark1 = $("<div class='spark1' style='top: " + (origTop - 4) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark2 = $("<div class='spark1' style='top: " + (origTop + 12) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark3 = $("<div class='spark1' style='top: " + (origTop + 4) + "px; left: " + (curLeft + 12 - 12) + "px;'></div>").appendTo($('body'));
+      spark4 = $("<div class='spark1' style='top: " + (origTop + 4) + "px; left: " + (curLeft + 12 + 4) + "px;'></div>").appendTo($('body'));
+      setTimeout(function(){
+        spark1.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
+        spark2.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
+        spark3.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
+        spark4.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
+        setTimeout(function(){
+          spark1.remove();
+          spark2.remove();
+          spark3.remove();
+          spark4.remove();
+        }, 60);
+      }, 60);
+    }, 60);
+  }, 10);
 }
