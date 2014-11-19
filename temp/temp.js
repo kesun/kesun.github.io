@@ -90,10 +90,10 @@ function bulletExplode(bullet, curLeft){
     origTop = parseInt(origTop.substring(0, origTop.length - 2));
     setTimeout(function(){
       bullet.remove();
-      spark1 = $("<div class='spark1' style='top: " + (origTop - 4) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
-      spark2 = $("<div class='spark1' style='top: " + (origTop + 12) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
-      spark3 = $("<div class='spark1' style='top: " + (origTop + 4) + "px; left: " + (curLeft + 12 - 12) + "px;'></div>").appendTo($('body'));
-      spark4 = $("<div class='spark1' style='top: " + (origTop + 4) + "px; left: " + (curLeft + 12 + 4) + "px;'></div>").appendTo($('body'));
+      spark1 = $("<div class='spark1' style='top: " + (origTop - 8) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark2 = $("<div class='spark1' style='top: " + (origTop + 8) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark3 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (curLeft + 12 - 12) + "px;'></div>").appendTo($('body'));
+      spark4 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (curLeft + 12 + 4) + "px;'></div>").appendTo($('body'));
       setTimeout(function(){
         spark1.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
         spark2.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
