@@ -3,6 +3,8 @@ var curTop;
 var curTopLen;
 var maxLeft = 600;
 
+var colourCode;
+
 $(document).ready(function(){
   var maxTop = 100;
   var space = false;
@@ -36,6 +38,7 @@ $(document).ready(function(){
 
   $(document).click(function(event) {
     if(event.which == 1){
+      colourCode = Math.floor((Math.random() * 3) + 1);
       curTop = $("#obj").css("top");
       curTopLen = curTop.length;
       curTop = curTop.substring(0, curTopLen-2);
@@ -87,7 +90,15 @@ function ballJump(){
 
 function setbullet(height){
   if(height <= 500){
-    var res = $("<div class='bullet' style='top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
+    var bulletColour;
+    if(colourCode == 1){
+      bulletColour = "#F7819F";
+    }else if(colourCode == 2){
+      bulletColour = "#F5DA81";
+    }else if(colourcode == 3){
+      bulletColour = "#81DAF5";
+    }
+    var res = $("<div class='bullet' style='background-color:" + bulletColour + "; top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
     animateBullet(res, 60);
   }
   //console.log(res);
