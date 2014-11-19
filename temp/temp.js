@@ -20,13 +20,13 @@ $(document).ready(function(){
     if (event.keyCode == 32) {
       space = true;
       if (!$("#obj").is(':animated')) {
-        console.log("not animated");
+        //console.log("not animated");
         if(double < 1){
           $("#obj").stop();
           ballJump();
         }
       }else if(double == 0){
-        console.log("animated");
+        //console.log("animated");
         double = 1;
         $("#obj").stop();
         ballJump();
@@ -45,11 +45,15 @@ $(document).ready(function(){
 });
 
 function ballJump(){
-  $("#obj").animate({ top: "-=200px" }, 400, "easeOutSine", function(){
+  $("#obj").animate({ top: "-=200px" }, 400, "easeOutQuad", function(){
     if(double == 0){
-      $("#obj").animate({ top: 400 }, 400, "easeInSine");
+      $("#obj").animate({ top: 400 }, 400, "easeInQuad");
     }else if(double == 1){
-      $("#obj").animate({ top: 400 }, (400 - curTop + 200) / 200 * 400, "easeInSine", function(){
+      var animateTime = (400 - curTop + 200) / 200 * 400;
+      if(animateTime > 400){
+        animateTime = 400 + Math.sqrt(animateTime - 400);
+      }
+      $("#obj").animate({ top: 400 }, animateTime, "easeInQuad", function(){
         double = 0;
       });
     }
