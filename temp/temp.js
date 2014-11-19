@@ -51,7 +51,7 @@ $(document).ready(function(){
       curLeft = $("#obj").css("left");
       curLeftLen = curLeft.length;
       curLeft = curLeft.substring(0, curLeftLen-2);
-      
+      console.log(curLeft);
       if(curLeft < 500){
         //if(movingLeft == 1)
         console.log("moving to the right");
