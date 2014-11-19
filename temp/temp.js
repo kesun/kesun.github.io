@@ -4,7 +4,6 @@ var curTopLen;
 var maxLeft = 600;
 
 $(document).ready(function(){
-  setbullet(400);
   var maxTop = 100;
   var space = false;
   var jumpNum = 0;
