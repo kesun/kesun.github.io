@@ -7,6 +7,7 @@ var maxLeft = 600;
 var movingLeft = 0;
 var movingRight = 0;
 var hStop = false;
+var vStop = false;
 
 var colourCode;
 
@@ -27,6 +28,23 @@ function horizontalStop(fx, prop) {
     }
 }
 
+function verticalStop(fx, prop) {
+
+    //stop height animation by external "event" -> if button was clicked
+    if (hStop && prop.prop === "top") {
+
+        //stop animation. start == end means nothing to be done anymore
+        prop.start = prop.end = prop.now;
+
+        //if you just want to stop height and then don't anything else with the step callback
+        //you can do the following to save a few cpu cycles
+        //prop.options.step = null;
+
+        vStop = false;
+        return;
+    }
+}
+
 $(document).ready(function(){
   var maxTop = 100;
   var space = false;
@@ -34,7 +52,7 @@ $(document).ready(function(){
   var halt = 0;
   $(document).keyup(function(event) {
     if (event.keyCode == 32) {
-      space = false;
+      vStop = true;
     }
     if (event.keyCode == 68) {
       console.log("68 up");
@@ -103,7 +121,7 @@ function ballJump(){
           .css("left", "34px")
           .css("width", "20px")
           .css("height", "6px");
-  $("#obj").animate({ top: "-=200px" }, {duration: 400, queue: false, easing: "easeOutQuad", complete: function(){
+  $("#obj").animate({ top: "-=200px" }, {duration: 400, queue: false, step: verticalStop, easing: "easeOutQuad", complete: function(){
     if(double == 0){
       console.log("normal down");
       $("#obj").animate({ top: 400 }, {duration: 400, queue: false, easing: "easeInQuad", complete: function(){
@@ -117,6 +135,7 @@ function ballJump(){
           .css("height", "20px");
       }});
     }else if(double == 1){
+      console.log("double down");
       var animateTime = (400 - curTop + 200) / 200 * 400;
       if(animateTime > 400){
         animateTime = 400 + Math.pow((animateTime - 400), 0.8);
