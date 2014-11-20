@@ -37,6 +37,7 @@ $(document).ready(function(){
       space = false;
     }
     if (event.keyCode == 68) {
+      console.log("68 up");
       hStop = true;
     }
   }).keydown(function(event) {
@@ -55,7 +56,7 @@ $(document).ready(function(){
       }else if(double == 0){
         //console.log("animated");
         double = 1;
-        $("#obj").stop();
+        //$("#obj").stop();
         ballJump();
       }
     }
@@ -77,7 +78,7 @@ $(document).ready(function(){
       if(curLeft < 500){
         //if(movingLeft == 1)
         console.log("moving to the right");
-        $("#obj").animate({ left: 500 }, {duration: (500 - curLeft) * 2, step: horizontalStop}, "linear");
+        $("#obj").animate({ left: 500 }, {duration: (500 - curLeft) * 2, queue: false, step: horizontalStop, easing: "linear"});
       }
     }
   });
