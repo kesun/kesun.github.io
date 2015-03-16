@@ -8,11 +8,12 @@ var movingLeft = 0;
 var movingRight = 0;
 var hStop = false;
 var vStop = false;
+var leftKeyDown = false;
+var rightKeyDown = false;
 
 var colourCode;
 
 function horizontalStop(fx, prop) {
-
     //stop height animation by external "event" -> if button was clicked
     if (hStop && prop.prop === "left") {
 
@@ -29,7 +30,6 @@ function horizontalStop(fx, prop) {
 }
 
 function verticalStop(fx, prop) {
-
     //stop height animation by external "event" -> if button was clicked
     if (hStop && prop.prop === "top") {
 
@@ -53,10 +53,17 @@ $(document).ready(function(){
   $(document).keyup(function(event) {
     if (event.keyCode == 32) {
       vStop = true;
+      console.log("JUMP up");
+    }
+    if (event.keyCode == 65) {
+      hStop = true;
+      leftKeyDown = false;
+      console.log("LEFT up");
     }
     if (event.keyCode == 68) {
-      console.log("68 up");
       hStop = true;
+      rightKeyDown = false;
+      console.log("RIGHT up");
     }
   }).keydown(function(event) {
     curTop = $("#obj").css("top");
@@ -65,14 +72,17 @@ $(document).ready(function(){
 
     if (event.keyCode == 32) {
       space = true;
-      if (!$("#obj").is(':animated')) {
+      console.log("JUMP down");
+      if ($("#obj").css("top") == 400) {
         //console.log("not animated");
+        //console.log($("#obj").css("top"));
         if(double < 1){
           $("#obj").stop();
           ballJump();
         }
       }else if(double == 0){
         //console.log("animated");
+        //console.log($("#obj").css("top"));
         double = 1;
         //$("#obj").stop();
         ballJump();
@@ -80,24 +90,36 @@ $(document).ready(function(){
     }
 
     if (event.keyCode == 65) {
-      curLeft = $("#obj").css("left");
-      curLeftLen = curLeft.length;
-      curLeft = curLeft.substring(0, curLeftLen-2);
-
-      //if(curLeft > 0)
+      if(rightKeyDown == false){
+        leftKeyDown = true;
+        console.log("LEFT down");
+        curLeft = $("#obj").css("left");
+        if(curLeft == "auto") curLeft = "0px";
+        curLeftLen = curLeft.length;
+        curLeft = curLeft.substring(0, curLeftLen-2);
+        if(curLeft > 0){
+          //console.log("moving to the left");
+          $("#obj").animate({ left: 0 }, {duration: curLeft * 2, queue: false, step: horizontalStop, easing: "linear"});
+        }
+      }
+      
     }
 
     if (event.keyCode == 68) {
-      console.log("68 down");
-      curLeft = $("#obj").css("left");
-      if(curLeft == "auto") curLeft = "0px";
-      curLeftLen = curLeft.length;
-      curLeft = curLeft.substring(0, curLeftLen-2);
-      if(curLeft < 500){
-        //if(movingLeft == 1)
-        console.log("moving to the right");
-        $("#obj").animate({ left: 500 }, {duration: (500 - curLeft) * 2, queue: false, step: horizontalStop, easing: "linear"});
+      if(leftKeyDown == false){
+        rightKeyDown = true;
+        console.log("RIGHT down");
+        curLeft = $("#obj").css("left");
+        if(curLeft == "auto") curLeft = "0px";
+        curLeftLen = curLeft.length;
+        curLeft = curLeft.substring(0, curLeftLen-2);
+        if(curLeft < 500){
+          //if(movingLeft == 1)
+          //console.log("moving to the right");
+          $("#obj").animate({ left: 500 }, {duration: (500 - curLeft) * 2, queue: false, step: horizontalStop, easing: "linear"});
+        }
       }
+      
     }
   });
 
@@ -165,24 +187,28 @@ function setbullet(height){
     }else if(colourCode == 3){
       bulletColour = "#81DAF5";
     }
-    var res = $("<div class='bullet' style='background-color:" + bulletColour + "; top: " + (height - 4 + 25) + "px; left: 60px;'></div>").appendTo($('body'));
-    animateBullet(res, 60);
+    var left = $('#obj').css("left");
+    if(left == "auto") left = "0px";
+    var leftLen = left.length;
+    left = parseInt(left.substring(0, leftLen-2)) + 60;
+    var res = $("<div class='bullet' style='background-color:" + bulletColour + "; top: " + (height - 4 + 25) + "px; left: " + left + "px;'></div>").appendTo($('body'));
+    animateBullet(res, left);
   }
   //console.log(res);
 }
 
-function animateBullet(obj, curLeft){
-  if(curLeft < maxLeft){
-    obj.css("left", curLeft);
+function animateBullet(obj, left){
+  if(left < maxLeft){
+    obj.css("left", left);
     setTimeout(function(){
-      animateBullet(obj, curLeft + 15);
+      animateBullet(obj, left + 15);
     }, 50);
   }else{
-    bulletExplode(obj, curLeft);
+    bulletExplode(obj, left);
   }
 }
 
-function bulletExplode(bullet, curLeft){
+function bulletExplode(bullet, left){
   var spark1;
   var spark2;
   var spark3;
@@ -193,10 +219,10 @@ function bulletExplode(bullet, curLeft){
     origTop = parseInt(origTop.substring(0, origTop.length - 2));
     setTimeout(function(){
       bullet.remove();
-      spark1 = $("<div class='spark1' style='top: " + (origTop - 8) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
-      spark2 = $("<div class='spark1' style='top: " + (origTop + 8) + "px; left: " + (curLeft + 12 - 4) + "px;'></div>").appendTo($('body'));
-      spark3 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (curLeft + 12 - 12) + "px;'></div>").appendTo($('body'));
-      spark4 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (curLeft + 12 + 4) + "px;'></div>").appendTo($('body'));
+      spark1 = $("<div class='spark1' style='top: " + (origTop - 8) + "px; left: " + (left + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark2 = $("<div class='spark1' style='top: " + (origTop + 8) + "px; left: " + (left + 12 - 4) + "px;'></div>").appendTo($('body'));
+      spark3 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (left + 12 - 12) + "px;'></div>").appendTo($('body'));
+      spark4 = $("<div class='spark1' style='top: " + (origTop + 0) + "px; left: " + (left + 12 + 4) + "px;'></div>").appendTo($('body'));
       setTimeout(function(){
         spark1.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
         spark2.addClass('spark2').removeClass('spark1').css("top", "+=2px").css("left", "+=2px");
