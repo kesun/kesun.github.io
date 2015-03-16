@@ -53,17 +53,17 @@ $(document).ready(function(){
   $(document).keyup(function(event) {
     if (event.keyCode == 32) {
       vStop = true;
-      console.log("JUMP up");
+      //console.log("JUMP up");
     }
     if (event.keyCode == 65) {
       hStop = true;
       leftKeyDown = false;
-      console.log("LEFT up");
+      //console.log("LEFT up");
     }
     if (event.keyCode == 68) {
       hStop = true;
       rightKeyDown = false;
-      console.log("RIGHT up");
+      //console.log("RIGHT up");
     }
   }).keydown(function(event) {
     curTop = $("#obj").css("top");
@@ -72,7 +72,7 @@ $(document).ready(function(){
 
     if (event.keyCode == 32) {
       space = true;
-      console.log("JUMP down");
+      //console.log("JUMP down");
       if ($("#obj").css("top") == 400) {
         //console.log("not animated");
         //console.log($("#obj").css("top"));
@@ -92,7 +92,7 @@ $(document).ready(function(){
     if (event.keyCode == 65) {
       if(rightKeyDown == false){
         leftKeyDown = true;
-        console.log("LEFT down");
+        //console.log("LEFT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
@@ -108,7 +108,7 @@ $(document).ready(function(){
     if (event.keyCode == 68) {
       if(leftKeyDown == false){
         rightKeyDown = true;
-        console.log("RIGHT down");
+        //console.log("RIGHT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
