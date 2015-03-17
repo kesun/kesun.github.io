@@ -280,16 +280,16 @@ function animateRainbow(){
     if(i == rainbows.length - 1 && rainbowLeft + 60 == $('#backgroundFrame').width()){
       var rainbowTop = parseInt(rainbowObj.css('top').substring(0, rainbowObj.css('top').length -2));
       if(Math.floor((Math.random() * 2) + 1) == 1){
-        if(rainbowTop >= 2){
-          rainbowStartingTop -= 2;
+        if(rainbowTop >= 1){
+          rainbowStartingTop -= 1;
         }else{
-          rainbowStartingTop += 2;
+          rainbowStartingTop += 1;
         }
       }else{
-        if(rainbowTop <= $('#backgroundFrame').height() - 72){
-          rainbowStartingTop += 2;
+        if(rainbowTop <= $('#backgroundFrame').height() - 71){
+          rainbowStartingTop += 1;
         }else{
-          rainbowStartingTop -= 2;
+          rainbowStartingTop -= 1;
         }
       }
       makeNewRainbow = true;
