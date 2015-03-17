@@ -3,7 +3,8 @@ var curTop;
 var curTopLen;
 var curLeft;
 var curLeftLen;
-var maxLeft = 600;
+var maxLeft = 0;
+var maxHeight = 0;
 var movingLeft = 0;
 var movingRight = 0;
 var hStop = false;
@@ -46,34 +47,39 @@ function verticalStop(fx, prop) {
 }
 
 $(document).ready(function(){
+  maxHeight = $('#mainFrame').height() - $('#obj').height();
+  maxLeft = $('#mainFrame').width() - $('#obj').width();
+  $('#mainFrame')
+  $('#obj').css('top', maxHeight);
+  $('#obj').css('left', 0);
   var maxTop = 100;
   var space = false;
   var jumpNum = 0;
   var halt = 0;
   $(document).keyup(function(event) {
-    if (event.keyCode == 32) {
+    if (event.keyCode == 87) {
       vStop = true;
-      //console.log("JUMP up");
+      console.log("JUMP up");
     }
     if (event.keyCode == 65) {
       hStop = true;
       leftKeyDown = false;
-      //console.log("LEFT up");
+      console.log("LEFT up");
     }
     if (event.keyCode == 68) {
       hStop = true;
       rightKeyDown = false;
-      //console.log("RIGHT up");
+      console.log("RIGHT up");
     }
   }).keydown(function(event) {
     curTop = $("#obj").css("top");
     curTopLen = curTop.length;
     curTop = curTop.substring(0, curTopLen-2);
 
-    if (event.keyCode == 32) {
+    if (event.keyCode == 87) {
       space = true;
-      //console.log("JUMP down");
-      if ($("#obj").css("top") == 400) {
+      console.log("JUMP down");
+      if ($("#obj").css("top") == maxHeight) {
         //console.log("not animated");
         //console.log($("#obj").css("top"));
         if(double < 1){
@@ -92,7 +98,7 @@ $(document).ready(function(){
     if (event.keyCode == 65) {
       if(rightKeyDown == false){
         leftKeyDown = true;
-        //console.log("LEFT down");
+        console.log("LEFT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
@@ -108,15 +114,15 @@ $(document).ready(function(){
     if (event.keyCode == 68) {
       if(leftKeyDown == false){
         rightKeyDown = true;
-        //console.log("RIGHT down");
+        console.log("RIGHT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
         curLeft = curLeft.substring(0, curLeftLen-2);
-        if(curLeft < 500){
+        if(curLeft < maxLeft){
           //if(movingLeft == 1)
           //console.log("moving to the right");
-          $("#obj").animate({ left: 500 }, {duration: (500 - curLeft) * 2, queue: false, step: horizontalStop, easing: "linear"});
+          $("#obj").animate({ left: maxLeft }, {duration: (maxLeft - curLeft) * 2, queue: false, step: horizontalStop, easing: "linear"});
         }
       }
       
@@ -143,10 +149,10 @@ function ballJump(){
           .css("left", "34px")
           .css("width", "20px")
           .css("height", "6px");
-  $("#obj").animate({ top: "-=200px" }, {duration: 400, queue: false, step: verticalStop, easing: "easeOutQuad", complete: function(){
+  $("#obj").animate({ top: "-=200px" }, {duration: maxHeight, queue: false, step: verticalStop, easing: "easeOutQuad", complete: function(){
     if(double == 0){
       console.log("normal down");
-      $("#obj").animate({ top: 400 }, {duration: 400, queue: false, easing: "easeInQuad", complete: function(){
+      $("#obj").animate({ top: maxHeight }, {duration: maxHeight, queue: false, easing: "easeInQuad", complete: function(){
         $("#spriteRearLeg").css("top", "30px")
           .css("left", "10px")
           .css("width", "6px")
@@ -158,11 +164,11 @@ function ballJump(){
       }});
     }else if(double == 1){
       console.log("double down");
-      var animateTime = (400 - curTop + 200) / 200 * 400;
-      if(animateTime > 400){
-        animateTime = 400 + Math.pow((animateTime - 400), 0.8);
+      var animateTime = (maxHeight - curTop + 200) / 200 * maxHeight;
+      if(animateTime > maxHeight){
+        animateTime = maxHeight + Math.pow((animateTime - maxHeight), 0.8);
       }
-      $("#obj").animate({ top: 400 }, {duration: animateTime, queue: false, easing: "easeInQuad", complete: function(){
+      $("#obj").animate({ top: maxHeight }, {duration: animateTime, queue: false, easing: "easeInQuad", complete: function(){
         double = 0;
         $("#spriteRearLeg").css("top", "30px")
           .css("left", "10px")
@@ -178,7 +184,7 @@ function ballJump(){
 }
 
 function setbullet(height){
-  if(height <= 500){
+  if(height <= maxHeight){
     var bulletColour;
     if(colourCode == 1){
       bulletColour = "#F7819F";
