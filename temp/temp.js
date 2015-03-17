@@ -12,6 +12,12 @@ var vStop = false;
 var leftKeyDown = false;
 var rightKeyDown = false;
 
+var makeNewRainbow = true;
+var rainbowStartingTop = 0;
+var sceneSpeed = 100;
+
+var rainbows = [];
+
 var colourCode;
 
 function horizontalStop(fx, prop) {
@@ -49,13 +55,16 @@ function verticalStop(fx, prop) {
 $(document).ready(function(){
   maxHeight = $('#mainFrame').height() - $('#obj').height();
   maxLeft = $('#mainFrame').width() - $('#obj').width();
-  $('#mainFrame')
+  rainbowStartingTop = Math.floor((Math.random() * (maxHeight - 70)) + 1);
   $('#obj').css('top', maxHeight);
   $('#obj').css('left', 0);
   var maxTop = 100;
   var space = false;
   var jumpNum = 0;
   var halt = 0;
+
+  animateRainbow();
+
   $(document).keyup(function(event) {
     if (event.keyCode == 87) {
       vStop = true;
@@ -243,4 +252,49 @@ function bulletExplode(bullet, left){
       }, 60);
     }, 60);
   }, 10);
+}
+
+function animateRainbow(){
+  if(makeNewRainbow == true){
+    var rainbow = $('<div class="rainbowPack" style="top:' + rainbowStartingTop + 'px; left:' + $('#mainFrame').width() + 'px" >' +
+          '<div class="rainbowSingle" style="background-color:#FFCDCD;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#FFE8CD;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#FFFFCD;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#CDFFCF;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#CDFFFF;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#CDCDFF;"></div>' +
+          '<div class="rainbowSingle" style="background-color:#F9CDFF;"></div>' +
+        '</div>');
+    rainbow.appendTo($('#backgroundFrame'));
+    rainbows[rainbows.length] = rainbow;
+    makeNewRainbow = false;
+  }
+  console.log(rainbows);
+  for(var i = 0; i < rainbows.length; i++){
+    var rainbowObj = rainbows[i];
+    var rainbowLeft = parseInt(rainbowObj.css('left').substring(0, rainbowObj.css('left').length -2));
+    if(rainbowLeft + 70 < 0){
+      rainbows.splice(i, 1);
+    }
+    rainbowObj.css('left', rainbowLeft - 10);
+    if(i == rainbows.length - 1 && rainbowLeft + 60 == $('#backgroundFrame').width()){
+      var rainbowTop = parseInt(rainbowObj.css('top').substring(0, rainbowObj.css('top').length -2));
+      if(Math.floor((Math.random() * 2) + 1) == 1){
+        if(rainbowTop >= 2){
+          rainbowStartingTop -= 2;
+        }else{
+          rainbowStartingTop += 2;
+        }
+      }else{
+        if(rainbowTop <= $('#backgroundFrame').height() - 72){
+          rainbowStartingTop += 2;
+        }else{
+          rainbowStartingTop -= 2;
+        }
+      }
+      makeNewRainbow = true;
+    }
+  }
+
+  setTimeout(animateRainbow, 100);
 }
