@@ -3,12 +3,16 @@
   height: 400px;
   border-style: solid;
   border-width: 1px;
-  border-color: #000;
+  border-color: #E8BFF4;
   position: absolute;
 }
 
 #backgroundFrame{
+  width: 800px;
+  height: 400px;
   position: absolute;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 #dummyFrame{
@@ -66,4 +70,15 @@
   height: 4px;
   position: absolute;
   background-color: #F5D0A9;
+}
+
+.rainbowPack{
+  height: 70px;
+  width: 70px;
+  position: absolute;
+}
+
+.rainbowSingle{
+  height: 10px;
+  width: 100%;
 }
