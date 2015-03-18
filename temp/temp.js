@@ -63,22 +63,22 @@ $(document).ready(function(){
   var jumpNum = 0;
   var halt = 0;
 
-  animateRainbow();
+  animateRainbow(Math.floor((Math.random() * 2) + 1), Math.floor((Math.random() * 20) + 1));
 
   $(document).keyup(function(event) {
     if (event.keyCode == 87) {
       vStop = true;
-      console.log("JUMP up");
+      //console.log("JUMP up");
     }
     if (event.keyCode == 65) {
       hStop = true;
       leftKeyDown = false;
-      console.log("LEFT up");
+      //console.log("LEFT up");
     }
     if (event.keyCode == 68) {
       hStop = true;
       rightKeyDown = false;
-      console.log("RIGHT up");
+      //console.log("RIGHT up");
     }
   }).keydown(function(event) {
     curTop = $("#obj").css("top");
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
     if (event.keyCode == 87) {
       space = true;
-      console.log("JUMP down");
+      //console.log("JUMP down");
       if ($("#obj").css("top") == maxHeight) {
         //console.log("not animated");
         //console.log($("#obj").css("top"));
@@ -107,7 +107,7 @@ $(document).ready(function(){
     if (event.keyCode == 65) {
       if(rightKeyDown == false){
         leftKeyDown = true;
-        console.log("LEFT down");
+        //console.log("LEFT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
@@ -123,7 +123,7 @@ $(document).ready(function(){
     if (event.keyCode == 68) {
       if(leftKeyDown == false){
         rightKeyDown = true;
-        console.log("RIGHT down");
+        //console.log("RIGHT down");
         curLeft = $("#obj").css("left");
         if(curLeft == "auto") curLeft = "0px";
         curLeftLen = curLeft.length;
@@ -254,7 +254,9 @@ function bulletExplode(bullet, left){
   }, 10);
 }
 
-function animateRainbow(){
+function animateRainbow(direction, duration){
+  var dir = direction;
+  var dur;
   if(makeNewRainbow == true){
     var rainbow = $('<div class="rainbowPack" style="top:' + rainbowStartingTop + 'px; left:' + $('#mainFrame').width() + 'px" >' +
           '<div class="rainbowSingle" style="background-color:#FFCDCD;"></div>' +
@@ -269,32 +271,40 @@ function animateRainbow(){
     rainbows[rainbows.length] = rainbow;
     makeNewRainbow = false;
   }
-  console.log(rainbows);
   for(var i = 0; i < rainbows.length; i++){
     var rainbowObj = rainbows[i];
     var rainbowLeft = parseInt(rainbowObj.css('left').substring(0, rainbowObj.css('left').length -2));
-    if(rainbowLeft + 70 < 0){
+    if(rainbowLeft + 10 < 0){
       rainbows.splice(i, 1);
     }
     rainbowObj.css('left', rainbowLeft - 10);
-    if(i == rainbows.length - 1 && rainbowLeft + 60 == $('#backgroundFrame').width()){
+    if(i == rainbows.length - 1 && rainbowLeft == $('#backgroundFrame').width()){
       var rainbowTop = parseInt(rainbowObj.css('top').substring(0, rainbowObj.css('top').length -2));
-      if(Math.floor((Math.random() * 2) + 1) == 1){
-        if(rainbowTop >= 1){
-          rainbowStartingTop -= 1;
+      if(duration >= 0){
+        if(direction == 1){
+          if(rainbowTop >= 1){
+            rainbowStartingTop -= 1;
+          }else{
+            dir = 2;
+            rainbowStartingTop += 1;
+          }
         }else{
-          rainbowStartingTop += 1;
+          if(rainbowTop <= $('#backgroundFrame').height() - 71){
+            rainbowStartingTop += 1;
+          }else{
+            rainbowStartingTop -= 1;
+            dir = 1;
+          }
         }
-      }else{
-        if(rainbowTop <= $('#backgroundFrame').height() - 71){
-          rainbowStartingTop += 1;
-        }else{
-          rainbowStartingTop -= 1;
-        }
+        makeNewRainbow = true;
       }
-      makeNewRainbow = true;
     }
+    //setTimeout(function(){animateRainbow(dir, dur)}, 100);
   }
-
-  setTimeout(animateRainbow, 100);
+  if(duration == 0){
+    makeNewRainbow = true;
+    setTimeout(function(){animateRainbow(Math.floor((Math.random() * 2) + 1), Math.floor((Math.random() * 20) + 1))}, 200);
+  }else{
+    setTimeout(function(){animateRainbow(dir, duration - 1)}, 200);
+  }
 }
