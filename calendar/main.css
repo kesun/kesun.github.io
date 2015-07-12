@@ -1,0 +1,112 @@
+body{
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+	font-family: Verdana,Geneva,sans-serif;
+	font-size: 12px;
+}
+
+#opWrapper{
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+}
+
+#titleWrapper{
+	height: 50px;
+	width: 100%;
+	background-color: #B896C1;
+}
+
+#bodyWrapper{
+	width: 100%;
+	height: calc(100% - 75px);
+	background-color: #DBC5E1;
+	overflow-y: scroll;
+}
+
+#footWrapper{
+	width: 100%;
+	height: 25px;
+	background-color: #7D4E89;
+}
+
+table{
+	width: 100%;
+	table-layout: fixed;
+}
+
+.timeSlots{
+	height: 20px;
+	max-height: 20px;
+	background-color: #FFF;
+	position: relative;
+}
+
+.timeStamp{
+	width: 50px;
+	text-align: right;
+	vertical-align: top;
+}
+
+.calendarHeader{
+	color: red;
+	height: 25px;
+	width: calc(100% - 17px);
+	position: fixed;
+	border-spacing: 0px;
+	text-align: center;
+	background-color: #FFF;
+	z-index: 100;
+}
+
+.calendarBody{
+	padding-top: 25px;
+}
+
+.stampContent{}
+
+
+
+
+
+#enterNewItemWrapper{
+	padding: 5px;
+	position: absolute;
+	top: 0px;
+	background-color: #D2DDED;
+	border-radius: 5px;
+	width: 300px;
+	height: 100px;
+	display: none;
+	box-shadow: 1px 1px 5px #888888;
+	z-index: 200;
+}
+
+.calendarItem{
+	overflow: hidden;
+	background-color: #D2DDED;
+	border-color: #96A9C4;
+}
+
+.newItemContent{
+	width: auto;
+}
+
+.newItemShade{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(169, 0, 67, 0.5);
+	border-color: rgba(169, 0, 67, 0.8);
+	border-width: 1px;
+	z-index: 50;
+	font-size: 10px;
+	color: #FFF;
+}
+
+.newItemShade > p{
+	margin-left: 10px;
+	margin-top: 5px;
+}
