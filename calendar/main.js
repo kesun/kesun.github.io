@@ -30,6 +30,7 @@ $(document).ready(function(){
 					.css('left', $(event.target).offset().left)
 					.show();
 			}else if($(event.target).is('#addEvent')){ // add event
+				editMode = false;
 				var $eventContentWhat = $('<p/>');
 				var $eventContentWhere = $('<p/>');
 				$eventContentWhat.text($('#newItemWhatInput').val());
