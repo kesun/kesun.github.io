@@ -38,17 +38,18 @@ $(document).ready(function(){
 				$('#newItemWhereInput').val("");
 				$('#enterNewItemWrapper').hide();
 				for(var ind = 0; ind < $('.newItemShade').length; ind++){
-					var curObj = $('.newItemShade')[0];
+					var curObj = $('.newItemShade')[ind];
 					jQuery.data(curObj, 'objs', $('.newItemShade'));
 				}
 				var tempTime = $($('.newItemShade').children()[0]);
-				$('.newItemShade')
+				var $newEvent = $('.newItemShade')
 					.empty()
 					.append(tempTime)
 					.append($eventContentWhat)
 					.append($eventContentWhere)
 					.addClass('calendarItem')
 					.removeClass('newItemShade');
+				collisionCheck($newEvent);
 			}
 		}else{
 			if($(event.target).is('.timeSlots')){
@@ -251,10 +252,61 @@ $(document).ready(function(){
 			var $block = $('<div/>');
 			$block
 				.append(contentHTML)
-				.css('height', curBlock.blockNum * ($('.timeSlots').height() + 4) - 2 + 'px')
+				.css('height', curBlock.blockNum * ($('.timeSlots').height() + 4) - 4 + 'px')
 				.addClass('newItemShade');
 			$curSlot.append($block);
 		}
-		
+	}
+
+	function collisionCheck($newItem){
+		var $objs = jQuery.data($newItem[0], 'objs');
+		console.log($objs);
+		for(var i = 0; i < $objs.length; i++){
+			var $curObj = $($objs[i]);
+			var colSlots = $curObj.parent().parent().children();
+			var rowSlots = $curObj.parent().parent().parent().children();
+			var col = colSlots.index($curObj.parent());
+			var row = rowSlots.index($curObj.parent().parent());
+			var r;
+			var c = col;
+			if(row % 2 != 0){
+				c++;
+			}
+			for(r = 0; r < rowSlots.length; r++){
+				if(r != row){
+					var $curSlot;
+					var $events;
+					if(r % 2 == 0){
+						$curSlot = $($(rowSlots[r]).children()[c]);
+					}else{
+						$curSlot = $($(rowSlots[r]).children()[c - 1]);
+					}
+					$events = $curSlot.find('.calendarItem');
+					for(var e = 0; e < $events.length; e++){
+						if(collisionCheckHelper($curObj, $($events[e]))){ // collision detected
+							console.log("there's collision", $curObj, $($events[e]));
+						}
+					}
+				}
+			}
+		}
+	}
+
+	function collisionCheckHelper($slot1, $slot2){
+		var x1 = $slot1.offset().left;
+		var y1 = $slot1.offset().top;
+		var h1 = $slot1.outerHeight(true);
+		var w1 = $slot1.outerWidth(true);
+		var b1 = y1 + h1;
+		var r1 = x1 + w1;
+		var x2 = $slot2.offset().left;
+		var y2 = $slot2.offset().top;
+		var h2 = $slot2.outerHeight(true);
+		var w2 = $slot2.outerWidth(true);
+		var b2 = y2 + h2;
+		var r2 = x2 + w2;
+
+		if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+		return true;
 	}
 });
