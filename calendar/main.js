@@ -8,19 +8,38 @@ $(document).ready(function(){
 	// test controls
 	var testLoopCap = 10;
 
+	var editMode = false;
+
 	$(document).on('click', function(event){
 		if($('#enterNewItemWrapper').css('display') != "none"){
-			if(!$(event.target).is('#enterNewItemWrapper') && !$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span')){
+			if($(event.target).is('#removeEvent') || (!$(event.target).is('#enterNewItemWrapper') && !$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span'))){
 				$('#enterNewItemWrapper').hide();
-				$('.newItemShade').remove();
+				if(!editMode){
+					$('.newItemShade').remove();
+				}else{
+					editMode = false;
+					$('.newItemShade')
+						.addClass('calendarItem')
+						.removeClass('newItemShade');
+				}
 			}else if(!$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span')){
 				$('#enterNewItemWrapper')
 					.css('top', $(event.target).offset().top)
 					.css('left', $(event.target).offset().left)
 					.show();
 			}else if($(event.target).is('#addEvent')){
+				var $eventContentWhat = $('<p/>');
+				var $eventContentWhere = $('<p/>');
+				$eventContentWhat.text($('#newItemWhatInput').val());
+				$eventContentWhere.text($('#newItemWhereInput').val());
 				$('#enterNewItemWrapper').hide();
+				for(var ind = 0; ind < $('.newItemShade').length; ind++){
+					var curObj = $('.newItemShade')[0];
+					jQuery.data(curObj, 'objs', $('.newItemShade'));
+				}
 				$('.newItemShade')
+					.append($eventContentWhat)
+					.append($eventContentWhere)
 					.addClass('calendarItem')
 					.removeClass('newItemShade');
 			}
@@ -28,7 +47,6 @@ $(document).ready(function(){
 			if($(event.target).is('.timeSlots')){
 				var $initSlot = $(event.target);
 				var $endSlot = getEndSlot($initSlot, defaultDuration);
-				console.log("endSlot", $endSlot[0]);
 				var initTime = getSlotTimeInfo($initSlot);
 				var finalTime = getSlotTimeInfo($endSlot);
 				$('#enterNewItemWrapper')
@@ -39,6 +57,19 @@ $(document).ready(function(){
 				$('#newItemWhenEnd').text(getSlotDateInfo($endSlot) + " @ " + finalTime);
 
 				shadeNewEvent($initSlot, $endSlot, "<p>" + initTime + " - " + finalTime + "</p>");
+			}else if($(event.target).is('.calendarItem')){
+				editMode = true;
+				var $initSlot = $(event.target);
+				$('#enterNewItemWrapper')
+					.css('top', $initSlot.offset().top - $('#enterNewItemWrapper').height() - 15)
+					.css('left', $initSlot.offset().left)
+					.show();
+				// get all related blocks
+				var $objs = jQuery.data(event.target, 'objs');
+				console.log($objs);
+				$objs
+					.removeClass('calendarItem')
+					.addClass('newItemShade');
 			}
 		}
 	});
@@ -142,9 +173,7 @@ $(document).ready(function(){
 		if(row < rowSlots.length - slotNum){
 			row += slotNum;
 		}else if(row >= rowSlots.length - slotNum && row <= rowSlots.length - 1){
-			console.log('asdasd');
 			if(col < colSlots.length - 1){
-				console.log('asdsadasdsdas');
 				row -= rowSlots.length - slotNum;
 				if(slotNum % 2 == 0){
 					col++;
@@ -173,14 +202,11 @@ $(document).ready(function(){
 		// get the regions that are to be shaded
 		var looper = 0;
 		while(!($curSlot = $($(rowSlots[row]).children()[col])).is($endSlot) && looper < testLoopCap){
-			console.log("row", row, "col", col, 'curBlock', curBlock);
 			if(curBlock.row == -1 && curBlock.col == -1){
-				console.log('update shading info', row, col);
 				curBlock.row = row;
 				curBlock.col = col;
 			}
 			if(row == rowSlots.length - 1){ // last row, move on to next column
-				console.log('hit last row', row, col);
 				blocks.push({
 					row: curBlock.row,
 					col: curBlock.col,
@@ -192,7 +218,6 @@ $(document).ready(function(){
 				col += 2;
 				row = 0;
 			}else{
-				console.log('increment row normally', row, col);
 				curBlock.blockNum++;
 				row++;
 				if(row % 2 != 0){
@@ -206,7 +231,6 @@ $(document).ready(function(){
 		if(curBlock.blockNum > 0){
 			blocks.push(curBlock);
 		}
-		console.log('blocks', blocks);
 		// shade
 		for(var i = 0; i < blocks.length; i++){
 			curBlock = blocks[i];

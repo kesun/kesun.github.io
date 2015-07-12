@@ -101,6 +101,8 @@ table{
 .calendarItem > p{
 	margin-left: 10px;
 	margin-top: 5px;
+	margin-bottom: 0px;
+	margin-right: 10px;
 }
 
 .newItemContent{
@@ -112,8 +114,8 @@ table{
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color: rgba(169, 0, 67, 0.5);
-	border-color: rgba(169, 0, 67, 0.8);
+	background-color: rgba(169, 0, 67, 0.7);
+	border-color: rgba(169, 0, 67, 1);
 	border-style: solid;
 	border-width: 1px;
 	z-index: 60;
