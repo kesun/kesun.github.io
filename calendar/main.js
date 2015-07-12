@@ -10,19 +10,25 @@ $(document).ready(function(){
 
 	$(document).on('click', function(event){
 		if($('#enterNewItemWrapper').css('display') != "none"){
-			if(!$(event.target).is('#enterNewItemWrapper')){
+			if(!$(event.target).is('#enterNewItemWrapper') && !$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span')){
 				$('#enterNewItemWrapper').hide();
 				$('.newItemShade').remove();
-			}else{
+			}else if(!$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span')){
 				$('#enterNewItemWrapper')
 					.css('top', $(event.target).offset().top)
 					.css('left', $(event.target).offset().left)
 					.show();
+			}else if($(event.target).is('#addEvent')){
+				$('#enterNewItemWrapper').hide();
+				$('.newItemShade')
+					.addClass('calendarItem')
+					.removeClass('newItemShade');
 			}
 		}else{
 			if($(event.target).is('.timeSlots')){
 				var $initSlot = $(event.target);
 				var $endSlot = getEndSlot($initSlot, defaultDuration);
+				console.log("endSlot", $endSlot[0]);
 				var initTime = getSlotTimeInfo($initSlot);
 				var finalTime = getSlotTimeInfo($endSlot);
 				$('#enterNewItemWrapper')
@@ -136,11 +142,16 @@ $(document).ready(function(){
 		if(row < rowSlots.length - slotNum){
 			row += slotNum;
 		}else if(row >= rowSlots.length - slotNum && row <= rowSlots.length - 1){
-			if(col < colSlots.length){
+			console.log('asdasd');
+			if(col < colSlots.length - 1){
+				console.log('asdsadasdsdas');
 				row -= rowSlots.length - slotNum;
 				if(slotNum % 2 == 0){
 					col++;
 				}
+			}else{ // hard-stopping duration from exceeding the allowance of the current calendar
+				row = rowSlots.length - 1;
+				col = $(rowSlots[row]).children().length - 1;
 			}
 		}
 		return $($(rowSlots[row]).children()[col]);
