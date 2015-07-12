@@ -162,7 +162,7 @@ $(document).ready(function(){
 		// get the regions that are to be shaded
 		var looper = 0;
 		while(!($curSlot = $($(rowSlots[row]).children()[col])).is($endSlot) && looper < testLoopCap){
-			console.log("row", row, "col", col);
+			console.log("row", row, "col", col, 'curBlock', curBlock);
 			if(curBlock.row == -1 && curBlock.col == -1){
 				console.log('update shading info', row, col);
 				curBlock.row = row;
@@ -170,9 +170,11 @@ $(document).ready(function(){
 			}
 			if(row == rowSlots.length - 1){ // last row, move on to next column
 				console.log('hit last row', row, col);
-				if(curBlock.blockNum > 0){
-					blocks.push(curBlock);
-				}
+				blocks.push({
+					row: curBlock.row,
+					col: curBlock.col,
+					blockNum: curBlock.blockNum + 1
+				});
 				curBlock.blockNum = 0;
 				curBlock.row = -1;
 				curBlock.col = -1;
