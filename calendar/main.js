@@ -12,9 +12,11 @@ $(document).ready(function(){
 
 	$(document).on('click', function(event){
 		if($('#enterNewItemWrapper').css('display') != "none"){
-			if($(event.target).is('#removeEvent') || (!$(event.target).is('#enterNewItemWrapper') && !$(event.target).is('button') && !$(event.target).is('input') && !$(event.target).is('span'))){
+			if((!$(event.target).is('#enterNewItemWrapper') && !$(event.target).is('#addEvent') && !$(event.target).is('input') && !$(event.target).is('span'))){
+				$('#newItemWhatInput').val("");
+				$('#newItemWhereInput').val("");
 				$('#enterNewItemWrapper').hide();
-				if(!editMode){
+				if(!editMode || $(event.target).is('#removeEvent')){
 					$('.newItemShade').remove();
 				}else{
 					editMode = false;
@@ -27,17 +29,22 @@ $(document).ready(function(){
 					.css('top', $(event.target).offset().top)
 					.css('left', $(event.target).offset().left)
 					.show();
-			}else if($(event.target).is('#addEvent')){
+			}else if($(event.target).is('#addEvent')){ // add event
 				var $eventContentWhat = $('<p/>');
 				var $eventContentWhere = $('<p/>');
 				$eventContentWhat.text($('#newItemWhatInput').val());
 				$eventContentWhere.text($('#newItemWhereInput').val());
+				$('#newItemWhatInput').val("");
+				$('#newItemWhereInput').val("");
 				$('#enterNewItemWrapper').hide();
 				for(var ind = 0; ind < $('.newItemShade').length; ind++){
 					var curObj = $('.newItemShade')[0];
 					jQuery.data(curObj, 'objs', $('.newItemShade'));
 				}
+				var tempTime = $($('.newItemShade').children()[0]);
 				$('.newItemShade')
+					.empty()
+					.append(tempTime)
 					.append($eventContentWhat)
 					.append($eventContentWhere)
 					.addClass('calendarItem')
@@ -57,16 +64,22 @@ $(document).ready(function(){
 				$('#newItemWhenEnd').text(getSlotDateInfo($endSlot) + " @ " + finalTime);
 
 				shadeNewEvent($initSlot, $endSlot, "<p>" + initTime + " - " + finalTime + "</p>");
-			}else if($(event.target).is('.calendarItem')){
+			}else if($(event.target).is('.calendarItem') || $(event.target).is('.calendarItem>p')){
+				var $target;
+				if($(event.target).is('.calendarItem>p')){
+					$target = $(event.target).parent();
+				}else{
+					$target = $(event.target);
+				}
 				editMode = true;
-				var $initSlot = $(event.target);
 				$('#enterNewItemWrapper')
-					.css('top', $initSlot.offset().top - $('#enterNewItemWrapper').height() - 15)
-					.css('left', $initSlot.offset().left)
+					.css('top', $target.offset().top - $('#enterNewItemWrapper').height() - 15)
+					.css('left', $target.offset().left)
 					.show();
+				$('#newItemWhatInput').val($($target.children()[1]).text());
+				$('#newItemWhereInput').val($($target.children()[2]).text());
 				// get all related blocks
-				var $objs = jQuery.data(event.target, 'objs');
-				console.log($objs);
+				var $objs = jQuery.data($target[0], 'objs');
 				$objs
 					.removeClass('calendarItem')
 					.addClass('newItemShade');
