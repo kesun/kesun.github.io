@@ -1,8 +1,8 @@
 var timer;
 $(document).ready(function(){
 	// constants
-	var backgroundColour = "#050505";
-	var fillColour = "rgba(0, 0, 0, 0.1)";
+	var backgroundColour = "#0A0A0A";
+	var fillColour = "rgba(0, 0, 0, 0.05)";
 	var veloInitCap = 1.5;
 	var veloMaxCap = 2.5;
 	var acc = 0.2;
@@ -24,13 +24,14 @@ $(document).ready(function(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
 		$(canvas).css('background-color', backgroundColour);
+		context.fillStyle = backgroundColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		generateParticles();
 		timer = setInterval(animateParticles, 1000/40);
 	}
 
 	function generateParticles(){
-		setTimeout(generateParticle, Math.floor(Math.random() * 500));
+		setTimeout(generateParticle, Math.floor(Math.random() * 300));
 	}
 
 	function generateParticle(){
@@ -54,7 +55,6 @@ $(document).ready(function(){
 				opacity: pOpacity
 
 			}
-			console.log(particleArr);
 			particleArr.push(p);
 		}
 		generateParticles();
@@ -63,7 +63,6 @@ $(document).ready(function(){
 	function animateParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
-
 		context.fillStyle = fillColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -72,7 +71,7 @@ $(document).ready(function(){
 			var lastX = p.x;
 			var lastY = p.y;
 			if(p.opacity > 0){
-				p.xVel += (1 - 2*Math.random()) * acc;
+				p.xVel += (1 - 2*Math.random()) * acc/10;
 				p.yVel += (1 - 2*Math.random()) * acc;
 				if(p.xVel > veloMaxCap){
 					p.xVel = veloMaxCap;
