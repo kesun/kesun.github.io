@@ -100,7 +100,7 @@ $(document).ready(function(){
 				//p.x += p.xVel;
 				p.y += p.yVel;
 
-				if(p.x >= p.yFadeInit){
+				if(p.y >= p.yFadeInit){
 					p.opacity -= p.fadeAcc;
 				}
 				if(p.opacity < 0){
