@@ -45,7 +45,7 @@ $(document).ready(function(){
 			r: Math.random() * 5 + 2,
 			yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 			fadeVel: 0,
-			fadeAcc: Math.random() * 0.01 + 0.001,
+			fadeAcc: Math.random() * 0.01 + 0.005,
 			colourBase: pHslaColour,
 			opacity: pOpacity
 
@@ -71,13 +71,16 @@ $(document).ready(function(){
 				p.yVel += (1 - 2*Math.random()) * acc;
 				if(p.xVel > veloMaxCap){
 					p.xVel = veloMaxCap;
-				}else if(p.xVel < 0){
-					p.xVel = 0;
+				}else if(p.xVel < -veloMaxCap){
+					p.xVel = -veloMaxCap;
 				}
 				if(p.yVel > veloMaxCap){
 					p.yVel = veloMaxCap;
 				}else if(p.yVel < -veloMaxCap){
 					p.yVel = -veloMaxCap;
+				}
+				if(p.yVel < 0){
+					p.yVel = -p.yVel;
 				}
 
 				p.x += p.xVel;
