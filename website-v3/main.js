@@ -4,12 +4,18 @@ $(document).ready(function(){
 	var backgroundColour = "#0A0A0A";
 	var fillColour = "rgba(0, 0, 0, 0.05)";
 	var veloInitCap = 1.5;
-	var veloMaxCap = 2.5;
+	var veloMaxCap = 4;
 	var acc = 0.2;
 
 	var particleArr = [];
 
 	window.addEventListener('resize', resizeCanvas, false);
+
+	printArr();
+
+	function printArr(){
+		setTimeout(printArr, 1000);
+	}
 
 	function resizeCanvas() {
 		var canvas = document.getElementById('backgroundCanvas');
@@ -35,7 +41,7 @@ $(document).ready(function(){
 	}
 
 	function generateParticle(){
-		if(particleArr.length < 50){
+		if(particleArr.length < 200){
 			var pColour = Math.floor(Math.random() * 360);
 			var pOpacity = Math.floor(Math.random() + 0.5);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
@@ -70,9 +76,9 @@ $(document).ready(function(){
 			var p = particleArr[i];
 			var lastX = p.x;
 			var lastY = p.y;
-			if(p.opacity > 0){
+			if(p.opacity > 0 || p.y < canvas.height || p.x < 0 || p.x > canvas.width){
 				p.xVel += (1 - 2*Math.random()) * acc/10;
-				p.yVel += (1 - 2*Math.random()) * acc;
+				p.yVel += (1 - 2*Math.random()) * acc + 0.05;
 				if(p.xVel > veloMaxCap){
 					p.xVel = veloMaxCap;
 				}else if(p.xVel < -veloMaxCap){
