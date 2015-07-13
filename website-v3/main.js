@@ -1,8 +1,8 @@
 var timer;
 $(document).ready(function(){
 	// constants
-	var backgroundColour = "#0A0A0A";
-	var fillColour = "rgba(0, 0, 0, 0.05)";
+	var backgroundColour = "#333333";
+	var fillColour = "rgba(0, 0, 0, 0.025)";
 	var veloInitCap = 1.5;
 	var veloMaxCap = 4;
 	var acc = 0.2;
@@ -82,7 +82,7 @@ $(document).ready(function(){
 				i--;
 			}else{
 				p.xVel += (1 - 2*Math.random()) * acc/10;
-				p.yVel += (1 - 2*Math.random()) * acc + 0.05;
+				p.yVel += (1 - 2*Math.random()) * acc + 0.005;
 				if(p.xVel > veloMaxCap){
 					p.xVel = veloMaxCap;
 				}else if(p.xVel < -veloMaxCap){
@@ -97,7 +97,7 @@ $(document).ready(function(){
 					p.yVel = -p.yVel;
 				}
 
-				p.x += p.xVel;
+				//p.x += p.xVel;
 				p.y += p.yVel;
 
 				if(p.x >= p.yFadeInit){
