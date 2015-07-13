@@ -1,3 +1,4 @@
+var timer;
 $(document).ready(function(){
 	// constants
 	var backgroundColour = "#050505";
@@ -14,6 +15,8 @@ $(document).ready(function(){
 		var canvas = document.getElementById('backgroundCanvas');
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
+		particleArr = [];
+		clearInterval(timer);
 		initBackgroundAnimation();
 	}
 
@@ -23,7 +26,7 @@ $(document).ready(function(){
 		$(canvas).css('background-color', backgroundColour);
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		generateParticles();
-		var timer = setInterval(animateParticles, 1000/40);
+		timer = setInterval(animateParticles, 1000/40);
 	}
 
 	function generateParticles(){
