@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	// defaults
-	var defaultDuration = 60; // in minutes
+	var defaultDuration = 120; // in minutes
 
 	// calendar setup
 	initTimeTable();
