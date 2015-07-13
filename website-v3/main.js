@@ -37,11 +37,11 @@ $(document).ready(function(){
 	}
 
 	function generateParticles(){
-		setTimeout(generateParticle, Math.floor(Math.random() * 300));
+		setTimeout(generateParticle, Math.floor(Math.random() * 100));
 	}
 
 	function generateParticle(){
-		if(particleArr.length < 200){
+		if(particleArr.length < 100){
 			var pColour = Math.floor(Math.random() * 360);
 			var pOpacity = Math.floor(Math.random() + 0.5);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
@@ -76,7 +76,11 @@ $(document).ready(function(){
 			var p = particleArr[i];
 			var lastX = p.x;
 			var lastY = p.y;
-			if(p.opacity > 0 || p.y < canvas.height || p.x < 0 || p.x > canvas.width){
+			//console.log(i, p.x, p.y);
+			if(p.opacity == 0 || p.y >= canvas.height || p.x <= 0 || p.x >= canvas.width){
+				particleArr.splice(i, 1);
+				i--;
+			}else{
 				p.xVel += (1 - 2*Math.random()) * acc/10;
 				p.yVel += (1 - 2*Math.random()) * acc + 0.05;
 				if(p.xVel > veloMaxCap){
@@ -108,9 +112,6 @@ $(document).ready(function(){
 				context.arc(p.x, p.y, p.r, 0, 2*Math.PI, false);
 				context.closePath();
 				context.fill();
-			}else{
-				particleArr.splice(i, 1);
-				i--;
 			}
 		}
 	}
