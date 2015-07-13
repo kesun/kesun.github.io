@@ -45,7 +45,7 @@ $(document).ready(function(){
 			r: Math.random() * 5 + 2,
 			yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 			fadeVel: 0,
-			fadeAcc: Math.random() * 0.05 + 0.01,
+			fadeAcc: Math.random() * 0.01 + 0.001,
 			colourBase: pHslaColour,
 			opacity: pOpacity
 
