@@ -34,27 +34,29 @@ $(document).ready(function(){
 	}
 
 	function generateParticle(){
-		var pColour = Math.floor(Math.random() * 360);
-		var pOpacity = Math.floor(Math.random() + 0.5);
-		var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
-		var canvas = document.getElementById('backgroundCanvas');
-		var context = canvas.getContext('2d');
-		var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
-		var p = {
-			x: Math.floor(Math.random() * canvas.width),
-			y: 0,
-			xVel: (Math.random() * 0.4 + 0.6) * veloInitCap * Math.cos(Math.random() * 2 * Math.PI),
-			yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
-			r: Math.random() * 5 + 2,
-			yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
-			fadeVel: 0,
-			fadeAcc: Math.random() * 0.01 + 0.001,
-			colourBase: pHslaColour,
-			opacity: pOpacity
+		if(particleArr.length < 50){
+			var pColour = Math.floor(Math.random() * 360);
+			var pOpacity = Math.floor(Math.random() + 0.5);
+			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
+			var canvas = document.getElementById('backgroundCanvas');
+			var context = canvas.getContext('2d');
+			var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
+			var p = {
+				x: Math.floor(Math.random() * canvas.width),
+				y: 0,
+				xVel: (Math.random() * 0.4 + 0.6) * veloInitCap * Math.cos(Math.random() * 2 * Math.PI),
+				yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
+				r: Math.random() * 5 + 2,
+				yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
+				fadeVel: 0,
+				fadeAcc: Math.random() * 0.01 + 0.001,
+				colourBase: pHslaColour,
+				opacity: pOpacity
 
+			}
+			console.log(particleArr);
+			particleArr.push(p);
 		}
-		console.log(particleArr);
-		particleArr.push(p);
 		generateParticles();
 	}
 
