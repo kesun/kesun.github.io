@@ -37,11 +37,11 @@ $(document).ready(function(){
 	}
 
 	function generateParticles(){
-		setTimeout(generateParticle, Math.floor(Math.random()));
+		setTimeout(generateParticle, 0.00000000000000000001);
 	}
 
 	function generateParticle(){
-		if(particleArr.length < 300){
+		if(particleArr.length < 500){
 			var pColour = Math.floor(Math.random() * 360);
 			var pOpacity = Math.floor(Math.random() + 0.5);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
