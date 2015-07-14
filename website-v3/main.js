@@ -133,7 +133,9 @@ $(document).ready(function(){
 			analyser.connect(processor);
 
 			var data = new Uint8Array(analyser.frequencyBinCount);
-			console.log(analyser.getByteTimeDomainData(data));
+			console.log('data', data);
+			console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
+			console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
 		});
 	}
 
