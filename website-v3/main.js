@@ -120,8 +120,8 @@ $(document).ready(function(){
 		var sound;
 		var audio = new Audio();
 		var context = new AudioContext();
-		sound.connect(context.destination);
 		audio.src = 'sevenlions.mp3';
+		sound.connect(context.destination);
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
 			processor = context.createScriptProcessor(1024),
