@@ -126,6 +126,7 @@ $(document).ready(function(){
 			sound = context.createMediaElementSource(audio);
 			sound.connect(context.destination);
 			audio.play();
+			play();
 			function play(){
 				processor = context.createScriptProcessor(1024),
 				analyser = context.createAnalyser();
