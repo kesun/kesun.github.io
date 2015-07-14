@@ -122,7 +122,9 @@ $(document).ready(function(){
 		var audioSrc = ctx.createMediaElementSource(audio);
 		var analyser = ctx.createAnalyser();
 		// we have to connect the MediaElementSource with the analyser 
+		/*
 		audioSrc.connect(analyser);
+
 		// we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
 
 		// frequencyBinCount tells you how many values you'll receive from the analyser
@@ -137,6 +139,7 @@ $(document).ready(function(){
 		// render frame based on values in frequencyData
 		// console.log(frequencyData)
 		}
+		*/
 	}
 
 	resizeCanvas();
