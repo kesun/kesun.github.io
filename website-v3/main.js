@@ -129,7 +129,7 @@ $(document).ready(function(){
 			processor.connect(context.destination);
 			analyser.connect(processor);
 			sound.connect(analyser);
-			audio.play();
+			//audio.play();
 			play();
 			function play(){
 				var data = new Uint8Array(analyser.fftSize);
