@@ -118,8 +118,8 @@ $(document).ready(function(){
 
 	function audio(){
 
-		var sound,
-			audio = new Audio();
+		var sound;
+		var audio = new Audio();
 		var context = new AudioContext();
 		audio.src = 'sevenlions.mp3';
 		audio.addEventListener('canplay', function() {
