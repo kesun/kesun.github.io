@@ -117,6 +117,8 @@ $(document).ready(function(){
 	}
 
 	function audio(){
+		var context;
+		context = new AudioContext();
 		var sound,
 		/* Instatiate a new `<audio>` element. Although Chrome supports `new Audio()`,
 		* Firefox requires the element to be created with `createElement`. */
