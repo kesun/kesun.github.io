@@ -133,7 +133,7 @@ $(document).ready(function(){
 			play();
 			function play(){
 				var data = new Uint8Array(analyser.fftSize);
-				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
+				console.log('data', data);
 				setTimeout(play, 2000);
 			}
 		});
