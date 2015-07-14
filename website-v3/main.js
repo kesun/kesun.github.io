@@ -117,37 +117,11 @@ $(document).ready(function(){
 	}
 
 	function audio(){
-		var Sound = {
-			/* Give the sound an element property initially undefined. */
-			element: undefined,
-			/* Define a class method of play which instantiates a new Media Element
-			* Source each time the file plays, once the file has completed disconnect 
-			* and destroy the media element source. */
-			play: function() { 
-				var sound = context.createMediaElementSource(this.element);
-				this.element.onended = function() {
-					sound.disconnect();
-					sound = null;
-					/* Noop the audioprocess handler when the file finishes. */
-					processor.onaudioprocess = function() {};
-				}
-				/* Add the following line to wire into the analyser. */
-				sound.connect(analyser);
-				sound.connect(context.destination);
 
-				processor.onaudioprocess = function() {
-					/* Populate the data array with the frequency data. */
-					console.log(analyser.getByteFrequencyData(data));
-				};
-				/* Call `play` on the MediaElement. */
-				this.element.play();
-			}
-		};
-
-	var sound, context,
-		audio = new Audio();
+		var sound, context,
+			audio = new Audio();
 		context = new AudioContext();
-
+		audio.src = 'sevenlions.mp3';
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
 			sound.connect(context.destination);
@@ -166,7 +140,6 @@ $(document).ready(function(){
 			var data = new Uint8Array(analyser.frequencyBinCount);
 			console.log(analyser.getByteFrequencyData(data));
 		});
-		audio.src = 'sevenlions.mp3';
 	}
 
 	resizeCanvas();
