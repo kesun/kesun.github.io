@@ -117,46 +117,56 @@ $(document).ready(function(){
 	}
 
 	function audio(){
-		var context;
-		context = new AudioContext();
-		var sound,
-		/* Instatiate a new `<audio>` element. Although Chrome supports `new Audio()`,
-		* Firefox requires the element to be created with `createElement`. */
-		audio = new Audio();
+		var Sound = {
+			/* Give the sound an element property initially undefined. */
+			element: undefined,
+			/* Define a class method of play which instantiates a new Media Element
+			* Source each time the file plays, once the file has completed disconnect 
+			* and destroy the media element source. */
+			play: function() { 
+				var sound = context.createMediaElementSource(this.element);
+				this.element.onended = function() {
+					sound.disconnect();
+					sound = null;
+					/* Noop the audioprocess handler when the file finishes. */
+					processor.onaudioprocess = function() {};
+				}
+				/* Add the following line to wire into the analyser. */
+				sound.connect(analyser);
+				sound.connect(context.destination);
 
-		/* Add a `canplay` event handler for when the file is ready to start. */
+				processor.onaudioprocess = function() {
+					/* Populate the data array with the frequency data. */
+					console.log(analyser.getByteFrequencyData(data));
+				};
+				/* Call `play` on the MediaElement. */
+				this.element.play();
+			}
+		};
+
+	var sound, context,
+		audio = new Audio();
+		context = new AudioContext();
+
 		audio.addEventListener('canplay', function() {
-		/* Now that the file `canplay`, create a 
-		* MediaElementAudioSourceNode from the `<audio>` element. */
-		sound = context.createMediaElementSource(audio);
-		/* Wire the MediaElementAudioSourceNode into the AudioContext */
-		sound.connect(context.destination);
-		/* Here we use `play` on the `<audio>` element instead
-		* of `start` on the MediaElementAudioSourceNode. */
-		audio.play();
+			sound = context.createMediaElementSource(audio);
+			sound.connect(context.destination);
+			audio.play();
+
+			var audio,
+				context = new (window.AudioContext ||
+					window.webAudioContext ||
+					window.webkitAudioContext)(),
+				processor = context.createScriptProcessor(1024),
+				analyser = context.createAnalyser();
+
+			processor.connect(context.destination);
+			analyser.connect(processor);
+
+			var data = new Uint8Array(analyser.frequencyBinCount);
+			console.log(analyser.getByteFrequencyData(data));
 		});
 		audio.src = 'sevenlions.mp3';
-		/*
-		var audioSrc = ctx.createMediaElementSource(audio);
-		var analyser = ctx.createAnalyser();
-		// we have to connect the MediaElementSource with the analyser 
-		audioSrc.connect(analyser);
-
-		// we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
-
-		// frequencyBinCount tells you how many values you'll receive from the analyser
-		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-
-		// we're ready to receive some data!
-		// loop
-		function renderFrame() {
-		requestAnimationFrame(renderFrame);
-		// update data in frequencyData
-		analyser.getByteFrequencyData(frequencyData);
-		// render frame based on values in frequencyData
-		// console.log(frequencyData)
-		}
-		*/
 	}
 
 	resizeCanvas();
