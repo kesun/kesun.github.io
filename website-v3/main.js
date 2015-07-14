@@ -41,7 +41,7 @@ $(document).ready(function(){
 	}
 
 	function generateParticle(){
-		if(particleArr.length < 800){
+		if(particleArr.length < 1000){
 			var pColour = Math.floor(Math.random() * 360);
 			var pOpacity = Math.floor(Math.random() + 0.5);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
@@ -116,5 +116,31 @@ $(document).ready(function(){
 		}
 	}
 
+	function audio(){
+		var ctx = new AudioContext();
+		var audio = document.getElementById('song');
+		var audioSrc = ctx.createMediaElementSource(audio);
+		var analyser = ctx.createAnalyser();
+		// we have to connect the MediaElementSource with the analyser 
+		audioSrc.connect(analyser);
+		// we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
+
+		// frequencyBinCount tells you how many values you'll receive from the analyser
+		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+		// we're ready to receive some data!
+		// loop
+		function renderFrame() {
+		requestAnimationFrame(renderFrame);
+		// update data in frequencyData
+		analyser.getByteFrequencyData(frequencyData);
+		// render frame based on values in frequencyData
+		// console.log(frequencyData)
+		}
+		audio.start();
+		console.log(renderFrame());
+	}
+
 	resizeCanvas();
+	audio();
 });
