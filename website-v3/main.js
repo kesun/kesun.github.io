@@ -119,7 +119,7 @@ $(document).ready(function(){
 	function audio(){
 		var sound;
 		var audio = new Audio();
-		var context = new AudioContext();
+		var context = new (window.AudioContext || window.webkitAudioContext)();
 		audio.src = 'sevenlions.mp3';
 		sound = context.createMediaElementSource(audio);
 		sound.connect(context.destination);
