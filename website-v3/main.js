@@ -125,16 +125,14 @@ $(document).ready(function(){
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
 			sound.connect(context.destination);
+			processor = context.createScriptProcessor(1024),
+			analyser = context.createAnalyser();
+			processor.connect(context.destination);
+			analyser.connect(processor);
 			audio.play();
 			play();
 			function play(){
-				processor = context.createScriptProcessor(1024),
-				analyser = context.createAnalyser();
-				processor.connect(context.destination);
-				analyser.connect(processor);
 				var data = new Uint8Array(analyser.frequencyBinCount);
-				console.log('analyser.frequencyBinCount', analyser.frequencyBinCount);
-				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
 				console.log('data', data);
 				setTimeout(play, 2000);
 			}
