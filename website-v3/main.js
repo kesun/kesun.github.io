@@ -128,13 +128,8 @@ $(document).ready(function(){
 			sound.connect(context.destination);
 			audio.play();
 
-			var audio,
-				context = new (window.AudioContext ||
-					window.webAudioContext ||
-					window.webkitAudioContext)(),
-				processor = context.createScriptProcessor(1024),
-				analyser = context.createAnalyser();
-
+			processor = context.createScriptProcessor(1024),
+			analyser = context.createAnalyser();
 			processor.connect(context.destination);
 			analyser.connect(processor);
 
