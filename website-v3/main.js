@@ -143,5 +143,5 @@ $(document).ready(function(){
 	}
 
 	resizeCanvas();
-	audio();
+	//audio();
 });
