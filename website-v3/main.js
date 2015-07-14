@@ -117,10 +117,10 @@ $(document).ready(function(){
 	}
 
 	function audio(){
-
 		var sound;
 		var audio = new Audio();
 		var context = new AudioContext();
+		sound.connect(context.destination);
 		audio.src = 'sevenlions.mp3';
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
@@ -129,12 +129,11 @@ $(document).ready(function(){
 			processor.connect(context.destination);
 			analyser.connect(processor);
 			sound.connect(analyser);
-			sound.connect(context.destination);
 			audio.play();
 			play();
 			function play(){
 				var data = new Uint8Array(analyser.fftSize);
-				console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
+				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
 				setTimeout(play, 2000);
 			}
 		});
