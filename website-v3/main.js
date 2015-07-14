@@ -138,6 +138,7 @@ $(document).ready(function(){
 		// console.log(frequencyData)
 		}
 		audio.play();
+		console.log(audio);
 		console.log(renderFrame());
 	}
 
