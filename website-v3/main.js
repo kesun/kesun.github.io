@@ -124,17 +124,17 @@ $(document).ready(function(){
 		audio.src = 'sevenlions.mp3';
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
-			sound.connect(context.destination);
 			processor = context.createScriptProcessor(1024),
 			analyser = context.createAnalyser();
 			processor.connect(context.destination);
 			analyser.connect(processor);
 			sound.connect(analyser);
+			sound.connect(context.destination);
 			audio.play();
 			play();
 			function play(){
-				var data = new Uint8Array(analyser.frequencyBinCount);
-				console.log('data', data);
+				var data = new Uint8Array(analyser.fftSize);
+				console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
 				setTimeout(play, 2000);
 			}
 		});
