@@ -137,11 +137,8 @@ $(document).ready(function(){
 		// render frame based on values in frequencyData
 		// console.log(frequencyData)
 		}
-		audio.play();
-		console.log(audio);
-		console.log(renderFrame());
 	}
 
 	resizeCanvas();
-	//audio();
+	audio();
 });
