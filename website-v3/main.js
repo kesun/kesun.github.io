@@ -127,14 +127,14 @@ $(document).ready(function(){
 			sound.connect(context.destination);
 			audio.play();
 			play();
-			function play(){
+			function p(){
 				processor = context.createScriptProcessor(1024),
 				analyser = context.createAnalyser();
 				processor.connect(context.destination);
 				analyser.connect(processor);
 				var data = new Uint8Array(analyser.frequencyBinCount);
 				console.log('data', data);
-				console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
+				console.log('frequencyBinCount', analyser.frequencyBinCount);
 				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
 				setTimeout(play, 1000);
 			}
