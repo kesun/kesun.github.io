@@ -117,8 +117,23 @@ $(document).ready(function(){
 	}
 
 	function audio(){
-		var ctx = new AudioContext();
-		var audio = document.getElementById('song');
+		var sound,
+		/* Instatiate a new `<audio>` element. Although Chrome supports `new Audio()`,
+		* Firefox requires the element to be created with `createElement`. */
+		audio = new Audio();
+
+		/* Add a `canplay` event handler for when the file is ready to start. */
+		audio.addEventListener('canplay', function() {
+		/* Now that the file `canplay`, create a 
+		* MediaElementAudioSourceNode from the `<audio>` element. */
+		sound = context.createMediaElementSource(audio);
+		/* Wire the MediaElementAudioSourceNode into the AudioContext */
+		sound.connect(context.destination);
+		/* Here we use `play` on the `<audio>` element instead
+		* of `start` on the MediaElementAudioSourceNode. */
+		audio.play();
+		});
+		audio.src = 'sevenlions.mp3';
 		/*
 		var audioSrc = ctx.createMediaElementSource(audio);
 		var analyser = ctx.createAnalyser();
