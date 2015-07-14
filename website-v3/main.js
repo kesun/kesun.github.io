@@ -126,18 +126,17 @@ $(document).ready(function(){
 			sound = context.createMediaElementSource(audio);
 			sound.connect(context.destination);
 			audio.play();
-
-			processor = context.createScriptProcessor(1024),
-			analyser = context.createAnalyser();
-			processor.connect(context.destination);
-			analyser.connect(processor);
-			console.log('processor', processor);
-			console.log('analyser', analyser);
-			console.log('frequencyBinCount', analyser.frequencyBinCount);
-			var data = new Uint8Array(analyser.frequencyBinCount);
-			console.log('data', data);
-			console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
-			console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
+			function play(){
+				processor = context.createScriptProcessor(1024),
+				analyser = context.createAnalyser();
+				processor.connect(context.destination);
+				analyser.connect(processor);
+				var data = new Uint8Array(analyser.frequencyBinCount);
+				console.log('data', data);
+				console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
+				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
+				setTimeout(play, 1000);
+			}
 		});
 	}
 
