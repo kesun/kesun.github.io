@@ -118,9 +118,9 @@ $(document).ready(function(){
 
 	function audio(){
 
-		var sound, context,
+		var sound,
 			audio = new Audio();
-		context = new AudioContext();
+		var context = new AudioContext();
 		audio.src = 'sevenlions.mp3';
 		audio.addEventListener('canplay', function() {
 			sound = context.createMediaElementSource(audio);
