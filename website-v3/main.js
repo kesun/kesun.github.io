@@ -137,7 +137,7 @@ $(document).ready(function(){
 		// render frame based on values in frequencyData
 		// console.log(frequencyData)
 		}
-		audio.start();
+		audio.play();
 		console.log(renderFrame());
 	}
 
