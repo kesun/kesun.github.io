@@ -133,11 +133,9 @@ $(document).ready(function(){
 				processor.connect(context.destination);
 				analyser.connect(processor);
 				var data = new Uint8Array(analyser.frequencyBinCount);
-				console.log('data', data);
-				console.log('processor', processor);
-				console.log('analyser', analyser);
-				console.log('frequencyBinCount', analyser.frequencyBinCount);
+				console.log('getByteTimeDomainData', analyser.getByteTimeDomainData(data));
 				console.log('getByteFrequencyData', analyser.getByteFrequencyData(data));
+				console.log('data', data);
 				setTimeout(play, 2000);
 			}
 		});
