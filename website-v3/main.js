@@ -123,6 +123,7 @@ $(document).ready(function(){
 		audio.src = 'sevenlions.mp3';
 		sound = context.createMediaElementSource(audio);
 		sound.connect(context.destination);
+		console.log('context', context);
 		audio.addEventListener('canplay', function() {
 			processor = context.createScriptProcessor(1024),
 			analyser = context.createAnalyser();
