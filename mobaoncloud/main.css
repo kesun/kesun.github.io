@@ -1,0 +1,87 @@
+@font-face {
+	font-family: Prototype;
+	src: url(fonts/Prototype.ttf);
+}
+
+@font-face {
+	font-family: JosefinSlab;
+	src: url(fonts/JosefinSlab-Regular.ttf);
+}
+
+@font-face {
+	font-family: LimonadedeCamomille;
+	src: url(fonts/LimonadedeCamomille.ttf);
+}
+
+body{
+	margin: 0px;
+	font-family: JosefinSlab;
+	font-size: 1.3em;
+}
+
+.section{
+	position: relative;
+	text-align: center;
+	width: 100vw;
+	height: 100vh;
+}
+
+.contentWrapper{
+	padding: 20px;
+}
+
+.verticalCenter{
+	position: relative;
+}
+
+.topPannel{
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+	height: 100px;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.logo {
+	padding-left: 50px;
+	font-family: Prototype;
+	font-size: 1.8em;
+	color: #FFF;
+}
+
+.bottomPannel{
+	position: fixed;
+	bottom: 0px;
+	width: 100vw;
+	height: 20px;
+	z-index: 100;
+	background-color: rgba(225, 225, 225, 0.7);
+	font-size: 0.7em;
+}
+
+.buttonSubscribe{
+	height: 80px;
+	width: 300px;
+	border-radius: 40px;
+	background-color: #93D3FF;
+	border: solid;
+	border-color: rgba(225, 225, 225, 0.8);
+	outline: none;
+	font-family: LimonadedeCamomille;
+	font-size: 2em;
+}
+
+.buttonSubscribe:hover{
+	background-color: #61BEFF;
+}
+
+.buttonSubscribe:active{
+	background-color: #C29BFF;
+}
+
+.verticalCenter{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
