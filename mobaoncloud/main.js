@@ -11,20 +11,20 @@ $(document).ready(function(){
 		if(scroll > 100){
 			if(!shortyLogoPanel){
 				shortyLogoPanel = true;
-				$('.topPannel').animate({
+				$('.topPannel').stop().animate({
 					height: 50
 				}, 'fast');
-				$('.logo').animate({
+				$('.logo').stop().animate({
 					'font-size': '1.5em'
 				}, 'fast');
 			}
 		}else{
 			if(shortyLogoPanel){
 				shortyLogoPanel = false;
-				$('.topPannel').animate({
+				$('.topPannel').stop().animate({
 					height: 100
 				}, 'fast');
-				$('.logo').animate({
+				$('.logo').stop().animate({
 					'font-size': '1.8em'
 				}, 'fast');
 			}
