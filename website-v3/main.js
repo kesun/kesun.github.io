@@ -130,8 +130,8 @@ $(document).ready(function(){
 
 		function getData(){
 			requestAnimationFrame(getData);
-			var data = analyser.getByteFrequencyData(frequencyData);
-			console.log(data);
+			analyser.getByteFrequencyData(frequencyData);
+			console.log(frequencyData);
 		}
 
 		audio.play();
