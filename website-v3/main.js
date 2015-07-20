@@ -76,7 +76,6 @@ $(document).ready(function(){
 			var p = particleArr[i];
 			var lastX = p.x;
 			var lastY = p.y;
-			//console.log(i, p.x, p.y);
 			if(p.opacity == 0 || p.y >= canvas.height || p.x <= 0 || p.x >= canvas.width){
 				particleArr.splice(i, 1);
 				i--;
@@ -117,13 +116,27 @@ $(document).ready(function(){
 	}
 
 	function audio(){
-		var sound;
+		var sound, analyser;
 		var audio = new Audio();
 		var context = new (window.AudioContext || window.webkitAudioContext)();
 		audio.src = 'sevenlions.mp3';
 		sound = context.createMediaElementSource(audio);
 		sound.connect(context.destination);
-		console.log('context', context);
+		analyser = context.createAnalyser();
+		sound.connect(analyser);
+		sound.connect(connect.destination);
+
+		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+		function getData(){
+			requestAnimationFrame(getData);
+			var data = analyser.getByteFrequencyData(frequencyData);
+			console.log(data);
+		}
+
+		audio.start();
+		getData();
+		/*
 		audio.addEventListener('canplay', function() {
 			processor = context.createScriptProcessor(1024),
 			analyser = context.createAnalyser();
@@ -138,6 +151,7 @@ $(document).ready(function(){
 				setTimeout(play, 2000);
 			}
 		});
+*/
 	}
 
 	resizeCanvas();
