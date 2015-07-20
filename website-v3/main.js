@@ -159,8 +159,8 @@ $(document).ready(function(){
 		}else{
 			context = new (window.AudioContext || window.webkitAudioContext)();
 			audioDOM = new Audio();
-			sound = context.createMediaElementSource(audioDOM);
 		}
+		sound = context.createMediaElementSource(audioDOM);
 		audioDOM.src = songURL;
 		sound.connect(context.destination);
 		analyser = context.createAnalyser();
