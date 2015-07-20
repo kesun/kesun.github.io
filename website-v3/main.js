@@ -69,7 +69,8 @@ $(document).ready(function(){
 	function generateFrequencyParticles(frequencyData){
 		var indArr = getValidFrequencyIndArr(frequencyData);
 		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * (indArr.length / 10) + 5)){
-			if(frequencyData[indArr[i]] != 0){
+			var frequencyDataVal = frequencyData[indArr[i]];
+			if(frequencyDataVal != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
 				var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
@@ -77,11 +78,11 @@ $(document).ready(function(){
 				var context = canvas.getContext('2d');
 				var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
 				var p = {
-					x: Math.floor(canvas.width / 255 * frequencyData[indArr[i]]),
+					x: Math.floor(canvas.width / 255 * frequencyDataVal),
 					y: 0,
 					xVel: 0,
 					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
-					r: Math.random() * 5 + 2,
+					r: (Math.random() * 6 + 1) / 255 * frequencyDataVal,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
 					fadeAcc: Math.random() * 0.01 + 0.001,
