@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	window.addEventListener('resize', resizeCanvas, false);
 
-	printArr();
+	//printArr();
 
 	function printArr(){
 		setTimeout(printArr, 1000);
@@ -32,7 +32,7 @@ $(document).ready(function(){
 		$(canvas).css('background-color', backgroundColour);
 		context.fillStyle = backgroundColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		generateParticles();
+		//generateParticles();
 		timer = setInterval(animateParticles, 1000/40);
 	}
 
@@ -66,6 +66,34 @@ $(document).ready(function(){
 		generateParticles();
 	}
 
+	function generateFrequencyParticles(frequencyData){
+		for(var i = 0; i < frequencyData.length){
+			if(frequencyData[i] != 0){
+				var pColour = Math.floor(Math.random() * 360);
+				var pOpacity = Math.floor(Math.random() + 0.5);
+				var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
+				var canvas = document.getElementById('backgroundCanvas');
+				var context = canvas.getContext('2d');
+				var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
+				var p = {
+					x: Math.floor(canvas.width / 255 * frequencyData[i]),
+					y: 0,
+					xVel: 0,
+					yVel: veloMaxCap + (veloMaxCap - veloInitCap) / 255 * frequencyData[i],
+					r: Math.random() * 5 + 2,
+					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
+					fadeVel: 0,
+					fadeAcc: Math.random() * 0.01 + 0.001,
+					colourBase: pHslaColour,
+					opacity: pOpacity
+
+				}
+				particleArr.push(p);
+			}
+		}
+	}
+
+
 	function animateParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
@@ -80,23 +108,6 @@ $(document).ready(function(){
 				particleArr.splice(i, 1);
 				i--;
 			}else{
-				p.xVel += (1 - 2*Math.random()) * acc/10;
-				p.yVel += (1 - 2*Math.random()) * acc + 0.005;
-				if(p.xVel > veloMaxCap){
-					p.xVel = veloMaxCap;
-				}else if(p.xVel < -veloMaxCap){
-					p.xVel = -veloMaxCap;
-				}
-				if(p.yVel > veloMaxCap){
-					p.yVel = veloMaxCap;
-				}else if(p.yVel < -veloMaxCap){
-					p.yVel = -veloMaxCap;
-				}
-				if(p.yVel < 0){
-					p.yVel = -p.yVel;
-				}
-
-				//p.x += p.xVel;
 				p.y += p.yVel;
 
 				if(p.y >= p.yFadeInit){
@@ -129,9 +140,11 @@ $(document).ready(function(){
 		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 		function getData(){
-			requestAnimationFrame(getData);
+			settimeout(function(){
+				requestAnimationFrame(getData);
+			}, 500);
 			analyser.getByteFrequencyData(frequencyData);
-			console.log(frequencyData.length, frequencyData);
+			generateFrequencyParticles(frequencyData);
 		}
 
 		audio.play();
