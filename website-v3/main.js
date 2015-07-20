@@ -164,7 +164,7 @@ $(document).ready(function(){
 		function getData(){
 			setTimeout(function(){
 				requestAnimationFrame(getData);
-			}, 500);
+			}, 0.00000000000000000001);
 			analyser.getByteFrequencyData(frequencyData);
 			generateFrequencyParticles(frequencyData);
 		}
