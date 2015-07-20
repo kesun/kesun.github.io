@@ -152,12 +152,12 @@ $(document).ready(function(){
 	}
 
 	function audio(songURL){
-		var sound, analyser, frequencyData;
-		var context = new (window.AudioContext || window.webkitAudioContext)();
+		var sound, analyser, frequencyData, context;
 		if(audioDOM != undefined){
 			audioDOM.pause();
 			audioDOM.currentTime = 0;
 		}else{
+			context = new (window.AudioContext || window.webkitAudioContext)();
 			audioDOM = new Audio();
 			sound = context.createMediaElementSource(audioDOM);
 			sound.connect(context.destination);
