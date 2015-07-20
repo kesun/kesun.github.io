@@ -3,7 +3,7 @@ $(document).ready(function(){
 	// constants
 	var backgroundColour = "#333333";
 	var fillColour = "rgba(0, 0, 0, 0.025)";
-	var veloInitCap = 1.5;
+	var veloInitCap = 2;
 	var veloMaxCap = 8;
 	var acc = 0.2;
 
@@ -82,7 +82,7 @@ $(document).ready(function(){
 					y: 0,
 					xVel: 0,
 					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
-					r: (Math.random() * 6 + 1) / 255 * frequencyDataVal,
+					r: (Math.random() * 8 + 1) / 255 * frequencyDataVal,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
 					fadeAcc: Math.random() * 0.01 + 0.001,
