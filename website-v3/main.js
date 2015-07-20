@@ -131,27 +131,14 @@ $(document).ready(function(){
 		function getData(){
 			requestAnimationFrame(getData);
 			analyser.getByteFrequencyData(frequencyData);
-			console.log(frequencyData);
+			console.log(frequencyData.length, frequencyData);
 		}
 
 		audio.play();
 		getData();
-		/*
-		audio.addEventListener('canplay', function() {
-			processor = context.createScriptProcessor(1024),
-			analyser = context.createAnalyser();
-			processor.connect(context.destination);
-			analyser.connect(processor);
-			sound.connect(analyser);
-			//audio.play();
-			play();
-			function play(){
-				var data = new Uint8Array(analyser.fftSize);
-				console.log('data', data);
-				setTimeout(play, 2000);
-			}
-		});
-*/
+		setTimeout(function(){
+			audio.stop();
+		}, 5000);
 	}
 
 	resizeCanvas();
