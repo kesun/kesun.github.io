@@ -67,7 +67,7 @@ $(document).ready(function(){
 	}
 
 	function generateFrequencyParticles(frequencyData){
-		for(var i = 0; i < frequencyData.length; i++){
+		for(var i = 0; i < frequencyData.length; i = i + 5){
 			if(frequencyData[i] != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
@@ -79,7 +79,7 @@ $(document).ready(function(){
 					x: Math.floor(canvas.width / 255 * frequencyData[i]),
 					y: 0,
 					xVel: 0,
-					yVel: veloMaxCap + (veloMaxCap - veloInitCap) / 255 * frequencyData[i],
+					yVel: 0,
 					r: Math.random() * 5 + 2,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
