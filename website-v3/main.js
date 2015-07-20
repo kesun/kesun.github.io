@@ -7,7 +7,7 @@ $(document).ready(function(){
 	var veloMaxCap = 8;
 	var acc = 0.2;
 
-	var audio;
+	var audioDOM;
 
 	var particleArr = [];
 
@@ -153,15 +153,15 @@ $(document).ready(function(){
 
 	function audio(songURL){
 		var sound, analyser;
-		if(audio != undefined){
-			audio.pause();
-			audio.currentTime = 0;
+		if(audioDOM != undefined){
+			audioDOM.pause();
+			audioDOM.currentTime = 0;
 		}else{
-			audio = new Audio();
+			audioDOM = new Audio();
 		}
 		var context = new (window.AudioContext || window.webkitAudioContext)();
-		audio.src = songURL;
-		sound = context.createMediaElementSource(audio);
+		audioDOM.src = songURL;
+		sound = context.createMediaElementSource(audioDOM);
 		sound.connect(context.destination);
 		analyser = context.createAnalyser();
 		sound.connect(analyser);
@@ -177,7 +177,7 @@ $(document).ready(function(){
 			generateFrequencyParticles(frequencyData);
 		}
 
-		audio.play();
+		audioDOM.play();
 		getData();
 	}
 
