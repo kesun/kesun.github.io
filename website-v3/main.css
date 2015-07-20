@@ -7,3 +7,26 @@ html, body {
 #backgroundCanvas{
 	display:block;
 }
+
+.songList{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	background-color: rgba(225, 225, 225, 0.4);
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.songList > a{
+	color: #000;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.songList > a:hover{
+	text-shadow: 1px 1px #FFF;
+}
+
+.songList > a:visited{
+	color: #000;
+}

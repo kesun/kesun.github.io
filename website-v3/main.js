@@ -7,6 +7,8 @@ $(document).ready(function(){
 	var veloMaxCap = 8;
 	var acc = 0.2;
 
+	var audio;
+
 	var particleArr = [];
 
 	window.addEventListener('resize', resizeCanvas, false);
@@ -149,11 +151,16 @@ $(document).ready(function(){
 		}
 	}
 
-	function audio(){
+	function audio(songURL){
 		var sound, analyser;
-		var audio = new Audio();
+		if(audio != undefined){
+			audio.pause();
+			audio.currentTime = 0;
+		}else{
+			audio = new Audio();
+		}
 		var context = new (window.AudioContext || window.webkitAudioContext)();
-		audio.src = 'sevenlions.mp3';
+		audio.src = songURL;
 		sound = context.createMediaElementSource(audio);
 		sound.connect(context.destination);
 		analyser = context.createAnalyser();
@@ -175,5 +182,11 @@ $(document).ready(function(){
 	}
 
 	resizeCanvas();
-	audio();
+
+
+	// song selection
+	$('.song').click(function(){
+		var songURL =  $(this).attr('songURL');
+		audio(songURL);
+	});
 });
