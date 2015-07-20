@@ -189,6 +189,7 @@ $(document).ready(function(){
 	// song selection
 	$('.song').click(function(){
 		var songURL =  $(this).attr('songURL');
+		resizeCanvas();
 		switchSong(songURL);
 	});
 });

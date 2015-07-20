@@ -12,7 +12,7 @@ html, body {
 	position: absolute;
 	right: 10px;
 	bottom: 10px;
-	background-color: rgba(225, 225, 225, 0.4);
+	background-color: rgba(225, 225, 225, 0.3);
 	border-radius: 10px;
 	padding: 10px;
 }
@@ -29,4 +29,8 @@ html, body {
 
 .songList > a:visited{
 	color: #000;
+}
+
+.songList > .prompt{
+	color: #FFF;
 }
