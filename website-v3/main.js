@@ -79,7 +79,7 @@ $(document).ready(function(){
 					x: Math.floor(canvas.width / 255 * frequencyData[i]),
 					y: 0,
 					xVel: 0,
-					yVel: 0,
+					yVel: veloMaxCap + (veloMaxCap - veloInitCap) / 255 * frequencyData[i],
 					r: Math.random() * 5 + 2,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
