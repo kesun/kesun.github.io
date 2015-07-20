@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var backgroundColour = "#333333";
 	var fillColour = "rgba(0, 0, 0, 0.025)";
 	var veloInitCap = 1.5;
-	var veloMaxCap = 4;
+	var veloMaxCap = 8;
 	var acc = 0.2;
 
 	var particleArr = [];
@@ -68,7 +68,7 @@ $(document).ready(function(){
 
 	function generateFrequencyParticles(frequencyData){
 		var indArr = getValidFrequencyIndArr(frequencyData);
-		for(var i = 0; i < indArr.length; i += Math.random() * 5){
+		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * 10)){
 			if(frequencyData[indArr[i]] != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
@@ -164,16 +164,13 @@ $(document).ready(function(){
 		function getData(){
 			setTimeout(function(){
 				requestAnimationFrame(getData);
-			}, 0.00000000000000000001);
+			}, 200);
 			analyser.getByteFrequencyData(frequencyData);
 			generateFrequencyParticles(frequencyData);
 		}
 
 		audio.play();
 		getData();
-		setTimeout(function(){
-			audio.stop();
-		}, 5000);
 	}
 
 	resizeCanvas();
