@@ -68,7 +68,7 @@ $(document).ready(function(){
 
 	function generateFrequencyParticles(frequencyData){
 		var indArr = getValidFrequencyIndArr(frequencyData);
-		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * 10)){
+		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * (indArr.length / 10))){
 			if(frequencyData[indArr[i]] != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
