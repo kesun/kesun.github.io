@@ -80,7 +80,7 @@ $(document).ready(function(){
 					x: Math.floor(canvas.width / 255 * frequencyData[indArr[i]]),
 					y: 0,
 					xVel: 0,
-					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),,
+					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
 					r: Math.random() * 5 + 2,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
