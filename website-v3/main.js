@@ -151,40 +151,44 @@ $(document).ready(function(){
 		}
 	}
 
-	function audio(songURL){
-		var sound, analyser, frequencyData, context;
-		if(audioDOM != undefined){
-			audioDOM.pause();
-			audioDOM.currentTime = 0;
-		}else{
-			context = new (window.AudioContext || window.webkitAudioContext)();
+	function audioSetup(){
+		if(audioDOM == undefined){
+			var sound, analyser, context;
 			audioDOM = new Audio();
+			context = new (window.AudioContext || window.webkitAudioContext)();
+			audioDOM.src = 'sevenlions.mp3';
 			sound = context.createMediaElementSource(audioDOM);
 			sound.connect(context.destination);
 			analyser = context.createAnalyser();
 			sound.connect(analyser);
 			sound.connect(context.destination);
-			frequencyData = new Uint8Array(analyser.frequencyBinCount);
-		}
-		audioDOM.src = songURL;
-		function getData(){
-			setTimeout(function(){
-				requestAnimationFrame(getData);
-			}, 200);
-			analyser.getByteFrequencyData(frequencyData);
-			generateFrequencyParticles(frequencyData);
-		}
 
-		audioDOM.play();
+			var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+			function getData(){
+				setTimeout(function(){
+					requestAnimationFrame(getData);
+				}, 200);
+				analyser.getByteFrequencyData(frequencyData);
+				generateFrequencyParticles(frequencyData);
+			}
+		}
 		getData();
 	}
 
-	resizeCanvas();
+	function switchSong(songURL){
+		audioDOM.pause();
+		audioDOM.currentTime = 0;
+		audioDOM.src = songURL;
+		audioDOM.play();
+	}
 
+	resizeCanvas();
+	audioSetup();
 
 	// song selection
 	$('.song').click(function(){
 		var songURL =  $(this).attr('songURL');
-		audio(songURL);
+		switchSong(songURL);
 	});
 });
