@@ -134,7 +134,7 @@ $(document).ready(function(){
 			console.log(data);
 		}
 
-		audio.start();
+		audio.play();
 		getData();
 		/*
 		audio.addEventListener('canplay', function() {
