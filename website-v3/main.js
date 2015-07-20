@@ -140,7 +140,7 @@ $(document).ready(function(){
 		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 		function getData(){
-			settimeout(function(){
+			setTimeout(function(){
 				requestAnimationFrame(getData);
 			}, 500);
 			analyser.getByteFrequencyData(frequencyData);
