@@ -124,7 +124,7 @@ $(document).ready(function(){
 		sound.connect(context.destination);
 		analyser = context.createAnalyser();
 		sound.connect(analyser);
-		sound.connect(connect.destination);
+		sound.connect(context.destination);
 
 		var frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
