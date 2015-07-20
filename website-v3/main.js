@@ -8,7 +8,6 @@ $(document).ready(function(){
 	var acc = 0.2;
 
 	var audioDOM;
-	var audioContext;
 
 	var particleArr = [];
 
@@ -153,20 +152,19 @@ $(document).ready(function(){
 	}
 
 	function audio(songURL){
-		var sound, analyser, frequencyData;
+		var sound, analyser, frequencyData, context;
 		if(audioDOM != undefined){
 			audioDOM.pause();
 			audioDOM.currentTime = 0;
 		}else{
-			audioContext = new (window.AudioContext || window.webkitAudioContext)();
+			context = new (window.AudioContext || window.webkitAudioContext)();
 			audioDOM = new Audio();
 		}
-		sound = audioContext.createMediaElementSource(audioDOM);
 		audioDOM.src = songURL;
-		sound.connect(audioContext.destination);
-		analyser = audioContext.createAnalyser();
+		sound.connect(context.destination);
+		analyser = context.createAnalyser();
 		sound.connect(analyser);
-		sound.connect(audioContext.destination);
+		sound.connect(context.destination);
 		frequencyData = new Uint8Array(analyser.frequencyBinCount);
 		function getData(){
 			setTimeout(function(){
