@@ -67,8 +67,9 @@ $(document).ready(function(){
 	}
 
 	function generateFrequencyParticles(frequencyData){
-		for(var i = 0; i < frequencyData.length; i = i + 5){
-			if(frequencyData[i] != 0){
+		var indArr = getValidFrequencyIndArr(frequencyData);
+		for(var i = 0; i < indArr.length; i += Math.random() * 5){
+			if(frequencyData[indArr[i]] != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
 				var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
@@ -76,10 +77,10 @@ $(document).ready(function(){
 				var context = canvas.getContext('2d');
 				var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
 				var p = {
-					x: Math.floor(canvas.width / 255 * frequencyData[i]),
+					x: Math.floor(canvas.width / 255 * frequencyData[indArr[i]]),
 					y: 0,
 					xVel: 0,
-					yVel: veloMaxCap + (veloMaxCap - veloInitCap) / 255 * frequencyData[i],
+					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),,
 					r: Math.random() * 5 + 2,
 					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
 					fadeVel: 0,
@@ -91,6 +92,16 @@ $(document).ready(function(){
 				particleArr.push(p);
 			}
 		}
+	}
+
+	function getValidFrequencyIndArr(frequencyData){
+		var arr = [];
+		for(var i = 0; i < frequencyData.length; i++){
+			if(frequencyData[i] != 0){
+				arr.push(i);
+			}
+		}
+		return arr;
 	}
 
 
@@ -108,6 +119,17 @@ $(document).ready(function(){
 				particleArr.splice(i, 1);
 				i--;
 			}else{
+				p.yVel += (1 - 2*Math.random()) * acc + 0.005;
+
+				if(p.yVel > veloMaxCap){
+					p.yVel = veloMaxCap;
+				}else if(p.yVel < -veloMaxCap){
+					p.yVel = -veloMaxCap;
+				}
+				if(p.yVel < 0){
+					p.yVel = -p.yVel;
+				}
+
 				p.y += p.yVel;
 
 				if(p.y >= p.yFadeInit){
