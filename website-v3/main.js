@@ -43,6 +43,7 @@ $(document).ready(function(){
 		wipeCanvas();
 		particleArr = [];
 		//generateParticles();
+		generateFrequencyParticles();
 		switch(eqMode){
 			case 1:
 				timer = setInterval(animateTrailDropParticles, 1000/40);
@@ -90,6 +91,7 @@ $(document).ready(function(){
 				console.log('generateTrailDropParticles');
 				oneTimeParticleGenerated = false;
 				generateTrailDropParticles(indArr);
+				setTimeout(generateFrequencyParticles, 200);
 				break;
 			case 2:
 				if(!oneTimeParticleGenerated){
@@ -236,7 +238,9 @@ $(document).ready(function(){
 			sound.connect(analyser);
 			sound.connect(context.destination);
 
-			frequencyData = new Uint8Array(analyser.frequencyBinCount);
+			if(frequencyData == undefined){
+				frequencyData = new Uint8Array(analyser.frequencyBinCount);
+			}
 
 			function getData(){
 				setTimeout(function(){
