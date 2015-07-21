@@ -71,7 +71,7 @@ $(document).ready(function(){
 				timer = setInterval(animateTrailDropParticles, 1000/40);
 				break;
 			case 2:
-				timer = setInterval(animateSimpleHorizontalParticles, 1000/40);
+				timer = setInterval(animateSimpleHorizontalParticles, 0);
 				break;
 		}
 	}
