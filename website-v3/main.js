@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var veloInitCap = 2;
 	var veloMaxCap = 8;
 	var acc = 0.2;
-	var simpleHorizontalStep = 4;
+	var simpleHorizontalStep = 8;
 
 	// stuff
 	var eqMode = 1;
