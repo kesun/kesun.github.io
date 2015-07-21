@@ -242,6 +242,7 @@ $(document).ready(function(){
 			context.moveTo(p.x, pTop);
 			context.lineTo(p.x, pBot);
 			context.strokeStyle = p.colour;
+			context.lineWidth = 1;
 			context.stroke();
 		}
 	}
