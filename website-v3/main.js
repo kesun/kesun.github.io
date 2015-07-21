@@ -127,6 +127,7 @@ $(document).ready(function(){
 			if(eqMode != 1){
 				break;
 			}
+			var frequencyDataVal = frequencyData[indArr[i]];
 			if(frequencyDataVal != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
