@@ -157,7 +157,7 @@ $(document).ready(function(){
 
 	function generateSimpleHorizontalParticles(indArr){
 		var canvas = document.getElementById('backgroundCanvas');
-		for(var i = 0; i < frequencyData.length; i++){
+		for(var i = 0; i < frequencyData.length; i+=2){
 			if(eqMode != 2){
 				break;
 			}
