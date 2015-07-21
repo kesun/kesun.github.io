@@ -6,8 +6,8 @@ $(document).ready(function(){
 	var alphaSimpleHorizontal = 0.025;
 	var fillColourTrailDrop = "rgba(0, 0, 0, " + alphaTrailDrop + ")";
 	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
-	var veloInitCap = 0.01;
-	var veloMaxCap = 0.5;
+	var veloInitCap = 0.05;
+	var veloMaxCap = 1;
 	var acc = 0.05;
 	var simpleHorizontalStep = 8;
 
@@ -68,7 +68,7 @@ $(document).ready(function(){
 		generateFrequencyParticles();
 		switch(eqMode){
 			case 1:
-				timer = setInterval(animateTrailDropParticles, 0);
+				timer = setInterval(animateTrailDropParticles, 100);
 				break;
 			case 2:
 				generateSimpleHorizontalParticles();
