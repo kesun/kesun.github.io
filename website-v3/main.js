@@ -23,6 +23,9 @@ $(document).ready(function(){
 	//printArr();
 
 	function getBackgroundColour(alphaBlack, roundMethod){
+		if(alphaBlack == 1){
+			return "#000";
+		}
 		if(roundMethod == "nearest"){
 			return "hsla(0, 0%, " + Math.round(1 / (2 * alphaBlack)) + "%, 1)";
 		}else{
