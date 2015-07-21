@@ -165,7 +165,7 @@ $(document).ready(function(){
 			var frequencyDataVal = frequencyData[i];
 			var x = lestmost + i;
 			var pColour = Math.floor(360 / frequencyData.length * i);
-			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, 1)";
+			var pHslaColour = "hsla(" + pColour + ", 100%, 70%, 1)";
 			var p = {
 				x: x,
 				colour: pHslaColour
