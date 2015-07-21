@@ -87,11 +87,13 @@ $(document).ready(function(){
 		var indArr = getValidFrequencyIndArr();
 		switch(eqMode){
 			case 1:
+				console.log('generateTrailDropParticles');
 				oneTimeParticleGenerated = false;
 				generateTrailDropParticles(indArr);
 				break;
 			case 2:
 				if(!oneTimeParticleGenerated){
+					console.log('generateSimpleHorizontalParticles');
 					generateSimpleHorizontalParticles(indArr);
 					oneTimeParticleGenerated = true;
 				}
