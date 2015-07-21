@@ -6,8 +6,8 @@ $(document).ready(function(){
 	var alphaSimpleHorizontal = 0.025;
 	var fillColourTrailDrop = "rgba(0, 0, 0, " + alphaTrailDrop + ")";
 	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
-	var veloInitCap = 0.5;
-	var veloMaxCap = 4;
+	var veloInitCap = 0.1;
+	var veloMaxCap = 2;
 	var acc = 0.2;
 	var simpleHorizontalStep = 8;
 
