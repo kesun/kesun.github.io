@@ -127,7 +127,6 @@ $(document).ready(function(){
 			if(eqMode != 1){
 				break;
 			}
-			var frequencyDataVal = frequencyData[indArr[i]];
 			if(frequencyDataVal != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
@@ -164,7 +163,7 @@ $(document).ready(function(){
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, 1)";
 			var p = {
 				x: x,
-				colourBase: pHslaColour
+				colour: pHslaColour
 			}
 			particleArr.push(p);
 		}
@@ -186,7 +185,7 @@ $(document).ready(function(){
 		var context = canvas.getContext('2d');
 		context.fillStyle = fillColourTrailDrop;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-
+		console.log(particleArr);
 		for(var i = 0; i < particleArr.length; i++){
 			var p = particleArr[i];
 			var lastX = p.x;
@@ -240,7 +239,7 @@ $(document).ready(function(){
 			context.beginPath();
 			context.moveTo(p.x, pTop);
 			context.lineTo(p.x, pBot);
-			context.strokeStyle = p.colourBase;
+			context.strokeStyle = p.colour;
 			context.stroke();
 		}
 	}
