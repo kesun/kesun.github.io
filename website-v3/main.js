@@ -85,21 +85,23 @@ $(document).ready(function(){
 	}
 */
 	function generateFrequencyParticles(){
-		var indArr = getValidFrequencyIndArr();
-		switch(eqMode){
-			case 1:
-				console.log('generateTrailDropParticles');
-				oneTimeParticleGenerated = false;
-				generateTrailDropParticles(indArr);
-				setTimeout(generateFrequencyParticles, 200);
-				break;
-			case 2:
-				if(!oneTimeParticleGenerated){
-					console.log('generateSimpleHorizontalParticles');
-					generateSimpleHorizontalParticles(indArr);
-					oneTimeParticleGenerated = true;
-				}
-				break;
+		if(frequencyData != undefined){
+			var indArr = getValidFrequencyIndArr();
+			switch(eqMode){
+				case 1:
+					console.log('generateTrailDropParticles');
+					oneTimeParticleGenerated = false;
+					generateTrailDropParticles(indArr);
+					setTimeout(generateFrequencyParticles, 200);
+					break;
+				case 2:
+					if(!oneTimeParticleGenerated){
+						console.log('generateSimpleHorizontalParticles');
+						generateSimpleHorizontalParticles(indArr);
+						oneTimeParticleGenerated = true;
+					}
+					break;
+			}
 		}
 	}
 
