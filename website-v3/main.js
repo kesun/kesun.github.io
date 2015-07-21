@@ -97,7 +97,6 @@ $(document).ready(function(){
 					if(!oneTimeParticleGenerated){
 						generateSimpleHorizontalParticles(indArr);
 						oneTimeParticleGenerated = true;
-						console.log('generated', particleArr);
 					}
 					break;
 			}
@@ -136,6 +135,7 @@ $(document).ready(function(){
 
 	function generateSimpleHorizontalParticles(indArr){
 		var canvas = document.getElementById('backgroundCanvas');
+		console.log('frequencyData', frequencyData);
 		for(var i = 0; i < frequencyData.length; i++){
 			if(eqMode != 2){
 				break;
@@ -212,8 +212,6 @@ $(document).ready(function(){
 		var maxHeight = Math.floor(canvas.height / 4);
 		context.fillStyle = fillColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-
-		console.log(particleArr);
 
 		for(var i = 0; i < particleArr.length; i++){
 			var frequencyDataVal = frequencyData[i];
