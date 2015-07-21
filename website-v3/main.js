@@ -3,7 +3,7 @@ $(document).ready(function(){
 	// constants
 	// var backgroundColour = "#333333";
 	var alphaTrailDrop = 0.025;
-	var alphaSimpleHorizontal = 0.05;
+	var alphaSimpleHorizontal = 0.1;
 	var fillColourTrailDrop = "rgba(0, 0, 0, " + alphaTrailDrop + ")";
 	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
 	var veloInitCap = 2;
