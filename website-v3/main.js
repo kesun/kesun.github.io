@@ -2,12 +2,12 @@ var timer;
 $(document).ready(function(){
 	// constants
 	// var backgroundColour = "#333333";
-	var alphaTrailDrop = 0.025;
+	var alphaTrailDrop = 0.005;
 	var alphaSimpleHorizontal = 0.025;
 	var fillColourTrailDrop = "rgba(0, 0, 0, " + alphaTrailDrop + ")";
 	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
 	var veloInitCap = 0.01;
-	var veloMaxCap = 1;
+	var veloMaxCap = 0.5;
 	var acc = 0.1;
 	var simpleHorizontalStep = 8;
 
