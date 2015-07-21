@@ -61,6 +61,7 @@ $(document).ready(function(){
 		particleArr = [];
 		clearInterval(timer);
 		//generateParticles();
+		console.log("eqMode", eqMode);
 		generateFrequencyParticles();
 		switch(eqMode){
 			case 1:
