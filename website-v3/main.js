@@ -229,7 +229,6 @@ $(document).ready(function(){
 		var maxHeight = Math.floor(canvas.height / 4);
 		context.fillStyle = fillColourSimpleHorizontal;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		console.log(frequencyData);
 		for(var i = 0; i < frequencyData.length; i++){
 			var frequencyDataVal = frequencyData[i];
 			var p = particleArr[i];
