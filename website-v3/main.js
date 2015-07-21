@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var veloInitCap = 2;
 	var veloMaxCap = 8;
 	var acc = 0.2;
+	var simpleHorizontalStep = 4;
 
 	// stuff
 	var eqMode = 1;
@@ -64,7 +65,6 @@ $(document).ready(function(){
 		particleArr = [];
 		clearInterval(timer);
 		//generateParticles();
-		console.log("eqMode", eqMode);
 		generateFrequencyParticles();
 		switch(eqMode){
 			case 1:
@@ -159,7 +159,7 @@ $(document).ready(function(){
 	function generateSimpleHorizontalParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var lestmost = Math.floor(canvas.width / 2 - frequencyData.length / 2);
-		for(var i = 0; i < frequencyData.length; i+=4){
+		for(var i = 0; i < frequencyData.length; i+=simpleHorizontalStep){
 			if(eqMode != 2){
 				break;
 			}
@@ -173,7 +173,6 @@ $(document).ready(function(){
 			}
 			particleArr.push(p);
 		}
-		console.log(particleArr);
 	}
 
 	function getValidFrequencyIndArr(){
@@ -236,7 +235,7 @@ $(document).ready(function(){
 		context.fillStyle = fillColourSimpleHorizontal;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		for(var i = 0; i < particleArr.length; i++){
-			var frequencyDataVal = frequencyData[i * 4];
+			var frequencyDataVal = frequencyData[i * simpleHorizontalStep];
 			var p = particleArr[i];
 			var pY = Math.floor(maxHeight / 255 * frequencyDataVal);
 			var pTop = Math.floor(canvas.height / 2) - pY;
@@ -245,7 +244,7 @@ $(document).ready(function(){
 			context.moveTo(p.x, pTop);
 			context.lineTo(p.x, pBot);
 			context.strokeStyle = p.colour;
-			context.lineWidth = 1;
+			context.lineWidth = 0.5;
 			context.stroke();
 		}
 	}
