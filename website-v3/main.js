@@ -27,7 +27,6 @@ $(document).ready(function(){
 		var canvas = document.getElementById('backgroundCanvas');
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-		clearInterval(timer);
 		initBackgroundAnimation();
 	}
 
@@ -42,6 +41,7 @@ $(document).ready(function(){
 	function initBackgroundAnimation(){
 		wipeCanvas();
 		particleArr = [];
+		clearInterval(timer);
 		//generateParticles();
 		generateFrequencyParticles();
 		switch(eqMode){
@@ -274,7 +274,7 @@ $(document).ready(function(){
 		}else{
 			eqMode++;
 		}
-		initBackgroundAnimation();
+		resizeCanvas();
 	});
 
 	resizeCanvas();
