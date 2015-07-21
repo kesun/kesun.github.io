@@ -157,12 +157,13 @@ $(document).ready(function(){
 
 	function generateSimpleHorizontalParticles(indArr){
 		var canvas = document.getElementById('backgroundCanvas');
+		var lestmost = Math.floor(canvas.width / 2 - frequencyData.length / 2);
 		for(var i = 0; i < frequencyData.length; i+=2){
 			if(eqMode != 2){
 				break;
 			}
 			var frequencyDataVal = frequencyData[i];
-			var x = Math.floor(canvas.width / 2 - frequencyData.length / 2) + i;
+			var x = lestmost + i;
 			var pColour = Math.floor(360 / frequencyData.length * i);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, 1)";
 			var p = {
@@ -171,6 +172,7 @@ $(document).ready(function(){
 			}
 			particleArr.push(p);
 		}
+		console.log(particleArr);
 	}
 
 	function getValidFrequencyIndArr(){
