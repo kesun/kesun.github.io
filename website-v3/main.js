@@ -127,31 +127,33 @@ $(document).ready(function(){
 	}
 
 	function generateTrailDropParticles(indArr){
-		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * (indArr.length / 10) + 5)){
-			if(eqMode != 1){
-				break;
-			}
-			var frequencyDataVal = frequencyData[indArr[i]];
-			if(frequencyDataVal != 0){
-				var pColour = Math.floor(Math.random() * 360);
-				var pOpacity = Math.floor(Math.random() + 0.5);
-				var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
-				var canvas = document.getElementById('backgroundCanvas');
-				var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
-				var p = {
-					x: Math.floor(canvas.width / 255 * frequencyDataVal),
-					y: 0,
-					xVel: 0,
-					yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
-					r: (Math.random() * 8 + 1) / 255 * frequencyDataVal,
-					yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
-					fadeVel: 0,
-					fadeAcc: Math.random() * 0.01 + 0.001,
-					colourBase: pHslaColour,
-					opacity: pOpacity
-
+		if(particleArr.length < 1000){
+			for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * (indArr.length / 10) + 5)){
+				if(eqMode != 1){
+					break;
 				}
-				particleArr.push(p);
+				var frequencyDataVal = frequencyData[indArr[i]];
+				if(frequencyDataVal != 0){
+					var pColour = Math.floor(Math.random() * 360);
+					var pOpacity = Math.floor(Math.random() + 0.5);
+					var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
+					var canvas = document.getElementById('backgroundCanvas');
+					var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
+					var p = {
+						x: Math.floor(canvas.width / 255 * frequencyDataVal),
+						y: 0,
+						xVel: 0,
+						yVel: (Math.random() * 0.3) * veloInitCap * Math.sin(Math.random() * 2 * Math.PI),
+						r: (Math.random() * 8 + 1) / 255 * frequencyDataVal,
+						yFadeInit: Math.floor(Math.random() * yFinal + Math.floor(yFinal / 3)),
+						fadeVel: 0,
+						fadeAcc: Math.random() * 0.01 + 0.001,
+						colourBase: pHslaColour,
+						opacity: pOpacity
+
+					}
+					particleArr.push(p);
+				}
 			}
 		}
 	}
