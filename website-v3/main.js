@@ -8,7 +8,7 @@ $(document).ready(function(){
 	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
 	var veloInitCap = 1;
 	var veloMaxCap = 4;
-	var acc = 0.05;
+	var acc = 0.2;
 	var simpleHorizontalStep = 8;
 
 	// stuff
