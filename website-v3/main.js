@@ -244,7 +244,7 @@ $(document).ready(function(){
 			context.moveTo(p.x, pTop);
 			context.lineTo(p.x, pBot);
 			context.strokeStyle = p.colour;
-			context.lineWidth = 0.5;
+			context.lineWidth = 2;
 			context.stroke();
 		}
 	}
