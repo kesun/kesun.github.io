@@ -140,7 +140,7 @@ $(document).ready(function(){
 				break;
 			}
 			var frequencyDataVal = frequencyData[i];
-			var x = Math.floor(canvas.width / 2 - frequencyData.length / 2);
+			var x = Math.floor(canvas.width / 2 - frequencyData.length / 2) + i;
 			var pColour = Math.floor(360 / frequencyData.length * i);
 			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, 1)";
 			var p = {
