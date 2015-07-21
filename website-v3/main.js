@@ -191,6 +191,7 @@ $(document).ready(function(){
 		var context = canvas.getContext('2d');
 		context.fillStyle = fillColourTrailDrop;
 		context.fillRect(0, 0, canvas.width, canvas.height);
+		console.log(particleArr.length);
 		for(var i = 0; i < particleArr.length; i++){
 			var p = particleArr[i];
 			var lastX = p.x;
