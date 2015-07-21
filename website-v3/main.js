@@ -49,7 +49,7 @@ $(document).ready(function(){
 				timer = setInterval(animateTrailDropParticles, 1000/40);
 				break;
 			case 2:
-				timer = setInterval(animateSimpleHorizontalParticles);
+				timer = setInterval(animateSimpleHorizontalParticles, 1000/40);
 				break;
 		}
 	}
@@ -89,14 +89,12 @@ $(document).ready(function(){
 			var indArr = getValidFrequencyIndArr();
 			switch(eqMode){
 				case 1:
-					console.log('generateTrailDropParticles');
 					oneTimeParticleGenerated = false;
 					generateTrailDropParticles(indArr);
 					setTimeout(generateFrequencyParticles, 200);
 					break;
 				case 2:
 					if(!oneTimeParticleGenerated){
-						console.log('generateSimpleHorizontalParticles');
 						generateSimpleHorizontalParticles(indArr);
 						oneTimeParticleGenerated = true;
 					}
