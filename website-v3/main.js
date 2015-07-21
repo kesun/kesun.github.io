@@ -262,6 +262,7 @@ $(document).ready(function(){
 	// song selection
 	$('.song').click(function(){
 		var songURL =  $(this).attr('songURL');
+		oneTimeParticleGenerated = false;
 		resizeCanvas();
 		switchSong(songURL);
 	});
