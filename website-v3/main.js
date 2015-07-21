@@ -212,6 +212,8 @@ $(document).ready(function(){
 		context.fillStyle = fillColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
+		console.log(particleArr);
+
 		for(var i = 0; i < particleArr.length; i++){
 			var frequencyDataVal = frequencyData[i];
 			var p = particleArr[i];
