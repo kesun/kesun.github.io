@@ -68,7 +68,7 @@ $(document).ready(function(){
 		generateFrequencyParticles();
 		switch(eqMode){
 			case 1:
-				timer = setInterval(animateTrailDropParticles, 100);
+				timer = setInterval(animateTrailDropParticles, 1000/40);
 				break;
 			case 2:
 				generateSimpleHorizontalParticles();
