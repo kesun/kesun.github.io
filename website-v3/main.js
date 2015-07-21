@@ -159,7 +159,7 @@ $(document).ready(function(){
 	function generateSimpleHorizontalParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var lestmost = Math.floor(canvas.width / 2 - frequencyData.length / 2);
-		for(var i = 0; i < frequencyData.length; i+=2){
+		for(var i = 0; i < frequencyData.length; i+=4){
 			if(eqMode != 2){
 				break;
 			}
@@ -236,7 +236,7 @@ $(document).ready(function(){
 		context.fillStyle = fillColourSimpleHorizontal;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 		for(var i = 0; i < particleArr.length; i++){
-			var frequencyDataVal = frequencyData[i * 2];
+			var frequencyDataVal = frequencyData[i * 4];
 			var p = particleArr[i];
 			var pY = Math.floor(maxHeight / 255 * frequencyDataVal);
 			var pTop = Math.floor(canvas.height / 2) - pY;
