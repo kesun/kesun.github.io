@@ -147,7 +147,7 @@ $(document).ready(function(){
 				x: x,
 				colourBase: pHslaColour
 			}
-			particleArr.push(frequencyDataVal);
+			particleArr.push(p);
 		}
 	}
 
