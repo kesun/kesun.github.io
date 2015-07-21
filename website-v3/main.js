@@ -186,7 +186,6 @@ $(document).ready(function(){
 		var context = canvas.getContext('2d');
 		context.fillStyle = fillColourTrailDrop;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		console.log(particleArr);
 		for(var i = 0; i < particleArr.length; i++){
 			var p = particleArr[i];
 			var lastX = p.x;
@@ -233,7 +232,7 @@ $(document).ready(function(){
 		console.log(frequencyData);
 		for(var i = 0; i < frequencyData.length; i++){
 			var frequencyDataVal = frequencyData[i];
-			var p = frequencyData[i];
+			var p = particleArr[i];
 			var pY = Math.floor(maxHeight / 255 * frequencyDataVal);
 			var pTop = Math.floor(canvas.height / 2) - pY;
 			var pBot = Math.floor(canvas.height / 2) + pY;
