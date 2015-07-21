@@ -135,7 +135,6 @@ $(document).ready(function(){
 
 	function generateSimpleHorizontalParticles(indArr){
 		var canvas = document.getElementById('backgroundCanvas');
-		console.log('frequencyData', frequencyData);
 		for(var i = 0; i < frequencyData.length; i++){
 			if(eqMode != 2){
 				break;
@@ -148,7 +147,7 @@ $(document).ready(function(){
 				x: x,
 				colourBase: pHslaColour
 			}
-			particleArr.push();
+			particleArr.push(frequencyDataVal);
 		}
 	}
 
