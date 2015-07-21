@@ -7,8 +7,12 @@ $(document).ready(function(){
 	var veloMaxCap = 8;
 	var acc = 0.2;
 
+	// stuff
+	var eqMode = 1;
+	var oneTimeParticleGenerated = false;
 	var audioDOM;
 
+	var frequencyData;
 	var particleArr = [];
 
 	window.addEventListener('resize', resizeCanvas, false);
@@ -23,21 +27,32 @@ $(document).ready(function(){
 		var canvas = document.getElementById('backgroundCanvas');
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-		particleArr = [];
 		clearInterval(timer);
 		initBackgroundAnimation();
 	}
 
-	function initBackgroundAnimation(){
+	function wipeCanvas(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
 		$(canvas).css('background-color', backgroundColour);
 		context.fillStyle = backgroundColour;
 		context.fillRect(0, 0, canvas.width, canvas.height);
-		//generateParticles();
-		timer = setInterval(animateParticles, 1000/40);
 	}
 
+	function initBackgroundAnimation(){
+		wipeCanvas();
+		particleArr = [];
+		//generateParticles();
+		switch(eqMode){
+			case 1:
+				timer = setInterval(animateTrailDropParticles, 1000/40);
+				break;
+			case 2:
+				timer = setInterval(animateSimpleHorizontalParticles);
+				break;
+		}
+	}
+/*
 	function generateParticles(){
 		setTimeout(generateParticle, 0.00000000000000000001);
 	}
@@ -67,17 +82,34 @@ $(document).ready(function(){
 		}
 		generateParticles();
 	}
+*/
+	function generateFrequencyParticles(){
+		var indArr = getValidFrequencyIndArr();
+		switch(eqMode){
+			case 1:
+				oneTimeParticleGenerated = false;
+				generateTrailDropParticles(indArr);
+				break;
+			case 2:
+				if(!oneTimeParticleGenerated){
+					generateSimpleHorizontalParticles(indArr);
+					oneTimeParticleGenerated = true;
+				}
+				break;
+		}
+	}
 
-	function generateFrequencyParticles(frequencyData){
-		var indArr = getValidFrequencyIndArr(frequencyData);
+	function generateTrailDropParticles(indArr){
 		for(var i = 0; i < indArr.length; i += Math.floor(Math.random() * (indArr.length / 10) + 5)){
+			if(eqMode != 1){
+				break;
+			}
 			var frequencyDataVal = frequencyData[indArr[i]];
 			if(frequencyDataVal != 0){
 				var pColour = Math.floor(Math.random() * 360);
 				var pOpacity = Math.floor(Math.random() + 0.5);
 				var pHslaColour = "hsla(" + pColour + ", 60%, 70%, ";
 				var canvas = document.getElementById('backgroundCanvas');
-				var context = canvas.getContext('2d');
 				var yFinal = Math.floor(Math.random() * canvas.height + Math.floor(canvas.height / 3));
 				var p = {
 					x: Math.floor(canvas.width / 255 * frequencyDataVal),
@@ -97,7 +129,25 @@ $(document).ready(function(){
 		}
 	}
 
-	function getValidFrequencyIndArr(frequencyData){
+	function generateSimpleHorizontalParticles(indArr){
+		var canvas = document.getElementById('backgroundCanvas');
+		for(var i = 0; i < frequencyData.length; i++){
+			if(eqMode != 2){
+				break;
+			}
+			var frequencyDataVal = frequencyData[i];
+			var x = Math.floor(canvas.width / 2 - frequencyData.length / 2);
+			var pColour = Math.floor(360 / frequencyData.length * i);
+			var pHslaColour = "hsla(" + pColour + ", 60%, 70%, 1)";
+			var p = {
+				x: x,
+				colourBase: pHslaColour
+			}
+			particleArr.push();
+		}
+	}
+
+	function getValidFrequencyIndArr(){
 		var arr = [];
 		for(var i = 0; i < frequencyData.length; i++){
 			if(frequencyData[i] != 0){
@@ -108,7 +158,7 @@ $(document).ready(function(){
 	}
 
 
-	function animateParticles(){
+	function animateTrailDropParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
 		context.fillStyle = fillColour;
@@ -151,6 +201,27 @@ $(document).ready(function(){
 		}
 	}
 
+	function animateSimpleHorizontalParticles(){
+		var canvas = document.getElementById('backgroundCanvas');
+		var context = canvas.getContext('2d');
+		var maxHeight = Math.floor(canvas.height / 4);
+		context.fillStyle = fillColour;
+		context.fillRect(0, 0, canvas.width, canvas.height);
+
+		for(var i = 0; i < particleArr.length; i++){
+			var frequencyDataVal = frequencyData[i];
+			var p = particleArr[i];
+			var pY = Math.floor(maxHeight / 255 * frequencyDataVal);
+			var pTop = Math.floor(canvas.height / 2) - pY;
+			var pBot = Math.floor(canvas.height / 2) + pY;
+			context.beginPath();
+			context.moveTo(p.x, pTop);
+			context.lineTo(p.x, pBot);
+			context.strokeStyle = p.colourBase;
+			context.stroke();
+		}
+	}
+
 	function audioSetup(){
 		if(audioDOM == undefined){
 			var sound, analyser, context;
@@ -163,14 +234,13 @@ $(document).ready(function(){
 			sound.connect(analyser);
 			sound.connect(context.destination);
 
-			var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+			frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 			function getData(){
 				setTimeout(function(){
 					requestAnimationFrame(getData);
 				}, 200);
 				analyser.getByteFrequencyData(frequencyData);
-				generateFrequencyParticles(frequencyData);
 			}
 		}
 		getData();
@@ -183,13 +253,22 @@ $(document).ready(function(){
 		audioDOM.play();
 	}
 
-	resizeCanvas();
-	audioSetup();
-
 	// song selection
 	$('.song').click(function(){
 		var songURL =  $(this).attr('songURL');
 		resizeCanvas();
 		switchSong(songURL);
 	});
+
+	$('.eqToggle').click(function(){
+		if(eqMode == 2){
+			eqMode = 1;
+		}else{
+			eqMode++;
+		}
+		initBackgroundAnimation();
+	});
+
+	resizeCanvas();
+	audioSetup();
 });
