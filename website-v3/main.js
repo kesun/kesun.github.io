@@ -95,6 +95,7 @@ $(document).ready(function(){
 					break;
 				case 2:
 					if(!oneTimeParticleGenerated){
+						console.log('generated');
 						generateSimpleHorizontalParticles(indArr);
 						oneTimeParticleGenerated = true;
 					}
