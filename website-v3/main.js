@@ -1,8 +1,11 @@
 var timer;
 $(document).ready(function(){
 	// constants
-	var backgroundColour = "#333333";
-	var fillColour = "rgba(0, 0, 0, 0.025)";
+	// var backgroundColour = "#333333";
+	var alphaTrailDrop = 0.025;
+	var alphaSimpleHorizontal = 0.05;
+	var fillColourTrailDrop = "rgba(0, 0, 0, " + alphaTrailDrop + ")";
+	var fillColourSimpleHorizontal = "rgba(0, 0, 0, " + alphaSimpleHorizontal + ")";
 	var veloInitCap = 2;
 	var veloMaxCap = 8;
 	var acc = 0.2;
@@ -19,6 +22,14 @@ $(document).ready(function(){
 
 	//printArr();
 
+	function getBackgroundColour(alphaBlack, roundMethod){
+		if(roundMethod == "nearest"){
+			return "hsla(0, 0%, " + Math.round(1 / (2 * alphaBlack)) + "%, 1)";
+		}else{
+			return "hsla(0, 0%, " + Math.floor(1 / (2 * alphaBlack)) + "%, 1)";
+		}
+	}
+
 	function printArr(){
 		setTimeout(printArr, 1000);
 	}
@@ -33,8 +44,15 @@ $(document).ready(function(){
 	function wipeCanvas(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
-		$(canvas).css('background-color', backgroundColour);
-		context.fillStyle = backgroundColour;
+		switch(eqMode){
+			case 1:
+				context.fillStyle = getBackgroundColour(alphaTrailDrop, "nearest");
+				break;
+			case 2:
+				context.fillStyle = getBackgroundColour(alphaSimpleHorizontal, "nearest");;
+				break;
+
+		}
 		context.fillRect(0, 0, canvas.width, canvas.height);
 	}
 
@@ -165,7 +183,7 @@ $(document).ready(function(){
 	function animateTrailDropParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
-		context.fillStyle = fillColour;
+		context.fillStyle = fillColourTrailDrop;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 		for(var i = 0; i < particleArr.length; i++){
@@ -209,12 +227,12 @@ $(document).ready(function(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var context = canvas.getContext('2d');
 		var maxHeight = Math.floor(canvas.height / 4);
-		context.fillStyle = fillColour;
+		context.fillStyle = fillColourSimpleHorizontal;
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
-		for(var i = 0; i < particleArr.length; i++){
+		for(var i = 0; i < frequencyData.length; i++){
 			var frequencyDataVal = frequencyData[i];
-			var p = particleArr[i];
+			var p = frequencyData[i];
 			var pY = Math.floor(maxHeight / 255 * frequencyDataVal);
 			var pTop = Math.floor(canvas.height / 2) - pY;
 			var pBot = Math.floor(canvas.height / 2) + pY;
