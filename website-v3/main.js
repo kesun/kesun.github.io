@@ -71,6 +71,7 @@ $(document).ready(function(){
 				timer = setInterval(animateTrailDropParticles, 1000/40);
 				break;
 			case 2:
+				generateSimpleHorizontalParticles();
 				timer = setInterval(animateSimpleHorizontalParticles, 0);
 				break;
 		}
@@ -117,7 +118,7 @@ $(document).ready(function(){
 					break;
 				case 2:
 					if(!oneTimeParticleGenerated){
-						generateSimpleHorizontalParticles(indArr);
+						generateSimpleHorizontalParticles();
 						oneTimeParticleGenerated = true;
 					}
 					break;
@@ -155,7 +156,7 @@ $(document).ready(function(){
 		}
 	}
 
-	function generateSimpleHorizontalParticles(indArr){
+	function generateSimpleHorizontalParticles(){
 		var canvas = document.getElementById('backgroundCanvas');
 		var lestmost = Math.floor(canvas.width / 2 - frequencyData.length / 2);
 		for(var i = 0; i < frequencyData.length; i+=2){
