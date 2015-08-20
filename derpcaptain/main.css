@@ -11,6 +11,12 @@ body{
 	padding: 0;
 }
 
+.vert-center{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 #cover{
 	z-index: -1;
 	position: relative;
@@ -54,10 +60,12 @@ video#bgvid{
 	text-align: center;
 }
 
+#cover-overlay-message > p > span{
+	font-weight: bold;
+	color: #FFE3A3;
+}
+
 #cover-overlay-message > p{
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	color: white;
 	font-family: 'Lobster', cursive;
 	font-size: 7vh;
@@ -66,5 +74,12 @@ video#bgvid{
 
 .section{
 	width: 100vw;
-	height: 100vh;
+}
+
+#pretro{
+	height: 200px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	font-size: 3vh;
+	background-color: 
 }
