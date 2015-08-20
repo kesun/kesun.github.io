@@ -24,7 +24,14 @@ $(document).ready(function(){
 	//printArr();
 
 	function getBackgroundColour(alphaBlack, roundMethod){
-		return "#000";
+		if(alphaBlack == 1){
+			return "#000";
+		}
+		if(roundMethod == "nearest"){
+			return "hsla(0, 0%, " + Math.round(1 / (2 * alphaBlack)) + "%, 1)";
+		}else{
+			return "hsla(0, 0%, " + Math.floor(1 / (2 * alphaBlack)) + "%, 1)";
+		}
 	}
 
 	function printArr(){
