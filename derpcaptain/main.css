@@ -7,10 +7,14 @@
 }
 
 #cover{
+	z-index: -1;
 	position: relative;
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
+	background: url('cover.png') no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 video#bgvid{
@@ -53,4 +57,9 @@ video#bgvid{
 	font-family: 'Lobster', cursive;
 	font-size: 7vh;
 	text-shadow: 0.5vh 0.5vh rgba(0, 0, 0, 0.5);
+}
+
+.section{
+	width: 100vw;
+	height: 100vh;
 }
