@@ -11,6 +11,11 @@ body{
 	padding: 0;
 }
 
+#wrapper{
+	max-width: 100vw;
+	overflow: hidden;
+}
+
 .vert-center{
 	position: relative;
 	top: 50%;
@@ -74,12 +79,73 @@ video#bgvid{
 
 .section{
 	width: 100vw;
+	overflow: hidden;
+}
+
+.section-background{
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	top: 0px;
+	left: 0px;
+	background-size: cover;
+	background-position: center;
+}
+
+.section-background:nth-child(1){
+	z-index: -2;
+	background-image: url(http://media.steampowered.com/apps/dota2/images/wallpapers/CM_snowdrop_set.jpg);
 }
 
 #pretro{
 	height: 200px;
 	text-align: center;
 	font-family: 'Lobster', cursive;
-	font-size: 3vh;
-	background-color: 
+	font-size: 3em;
+	background-color: #FF7700;
+	text-shadow: 0.05em 0.05em white;
+}
+
+#sec1 > .container > .row:nth-child(1) > div:nth-child(1) > .content-wrapper{
+	background-color: rgba(255, 138, 199, 0.8);
+}
+
+#sec1 > .container > .row:nth-child(1) > div:nth-child(2) > .content-wrapper{
+	background-color: rgba(255, 209, 138, 0.8);
+}
+
+#sec1 > .container > .row:nth-child(1) > div:nth-child(3) > .content-wrapper{
+	background-color: rgba(138, 205, 225, 0.8);
+}
+
+#sec1 > .container > .row:nth-child(2) > div:nth-child(1) > .content-wrapper{
+	background-color: rgba(225, 225, 225, 0.8);
+}
+
+.content-wrapper{
+	margin: 10px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#epic-win-gif{
+	width: 100%;
+	height: 300px;
+	background-image: url(http://media.giphy.com/media/11MICB2ZmzK036/giphy.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#try{
+	height: 100vh;
+	text-align: center;
+	font-size: 3em;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+#try > div > p{
+	color: white;
+	font-family: 'Lobster', cursive;
+	text-shadow: 0.05em 0.05em black;
 }
