@@ -25,6 +25,7 @@ body{
 #cover{
 	z-index: -1;
 	position: relative;
+	min-width: 300px;
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
@@ -73,7 +74,7 @@ video#bgvid{
 #cover-overlay-message > p{
 	color: white;
 	font-family: 'Lobster', cursive;
-	font-size: 7vh;
+	font-size: 8vh;
 	text-shadow: 0.5vh 0.5vh rgba(0, 0, 0, 0.5);
 }
 
