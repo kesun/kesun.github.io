@@ -23,13 +23,11 @@ body{
 }
 
 #cover{
-	margin-top: 50px;
 	z-index: -1;
 	position: relative;
 	min-width: 300px;
 	width: 100vw;
-	height: calc(100vh-50px);
-	height: -webkit-calc(100vh-50px);
+	height: 100vh;
 	overflow: hidden;
 	background: url('cover.png') no-repeat;
 	background-size: cover;
