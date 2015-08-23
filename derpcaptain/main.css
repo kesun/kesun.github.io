@@ -27,7 +27,7 @@ body{
 	position: relative;
 	min-width: 300px;
 	width: 100vw;
-	height: calc(100vh-50px);
+	min-height: calc(100vh-50px);
 	overflow: hidden;
 	background: url('cover.png') no-repeat;
 	background-size: cover;
