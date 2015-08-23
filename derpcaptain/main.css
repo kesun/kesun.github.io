@@ -145,8 +145,14 @@ video#bgvid{
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
-#try > div > p{
+#try > div > .jumbotron > p:nth-child(1){
 	color: white;
+	font-size: 1.5em;
 	font-family: 'Lobster', cursive;
-	text-shadow: 0.05em 0.05em black;
+	text-shadow: 0.07em 0.07em black;
+}
+
+.jumbotron{
+	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
 }

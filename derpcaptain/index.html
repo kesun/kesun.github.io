@@ -12,9 +12,38 @@
 <body>
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<a class="navbar-brand" href="index.html">Derp Captain</a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Derp Captain</a>
 				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Home</a></li>
+						<li><a href="#pretro">About</a></li>
+						<li><a href="#try">Try</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Login</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">English</a></li>
+								<li><a href="#">French</a></li>
+								<li><a href="#">Marsian</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
 		</nav>
 		<div id="cover">
 			<video autoplay loop poster="cover.png" id="bgvid">
@@ -67,8 +96,11 @@
 		</div>
 		<div class="section" id="try">
 			<div class="vert-center">
-				<p>Ready to pwn?</p>
-				<button class="btn btn-info btn-lg" type="submit">Click here to try Derp Captain</button>
+				<div class="jumbotron">
+					<p>Ready to pwn?</p>
+					<p>For a limited time, you may enjoy all features for free!</p>
+					<p><a class="btn btn-primary btn-lg" href="#" role="button">Click here to try Derp Captain</a></p>
+				</div>
 			</div>
 		</div>
 	</div>
